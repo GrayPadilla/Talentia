@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Talentia - Centro Formativo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="index.html" aria-label="Talentia inicio">
+          <img class="brand-logo" src="assets/logo-talentia.svg" alt="Talentia Escuela de Especialización Profesional" />
+        </a>
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a class="active" href="index.html">Inicio</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="cursos.html">Cursos</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#capacitaciones">Capacitaciones</a>
+          <a href="#contacto">Contactos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div>
+            <p class="eyebrow">Centro formativo especializado</p>
+            <h1>Bienvenido a Talentia Centro Formativo</h1>
+            <p>Capacitamos profesionales para impulsar su desarrollo y aprendizaje en cada contexto laboral.</p>
+            <div class="header-actions">
+              <a class="btn btn-primary" href="cursos.html">Comenzar ahora →</a>
+              <a class="btn btn-secondary" href="#contacto">Solicitar cotización →</a>
+            </div>
+          </div>
+          <div class="hero-card" aria-hidden="true">
+            <div class="floating-tile tile-a">▦</div>
+            <div class="floating-tile tile-b">✦</div>
+            <div class="floating-tile tile-c">◌</div>
+            <div class="hero-screen"></div>
+            <div class="hero-device"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-strip">
+        <div class="container stats">
+          <div class="stat"><span class="stat-icon">♙</span><div><strong>+5,000</strong><span>Estudiantes formados</span></div></div>
+          <div class="stat"><span class="stat-icon">▤</span><div><strong>+120</strong><span>Cursos y programas</span></div></div>
+          <div class="stat"><span class="stat-icon">☺</span><div><strong>95%</strong><span>Satisfacción</span></div></div>
+          <div class="stat"><span class="stat-icon">▥</span><div><strong>+200</strong><span>Empresas capacitadas</span></div></div>
+        </div>
+      </section>
+
+      <section class="section" id="nosotros">
+        <div class="container split">
+          <div>
+            <p class="eyebrow">¿Por qué elegir Talentia?</p>
+            <h2 class="section-title">Formación práctica para crecer en el mundo laboral.</h2>
+            <p class="section-subtitle">Somos el centro formativo de Talentum enfocado en el desarrollo de profesionales y organizaciones mediante capacitación especializada.</p>
+            <ul class="check-list">
+              <li>Cursos y programas alineados al mercado actual</li>
+              <li>Metodología práctica y orientada a resultados</li>
+              <li>Docentes especialistas con experiencia real</li>
+              <li>Acompañamiento durante tu aprendizaje</li>
+            </ul>
+          </div>
+          <div class="image-panel" aria-label="Representación visual de aprendizaje profesional"></div>
+        </div>
+      </section>
+
+      <section class="section soft" id="capacitaciones">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">¿Qué ofrecemos en Talentia?</p>
+              <h2 class="section-title">Capacitaciones para profesionales y empresas.</h2>
+            </div>
+          </div>
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-copy">
+                <div class="icon-pill">▦</div>
+                <p class="eyebrow">Para empresas</p>
+                <h3>Capacitaciones Corporativas</h3>
+                <p class="body">Programas diseñados a la medida de tu empresa para potenciar el talento de tus equipos.</p>
+                <ul class="check-list">
+                  <li>Programas personalizados</li>
+                  <li>Desarrollo de habilidades clave</li>
+                  <li>Modalidad presencial, virtual o híbrida</li>
+                </ul>
+              </div>
+              <div class="service-visual" aria-hidden="true"></div>
+            </article>
+            <article class="service-card">
+              <div class="service-copy">
+                <div class="icon-pill">◌</div>
+                <p class="eyebrow">Para profesionales</p>
+                <h3>Capacitaciones Profesionales</h3>
+                <p class="body">Contenido práctico para potenciar tus competencias y abrir nuevas oportunidades.</p>
+                <ul class="check-list">
+                  <li>Contenido práctico y aplicable</li>
+                  <li>Docentes especialistas</li>
+                  <li>Certificación al finalizar</li>
+                </ul>
+              </div>
+              <div class="service-visual" aria-hidden="true"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Nuestros cursos más destacados</h2>
+              <p class="section-subtitle">Conoce programas diseñados para potenciar tu desarrollo profesional.</p>
+            </div>
+            <a class="btn btn-dark" href="cursos.html">Ver todos los cursos</a>
+          </div>
+          <div class="courses-grid" data-featured-courses></div>
+        </div>
+      </section>
+
+      <section class="section process" id="experiencia">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">¿Cómo es tu experiencia en Talentia?</h2>
+              <p class="section-subtitle">Un proceso simple para enfocarte en tu aprendizaje.</p>
+            </div>
+          </div>
+          <div class="steps">
+            <article class="step"><div class="step-number">1</div><h3>Explora los cursos</h3><p>Encuentra programas según tus objetivos.</p></article>
+            <article class="step"><div class="step-number">2</div><h3>Inscríbete</h3><p>Registra tus datos de forma rápida.</p></article>
+            <article class="step"><div class="step-number">3</div><h3>Aprende</h3><p>Accede a clases, recursos y evaluaciones.</p></article>
+            <article class="step"><div class="step-number">4</div><h3>Certifícate</h3><p>Valida tus nuevas competencias.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Modalidades de capacitación</h2>
+              <p class="section-subtitle">Nos adaptamos a tus necesidades de aprendizaje.</p>
+            </div>
+          </div>
+          <div class="modalities-grid">
+            <article class="modality-card"><div class="icon-pill">▣</div><h3>Cursos Online</h3><p class="body">Estudia desde cualquier lugar.</p></article>
+            <article class="modality-card"><div class="icon-pill">▥</div><h3>Cursos Presenciales</h3><p class="body">Aprendizaje con nuestros expertos.</p></article>
+            <article class="modality-card"><div class="icon-pill">☼</div><h3>Capacitaciones Corporativas</h3><p class="body">Programas a medida para empresas.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section soft">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Lo que dicen nuestros estudiantes</h2>
+          </div>
+          <div class="testimonials">
+            <article class="testimonial"><p>“Los cursos me ayudaron a mejorar mis habilidades profesionales.”</p><strong>Valeria Sánchez</strong><br><span>Estudiante de Marketing Digital</span></article>
+            <article class="testimonial"><p>“Excelente metodología y docentes con mucha experiencia.”</p><strong>Diego Ramírez</strong><br><span>Estudiante de Desarrollo Web</span></article>
+            <article class="testimonial"><p>“La capacitación superó mis expectativas. Los contenidos son prácticos.”</p><strong>Camila Rojas</strong><br><span>Estudiante de Gestión Empresarial</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contacto">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Conecta con Talentia</h2>
+          </div>
+          <div class="forms-grid">
+            <article class="form-card">
+              <h3>¿Tu empresa necesita capacitar a su equipo?</h3>
+              <p class="body">Programas de formación a medida para potenciar el talento de tu organización.</p>
+              <form data-lead-form>
+                <input name="ruc" placeholder="RUC de la empresa" />
+                <input name="empresa" placeholder="Nombre de la empresa" />
+                <input name="contacto" placeholder="Nombre de contacto" />
+                <input name="email" type="email" placeholder="Correo corporativo" />
+                <input name="telefono" placeholder="Teléfono" />
+                <select name="interes"><option>¿En qué está interesado?</option><option>Capacitación corporativa</option><option>Programa personalizado</option></select>
+                <button class="btn btn-primary" type="submit">Solicitar información</button>
+                <span class="small" data-message></span>
+              </form>
+            </article>
+            <article class="form-card">
+              <h3>¿Quieres seguir aprendiendo?</h3>
+              <p class="body">Regístrate y forma parte de nuestra comunidad.</p>
+              <form data-lead-form>
+                <input name="nombre" placeholder="Nombre completo" />
+                <input name="dni" placeholder="DNI" />
+                <input name="email" type="email" placeholder="Correo electrónico" />
+                <input name="telefono" placeholder="Teléfono" />
+                <select name="interes"><option>¿Qué te interesa?</option><option>Cursos</option><option>Certificados</option><option>Capacitaciones</option></select>
+                <button class="btn btn-dark" type="submit">Solicitar cuenta</button>
+                <span class="small" data-message></span>
+              </form>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div><a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-talentia.svg" alt="Talentia" /></a><p>Solicita cursos Talentia Escuela de Especialización Profesional. Formación que impulsa tu futuro.</p></div>
+        <div><h4>Empresa</h4><ul><li>Quiénes somos</li><li>Misión y visión</li><li>Empresas asociadas</li></ul></div>
+        <div><h4>Explorar</h4><ul><li>Cursos</li><li>Programas</li><li>Capacitaciones</li><li>Docentes</li><li>Certificados</li></ul></div>
+        <div><h4>Contactos</h4><p>(51) 950 290 491</p><p>seleccion@talentumperu.com</p></div>
+      </div>
+    </footer>
+  </body>
+</html>
