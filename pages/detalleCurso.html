@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de curso - Talentia</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-talentia.svg" alt="Talentia Escuela de Especialización Profesional" /></a>
+        <nav class="nav-links">
+          <a href="index.html">Inicio</a>
+          <a href="index.html#nosotros">Nosotros</a>
+          <a class="active" href="cursos.html">Cursos</a>
+          <a href="index.html#experiencia">Experiencia</a>
+          <a href="index.html#capacitaciones">Capacitaciones</a>
+          <a href="index.html#contacto">Contactos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="detail-hero">
+        <div class="container detail-grid">
+          <div class="video-card">
+            <div class="play">▶ Ver presentación del curso</div>
+          </div>
+          <div>
+            <p class="eyebrow" data-course-category>Capacitación profesional</p>
+            <h1 class="h1" data-course-title>Gestión de Talento Humano</h1>
+            <p class="section-subtitle" data-course-description>Aprende a gestionar el talento y desarrollar estrategias efectivas.</p>
+            <div class="course-badges">
+              <span>★ ★ ★ ★ ★ 4.8</span>
+              <span data-course-hours>24 horas</span>
+              <span data-course-modality>Online</span>
+              <span data-course-level>Intermedio</span>
+              <span>Certificado</span>
+            </div>
+            <a class="btn btn-primary" href="#contacto">Solicitar más información</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container detail-layout">
+          <div class="detail-main">
+            <article class="content-card">
+              <h2>Descripción del curso</h2>
+              <p class="body">Este curso brinda una visión integral de la gestión del talento humano, abarcando estrategias, herramientas y buenas prácticas para el reclutamiento, desarrollo, evaluación y retención del talento en las organizaciones.</p>
+            </article>
+
+            <article class="content-card">
+              <h2>¿Qué aprenderás?</h2>
+              <ul class="learning-grid">
+                <li>Aplicar estrategias de atracción y selección del talento.</li>
+                <li>Implementar buenas prácticas de clima y cultura organizacional.</li>
+                <li>Diseñar planes de desarrollo y evaluación del desempeño.</li>
+                <li>Utilizar herramientas digitales de gestión de talento.</li>
+                <li>Gestionar equipos de alto rendimiento.</li>
+                <li>Desarrollar habilidades de liderazgo y comunicación.</li>
+              </ul>
+            </article>
+
+            <article class="content-card">
+              <h2>Contenido del curso</h2>
+              <div class="module-list">
+                <div class="module-row"><span><strong>01</strong>Módulo 1: Introducción a la gestión del talento humano</span><span>3 horas · 4 clases</span></div>
+                <div class="module-row"><span><strong>02</strong>Módulo 2: Reclutamiento y selección de personal</span><span>5 horas · 6 clases</span></div>
+                <div class="module-row"><span><strong>03</strong>Módulo 3: Evaluación del desempeño</span><span>4 horas · 5 clases</span></div>
+                <div class="module-row"><span><strong>04</strong>Módulo 4: Desarrollo y retención del talento</span><span>6 horas · 6 clases</span></div>
+                <div class="module-row"><span><strong>05</strong>Módulo 5: Liderazgo y gestión de equipos</span><span>5 horas · 6 clases</span></div>
+                <div class="module-row"><span><strong>06</strong>Módulo 6: Proyecto final</span><span>2 horas · 1 clase</span></div>
+              </div>
+            </article>
+
+            <article class="content-card">
+              <h2>Docente del curso</h2>
+              <p class="body"><strong>Mg. Carlos Mendoza</strong> - Especialista en Gestión del Talento Humano con más de 10 años de experiencia en desarrollo organizacional.</p>
+            </article>
+          </div>
+
+          <aside class="sidebar">
+            <article class="info-card">
+              <h2>Información del curso</h2>
+              <div class="info-list">
+                <div class="info-item"><span>Duración</span><strong data-course-hours>24 horas</strong></div>
+                <div class="info-item"><span>Modalidad</span><strong data-course-modality>Online</strong></div>
+                <div class="info-item"><span>Nivel</span><strong data-course-level>Intermedio</strong></div>
+                <div class="info-item"><span>Certificación</span><strong>Sí</strong></div>
+                <div class="info-item"><span>Idioma</span><strong>Español</strong></div>
+                <div class="info-item"><span>Categoría</span><strong>Gestión Empresarial</strong></div>
+              </div>
+            </article>
+            <article class="info-card">
+              <h2>Certificado digital</h2>
+              <p class="body">Al finalizar el curso recibirás un certificado emitido por Talentia.</p>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section soft" id="contacto">
+        <div class="container forms-grid">
+          <article class="form-card">
+            <h3>¿Tu empresa necesita capacitar a su equipo?</h3>
+            <form data-lead-form>
+              <input name="empresa" placeholder="Nombre de la empresa" />
+              <input name="email" type="email" placeholder="Correo corporativo" />
+              <input name="telefono" placeholder="Teléfono" />
+              <button class="btn btn-primary" type="submit">Solicitar información</button>
+              <span class="small" data-message></span>
+            </form>
+          </article>
+          <article class="form-card">
+            <h3>¿Quieres seguir aprendiendo?</h3>
+            <form data-lead-form>
+              <input name="nombre" placeholder="Nombre completo" />
+              <input name="email" type="email" placeholder="Correo electrónico" />
+              <input name="telefono" placeholder="Teléfono" />
+              <button class="btn btn-dark" type="submit">Solicitar cuenta</button>
+              <span class="small" data-message></span>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div><a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-talentia.svg" alt="Talentia" /></a><p>Formación que impulsa tu futuro.</p></div>
+        <div><h4>Empresa</h4><ul><li>Quiénes somos</li><li>Misión y visión</li><li>Empresas asociadas</li></ul></div>
+        <div><h4>Explorar</h4><ul><li>Cursos</li><li>Programas</li><li>Capacitaciones</li><li>Docentes</li></ul></div>
+        <div><h4>Contactos</h4><p>(51) 950 290 491</p><p>seleccion@talentumperu.com</p></div>
+      </div>
+    </footer>
+  </body>
+</html>
