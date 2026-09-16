@@ -390,7 +390,7 @@ textarea {
 }
 
 .check-list li::before {
-  content: "✓";
+  content: "âœ“";
   margin-right: 10px;
   color: var(--turquoise);
   font-weight: 900;
@@ -764,7 +764,7 @@ textarea {
 }
 
 .learning-grid li::before {
-  content: "✓";
+  content: "âœ“";
   display: inline-grid;
   place-items: center;
   width: 22px;
@@ -1010,5 +1010,165 @@ textarea {
   .service-visual,
   .catalog-card .course-visual {
     min-height: 170px;
+  }
+}
+
+/* sección: ¿Por qué elegir Talentia? */
+
+#nosotros {
+  background: #ffffff;
+  padding: 70px 0 54px;
+}
+
+#nosotros .split {
+  display: grid;
+  grid-template-columns: 1fr 0.72fr;
+  align-items: center;
+  gap: 56px;
+}
+
+#nosotros .eyebrow {
+  display: none;
+}
+
+#nosotros .section-title {
+  margin: 0 0 18px;
+  color: var(--navy);
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+#nosotros .section-subtitle {
+  max-width: 690px;
+  margin: 0 0 26px;
+  color: var(--navy);
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+#nosotros .check-list {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#nosotros .check-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--navy);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+#nosotros .check-list li::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  margin: 0;
+  border-radius: 50%;
+  background: var(--turquoise);
+}
+
+#nosotros .image-panel {
+  min-height: 300px;
+  border-radius: 16px;
+  background: url("../assets/images/img_nosotros1.png") center / cover no-repeat;
+  border: 0;
+  box-shadow: 0 8px 16px rgba(11, 42, 91, 0.18);
+  overflow: hidden;
+}
+
+#nosotros .image-panel::after {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  #nosotros .split {
+    grid-template-columns: 1fr;
+  }
+
+  #nosotros .section-title {
+    font-size: 34px;
+  }
+
+  #nosotros .section-subtitle {
+    font-size: 18px;
+  }
+
+  #nosotros .check-list li {
+    font-size: 18px;
+  }
+}
+
+/* responsive para sección: ¿Por qué elegir Talentia? */
+
+@media (max-width: 1100px) {
+  #nosotros .split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  #nosotros .image-panel {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  #nosotros {
+    padding: 48px 0 42px;
+  }
+
+  #nosotros .section-title {
+    font-size: 34px;
+    line-height: 1.08;
+  }
+
+  #nosotros .section-subtitle {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  #nosotros .check-list {
+    gap: 14px;
+  }
+
+  #nosotros .check-list li {
+    font-size: 17px;
+    gap: 12px;
+  }
+
+  #nosotros .check-list li::before {
+    width: 16px;
+    height: 16px;
+    flex-basis: 16px;
+  }
+
+  #nosotros .image-panel {
+    min-height: 260px;
+    border-radius: 16px;
+    background-position: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #nosotros .section-title {
+    font-size: 30px;
+  }
+
+  #nosotros .section-subtitle {
+    font-size: 16px;
+  }
+
+  #nosotros .check-list li {
+    font-size: 16px;
+  }
+
+  #nosotros .image-panel {
+    min-height: 220px;
   }
 }
