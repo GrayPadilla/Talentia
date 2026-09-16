@@ -7,7 +7,7 @@ const courses = [
     hours: 24,
     modality: "Online",
     level: "Intermedio",
-    image: "assets/course-talento.png"
+    image: "assets/images/course-talento.png"
   },
   {
     id: "marketing-digital-empresas",
@@ -17,7 +17,7 @@ const courses = [
     hours: 30,
     modality: "Online",
     level: "Básico",
-    image: "assets/course-marketing.png"
+    image: "assets/images/course-marketing.png"
   },
   {
     id: "business-intelligence",
@@ -27,7 +27,7 @@ const courses = [
     hours: 20,
     modality: "Online",
     level: "Intermedio",
-    image: "assets/course-bi.png"
+    image: "assets/images/course-bi.png"
   },
   {
     id: "seguridad-salud-trabajo",
@@ -37,7 +37,7 @@ const courses = [
     hours: 24,
     modality: "Online",
     level: "Básico",
-    image: "assets/course-seguridad.png"
+    image: "assets/images/course-seguridad.png"
   },
   {
     id: "finanzas-no-financieros",
@@ -47,7 +47,7 @@ const courses = [
     hours: 24,
     modality: "Online",
     level: "Básico",
-    image: "assets/course-finanzas.png"
+    image: "../assets/images/course-finanzas.png"
   },
   {
     id: "gestion-proyectos-agiles",
@@ -57,7 +57,7 @@ const courses = [
     hours: 30,
     modality: "Online",
     level: "Intermedio",
-    image: "assets/course-proyectos.png"
+    image: "../assets/images/course-proyectos.png"
   },
   {
     id: "innovacion-design-thinking",
@@ -67,7 +67,7 @@ const courses = [
     hours: 20,
     modality: "Online",
     level: "Básico",
-    image: "assets/course-innovacion.png"
+    image: "../assets/images/course-innovacion.png"
   },
   {
     id: "tecnicas-ventas-negociacion",
@@ -77,7 +77,7 @@ const courses = [
     hours: 24,
     modality: "Online",
     level: "Intermedio",
-    image: "assets/course-ventas.png"
+    image: "../assets/images/course-ventas.png"
   },
   {
     id: "seleccion-personal-competencias",
@@ -87,22 +87,34 @@ const courses = [
     hours: 20,
     modality: "Online",
     level: "Intermedio",
-    image: "assets/course-seleccion.png"
+    image: "../assets/images/course-seleccion.png"
   }
 ];
 
 function courseCard(course, compact = false) {
   return `
-    <article class="course-card ${compact ? "catalog-card" : ""}">
+    <article class="course-card ${compact ? "catalog-card" : "featured-card"}">
+
       <div class="course-visual">
         <img src="${course.image}" alt="${course.title}" loading="lazy">
       </div>
       <div class="course-body">
-        <span class="course-tag">${course.category}</span>
+        ${compact ? `<span class="course-tag">${course.category}</span> ` : ""}
+        
         <h3>${course.title}</h3>
-        <p class="body">${course.description}</p>
-        <p class="course-meta">${course.hours} horas · ${course.modality}</p>
-        <a class="btn btn-primary" href="curso.html?id=${course.id}">Ver curso →</a>
+        ${compact ? `<p class="body">${course.description}</p>` : ""}
+
+        <p class="course-meta">
+          ${course.hours} horas · ${course.modality}
+        </p>
+
+        <a
+          class="btn btn-primary course-action"
+          href="curso.html?id=${course.id}"
+        >
+          Ver curso
+        </a>
+
       </div>
     </article>
   `;
