@@ -761,49 +761,330 @@ textarea {
   font-weight: 400;
 }
 
+/* ===== TESTIMONIOS ===== */
+
+.testimonials-section {
+  background: #ffffff;
+  padding: 42px 0 48px;
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.testimonials-header h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.testimonials-underline {
+  width: 100px;
+  height: 5px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: var(--turquoise);
+}
+
 .testimonials {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
 }
 
 .testimonial {
-  padding: 24px;
+  position: relative;
+  min-height: 194px;
+  padding: 20px 24px 18px;
+  background: #ffffff;
+  border: 2px solid #d9e5ef;
+  border-radius: 12px;
+  box-shadow: none;
+  overflow: hidden;
 }
 
-.testimonial p {
+.testimonial-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.testimonial-avatar {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.testimonial-quote {
+  margin: 2px 0 0;
   color: var(--text);
-  line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.18;
+  font-weight: 500;
+}
+
+.testimonial-person {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+  padding-left: 0;
+}
+
+.testimonial-person strong {
+  color: var(--navy);
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.testimonial-person span {
+  max-width: 230px;
+  margin-top: 2px;
+  color: #7890ab;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.testimonial-mark {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  color: #e4eff9;
+  font-family: Georgia, serif;
+  font-size: 62px;
+  line-height: 0.7;
+  font-weight: 700;
+}
+
+/* ===== CONECTA CON TALENTIA ===== */
+
+.contact-section {
+  background: #ffffff;
+  padding: 54px 0 62px;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-header h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.contact-underline {
+  width: 100px;
+  height: 5px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: var(--turquoise);
 }
 
 .forms-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 36px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 66px;
 }
 
 .form-card {
-  padding: 34px;
+  min-height: 465px;
+  padding: 28px 26px 24px;
+  border-radius: 18px;
+  border: 1px solid #d5e2ec;
+  box-shadow: 0 5px 12px rgba(11, 42, 91, 0.14);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.company-card {
+  background: #e5faf8;
+}
+
+.professional-card {
+  background: #edf5ff;
+}
+
+.professional-card .btn-dark {
+  background: #1d6dbb;
+  box-shadow: 0 10px 18px rgba(29, 109, 187, 0.18);
+}
+
+.professional-card .btn-dark:hover {
+  background: #175d9f;
+}
+
+.form-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.form-icon {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.company-card .form-icon {
+  color: #079ea0;
+  background: #cdf4f1;
+}
+
+.professional-card .form-icon {
+  color: #1d6dbb;
+  background: #d9ebff;
+}
+
+.form-icon span {
+  line-height: 1;
+}
+
+.form-card-header h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 24px;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.form-card-header p {
+  margin: 10px 0 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.form-content {
+  display: grid;
+  grid-template-columns: 1.65fr 0.85fr;
+  gap: 30px;
+  align-items: start;
+  margin-top: 24px;
 }
 
 .form-card form {
   display: grid;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 8px;
+  margin: 0;
 }
 
 .form-card input,
-.form-card select,
-.form-card textarea,
-.filters input,
-.filters select {
+.form-card select {
+  width: 100%;
+  min-height: 37px;
+  padding: 0 12px;
+
+  color: var(--navy);
+  font-size: 13px;
+
+  border: 1px solid #b9cddd;
+  border-radius: 2px;
+  background: #ffffff;
+}
+
+.form-card input::placeholder {
+  color: #75879a;
+}
+
+.form-card input:focus,
+.form-card select:focus {
+  outline: 2px solid rgba(0, 179, 179, 0.2);
+  outline-offset: 1px;
+}
+
+.form-card .btn {
   width: 100%;
   min-height: 42px;
-  padding: 0 14px;
+  margin-top: 2px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.form-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-top: 4px;
+}
+
+.form-benefits div {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
   color: var(--navy);
-  border: 1px solid #cbd8e8;
-  border-radius: 8px;
-  background: #fff;
+  font-size: 14px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.form-benefits strong {
+  color: var(--navy);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.form-benefits span {
+  display: block;
+}
+
+.form-card .small {
+  min-height: 18px;
+  color: var(--text);
+  font-size: 11px;
+}
+
+/* ===== CTA FINAL ===== */
+
+.footer-cta {
+  background: #1458a6;
+  color: #fff;
+  padding: 22px 0;
+}
+
+.footer-cta-content {
+  display: flex;
+  align-items: center;
+}
+
+.footer-cta h2 {
+  margin: 0 0 2px;
+  color: #fff;
+  font-size: 29px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.footer-cta p {
+  margin: 0;
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 15px;
+  line-height: 1.35;
 }
 
 .footer {
@@ -816,6 +1097,12 @@ textarea {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 50px;
+}
+
+.footer .brand-logo {
+  width: 230px;
+  height: auto;
+  display: block;
 }
 
 .footer p,
@@ -1133,6 +1420,60 @@ textarea {
   .modality-card {
     min-height: 235px;
   }
+
+  .testimonials-section {
+    padding: 40px 0;
+  }
+
+  .testimonials-header h2 {
+    font-size: 34px;
+  }
+
+  .testimonials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .testimonial {
+    min-height: 190px;
+  }
+
+  .testimonial-quote {
+    font-size: 16px;
+  }
+
+  .contact-section {
+    padding: 46px 0 52px;
+  }
+
+  .contact-header h2 {
+    font-size: 34px;
+  }
+
+  .forms-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .form-card {
+    min-height: auto;
+  }
+
+  .form-content {
+    grid-template-columns: 1.5fr 1fr;
+  }
+
+  .footer-cta {
+    padding: 20px 0;
+  }
+
+  .footer-cta h2 {
+    font-size: 25px;
+  }
+
+  .footer-cta p {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1430,6 +1771,134 @@ textarea {
 
   .modality-card p {
     font-size: 16px;
+  }
+
+  .testimonials-section {
+    padding: 36px 0 40px;
+  }
+
+  .testimonials-header {
+    margin-bottom: 22px;
+  }
+
+  .testimonials-header h2 {
+    font-size: 29px;
+  }
+
+  .testimonials-underline {
+    width: 72px;
+    height: 4px;
+  }
+
+  .testimonials {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .testimonial {
+    min-height: 0;
+    padding: 18px 18px 20px;
+  }
+
+  .testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    flex-basis: 60px;
+  }
+
+  .testimonial-quote {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .testimonial-person strong {
+    font-size: 16px;
+  }
+
+  .testimonial-person span {
+    font-size: 14px;
+  }
+
+  .testimonial-mark {
+    font-size: 52px;
+  }
+
+  .contact-section {
+    padding: 38px 0 46px;
+  }
+
+  .contact-header {
+    margin-bottom: 24px;
+  }
+
+  .contact-header h2 {
+    font-size: 29px;
+  }
+
+  .contact-underline {
+    width: 72px;
+    height: 4px;
+  }
+
+  .forms-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .form-card {
+    padding: 22px 18px;
+  }
+
+  .form-card-header {
+    gap: 12px;
+  }
+
+  .form-icon {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+    font-size: 19px;
+  }
+
+  .form-card-header h3 {
+    font-size: 21px;
+  }
+
+  .form-card-header p {
+    font-size: 14px;
+  }
+
+  .form-content {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .form-benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding-top: 0;
+  }
+
+  .form-benefits div {
+    font-size: 13px;
+  }
+
+  .footer-cta {
+    padding: 18px 0;
+  }
+
+  .footer-cta h2 {
+    font-size: 22px;
+  }
+
+  .footer-cta p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .footer .brand-logo {
+    width: 190px;
   }
 }
 

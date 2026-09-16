@@ -517,60 +517,207 @@
         </div>
       </section>
 
-      <section class="section soft">
+      <section class="testimonials-section">
         <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Lo que dicen nuestros estudiantes</h2>
+          <div class="testimonials-header">
+            <h2>Lo que dicen nuestros estudiantes</h2>
+            <div class="testimonials-underline"></div>
           </div>
+
           <div class="testimonials">
-            <article class="testimonial"><p>“Los cursos me ayudaron a mejorar mis habilidades profesionales.”</p><strong>Valeria Sánchez</strong><br><span>Estudiante de Marketing Digital</span></article>
-            <article class="testimonial"><p>“Excelente metodología y docentes con mucha experiencia.”</p><strong>Diego Ramírez</strong><br><span>Estudiante de Desarrollo Web</span></article>
-            <article class="testimonial"><p>“La capacitación superó mis expectativas. Los contenidos son prácticos.”</p><strong>Camila Rojas</strong><br><span>Estudiante de Gestión Empresarial</span></article>
+            <article class="testimonial">
+              <div class="testimonial-content">
+                <img class="testimonial-avatar" src="assets/images/avatar-valeria.png" alt="Valeria Sánchez">
+                <p class="testimonial-quote">
+                  “Los cursos me ayudaron a mejorar mis habilidades profesionales y
+                  conseguir nuevas oportunidades.”
+                </p>
+              </div>
+
+              <div class="testimonial-person">
+                <strong>Valeria Sánchez</strong>
+                <span>Estudiante de Marketing Digital</span>
+              </div>
+              <div class="testimonial-mark">❞</div>
+            </article>
+
+            <article class="testimonial">
+              <div class="testimonial-content">
+                <img class="testimonial-avatar" src="assets/images/avatar-diego.png" alt="Diego Ramírez">
+                <p class="testimonial-quote">
+                  “Excelente metodología y docentes con mucha experiencia. 100%
+                  recomendado.”
+                </p>
+              </div>
+              
+              <div class="testimonial-person">
+                <strong>Diego Ramírez</strong>
+                <span>Estudiante de Desarrollo Web</span>
+              </div>
+              <div class="testimonial-mark">❞</div>
+            </article>
+
+            <article class="testimonial">
+              <div class="testimonial-content">
+                <img class="testimonial-avatar" src="assets/images/avatar-camila.png" alt="Camila Rojas">
+                <p class="testimonial-quote">
+                  “La capacitación superó mis expectativas. Los contenidos son
+                  prácticos y muy útiles para el mundo real.”
+                </p>
+              </div>
+
+              <div class="testimonial-person">
+                <strong>Camila Rojas</strong>
+                <span>Estudiante de Gestión Empresarial</span>
+              </div>
+              <div class="testimonial-mark">❞</div>
+            </article>
+
           </div>
         </div>
       </section>
 
-      <section class="section" id="contacto">
+      <section class="contact-section" id="contacto">
         <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Conecta con Talentia</h2>
+
+          <div class="contact-header">
+            <h2>Conecta con Talentia</h2>
+            <div class="contact-underline"></div>
           </div>
+
           <div class="forms-grid">
-            <article class="form-card">
-              <h3>¿Tu empresa necesita capacitar a su equipo?</h3>
-              <p class="body">Programas de formación a medida para potenciar el talento de tu organización.</p>
-              <form data-lead-form>
-                <input name="ruc" placeholder="RUC de la empresa" />
-                <input name="empresa" placeholder="Nombre de la empresa" />
-                <input name="contacto" placeholder="Nombre de contacto" />
-                <input name="email" type="email" placeholder="Correo corporativo" />
-                <input name="telefono" placeholder="Teléfono" />
-                <select name="interes"><option>¿En qué está interesado?</option><option>Capacitación corporativa</option><option>Programa personalizado</option></select>
-                <button class="btn btn-primary" type="submit">Solicitar información</button>
-                <span class="small" data-message></span>
-              </form>
+            <!-- EMPRESAS -->
+            <article class="form-card company-card">
+              <div class="form-card-header">
+                <div class="form-icon">
+                  <span>▣</span>
+                </div>
+
+                <div>
+                  <h3>¿Tu empresa necesita<br>capacitar a su equipo?</h3>
+                  <p>
+                    Programas de formación a medida para potenciar
+                    el talento de tu organización.
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-content">
+                <form data-lead-form>
+                  <input name="ruc" type="text" placeholder="RUC de la empresa"/>
+                  <input name="empresa" type="text" placeholder="Nombre de la empresa"/>
+                  <input name="contacto" type="text" placeholder="Nombre de contacto"/>
+                  <input name="email" type="email" placeholder="Correo corporativo"/>
+                  <input name="telefono" type="text" placeholder="Teléfono"/>
+
+                  <select name="interes">
+                    <option>¿En qué está interesado?</option>
+                    <option>Capacitación corporativa</option>
+                    <option>Programa personalizado</option>
+                  </select>
+
+                  <button class="btn btn-primary" type="submit">Solicitar información</button>
+
+                  <span class="small" data-message></span>
+                </form>
+
+                <div class="form-benefits">
+                  <div>
+                    <strong>✓</strong>
+                    <span>Programas<br>personalizados</span>
+                  </div>
+                  <div>
+                    <strong>✓</strong>
+                    <span>Capacitaciones<br>en empresa</span>
+                  </div>
+                  <div>
+                    <strong>✓</strong>
+                    <span>Acompañamiento<br>especializado</span>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="form-card">
-              <h3>¿Quieres seguir aprendiendo?</h3>
-              <p class="body">Regístrate y forma parte de nuestra comunidad.</p>
-              <form data-lead-form>
-                <input name="nombre" placeholder="Nombre completo" />
-                <input name="dni" placeholder="DNI" />
-                <input name="email" type="email" placeholder="Correo electrónico" />
-                <input name="telefono" placeholder="Teléfono" />
-                <select name="interes"><option>¿Qué te interesa?</option><option>Cursos</option><option>Certificados</option><option>Capacitaciones</option></select>
-                <button class="btn btn-dark" type="submit">Solicitar cuenta</button>
-                <span class="small" data-message></span>
-              </form>
+
+            <!-- PROFESIONALES -->
+            <article class="form-card professional-card">
+              <div class="form-card-header">
+                <div class="form-icon">
+                  <span>●</span>
+                </div>
+
+                <div>
+                  <h3>¿Quieres seguir<br>aprendiendo?</h3>
+                  <p>
+                    Regístrate y forma parte de nuestra comunidad.
+                    Accede a cursos, programas y novedades.
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-content">
+                <form data-lead-form>
+                  <input name="nombre" type="text" placeholder="Nombre completo"/>
+                  <input name="dni" type="text" placeholder="DNI"/>
+                  <input name="email" type="email" placeholder="Correo electrónico"/>
+                  <input name="telefono" type="text" placeholder="Teléfono"/>
+
+                  <select name="interes">
+                    <option>¿Qué te interesa?</option>
+                    <option>Cursos</option>
+                    <option>Certificados</option>
+                    <option>Capacitaciones</option>
+                  </select>
+
+                  <button class="btn btn-dark" type="submit">Solicitar Cuenta</button>
+                  <span class="small" data-message></span>
+                </form>
+
+                <div class="form-benefits">
+                  <div>
+                    <strong>✓</strong>
+                    <span>Acceso a cursos y<br>talleres</span>
+                  </div>
+                  <div>
+                    <strong>✓</strong>
+                    <span>Certificación digital</span>
+                  </div>
+                  <div>
+                    <strong>✓</strong>
+                    <span>Contenido<br>actualizado</span>
+                  </div>
+                  <div>
+                    <strong>✓</strong>
+                    <span>Acompañamiento<br>docente</span>
+                  </div>
+                </div>
+              </div>
             </article>
+
           </div>
         </div>
       </section>
+
     </main>
+
+    <!-- CTA FINAL -->
+    <section class="footer-cta">
+      <div class="container footer-cta-content">
+        <div>
+          <h2>Invierte en tu futuro hoy</h2>
+          <p>
+            Desarrolla nuevas habilidades, potencia tu talento y alcanza tus objetivos.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <footer class="footer">
       <div class="container footer-grid">
-        <div><a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-talentia.svg" alt="Talentia" /></a><p>Solicita cursos Talentia Escuela de Especialización Profesional. Formación que impulsa tu futuro.</p></div>
+        <div><a class="brand" href="index.html">
+          <img class="brand-logo" src="assets/images/Talentia_grande_sin_fondo.png" 
+          alt="Talentia Escuela de Especialización Profesional"/></a>
+          <p>Solicita cursos Talentia Escuela de Especialización Profesional. Formación que impulsa tu futuro.</p>
+        </div>
         <div><h4>Empresa</h4><ul><li>Quiénes somos</li><li>Misión y visión</li><li>Empresas asociadas</li></ul></div>
         <div><h4>Explorar</h4><ul><li>Cursos</li><li>Programas</li><li>Capacitaciones</li><li>Docentes</li><li>Certificados</li></ul></div>
         <div><h4>Contactos</h4><p>(51) 950 290 491</p><p>seleccion@talentumperu.com</p></div>
