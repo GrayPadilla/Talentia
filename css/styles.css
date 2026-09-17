@@ -1717,23 +1717,19 @@ textarea {
 
 /* sección: nosotros parte uno ¿Por qué elegir Talentia? */
 
-#nosotros-parte-uno {
+#nosotros {
   background: #ffffff;
   padding: 70px 0 54px;
 }
 
-#nosotros-parte-uno .split {
+#nosotros .split {
   display: grid;
   grid-template-columns: 1fr 0.72fr;
   align-items: center;
   gap: 56px;
 }
 
-#nosotros-parte-uno .eyebrow {
-  display: none;
-}
-
-#nosotros-parte-uno .section-title {
+#nosotros .section-title {
   margin: 0 0 18px;
   color: var(--navy);
   font-size: 42px;
@@ -1741,7 +1737,7 @@ textarea {
   letter-spacing: -0.04em;
 }
 
-#nosotros-parte-uno .section-subtitle {
+#nosotros .section-subtitle {
   max-width: 690px;
   margin: 0 0 26px;
   color: var(--navy);
@@ -1749,7 +1745,7 @@ textarea {
   line-height: 1.45;
 }
 
-#nosotros-parte-uno .check-list {
+#nosotros .check-list {
   display: grid;
   gap: 18px;
   margin: 0;
@@ -1757,7 +1753,7 @@ textarea {
   list-style: none;
 }
 
-#nosotros-parte-uno .check-list li {
+#nosotros .check-list li {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -1766,7 +1762,7 @@ textarea {
   line-height: 1.35;
 }
 
-#nosotros-parte-uno .check-list li::before {
+#nosotros .check-list li::before {
   content: "";
   width: 20px;
   height: 20px;
@@ -1776,7 +1772,7 @@ textarea {
   background: var(--turquoise);
 }
 
-#nosotros-parte-uno .image-panel {
+#nosotros .image-panel {
   min-height: 300px;
   border-radius: 16px;
   background: url("../assets/images/img_nosotros1.png") center / cover no-repeat;
@@ -1785,7 +1781,7 @@ textarea {
   overflow: hidden;
 }
 
-#nosotros-parte-uno .image-panel::after {
+#nosotros .image-panel::after {
   display: none;
 }
 
@@ -1810,47 +1806,47 @@ textarea {
 /* responsive para sección: ¿Por qué elegir Talentia? */
 
 @media (max-width: 1100px) {
-  #nosotros-parte-uno .split {
+  #nosotros .split {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  #nosotros-parte-uno .image-panel {
+  #nosotros .image-panel {
     min-height: 360px;
   }
 }
 
 @media (max-width: 768px) {
-  #nosotros-parte-uno {
+  #nosotros {
     padding: 48px 0 42px;
   }
 
-  #nosotros-parte-uno .section-title {
+  #nosotros .section-title {
     font-size: 34px;
     line-height: 1.08;
   }
 
-  #nosotros-parte-uno .section-subtitle {
+  #nosotros .section-subtitle {
     font-size: 18px;
     line-height: 1.45;
   }
 
-  #nosotros-parte-uno .check-list {
+  #nosotros .check-list {
     gap: 14px;
   }
 
-  #nosotros-parte-uno .check-list li {
+  #nosotros .check-list li {
     font-size: 17px;
     gap: 12px;
   }
 
-  #nosotros-parte-uno .check-list li::before {
+  #nosotros .check-list li::before {
     width: 16px;
     height: 16px;
     flex-basis: 16px;
   }
 
-  #nosotros-parte-uno .image-panel {
+  #nosotros .image-panel {
     min-height: 260px;
     border-radius: 16px;
     background-position: center;
@@ -1858,19 +1854,19 @@ textarea {
 }
 
 @media (max-width: 480px) {
-  #nosotros-parte-uno .section-title {
+  #nosotros .section-title {
     font-size: 30px;
   }
 
-  #nosotros-parte-uno .section-subtitle {
+  #nosotros .section-subtitle {
     font-size: 16px;
   }
 
-  #nosotros-parte-uno .check-list li {
+  #nosotros .check-list li {
     font-size: 16px;
   }
 
-  #nosotros-parte-uno .image-panel {
+  #nosotros .image-panel {
     min-height: 220px;
   }
 }
