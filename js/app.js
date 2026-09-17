@@ -126,4 +126,63 @@ function renderFeaturedCourses() {
   container.innerHTML = courses.slice(0, 4).map((course) => courseCard(course)).join("");
 }
 
+/* =========================================================
+   MENÚ RESPONSIVE
+   ========================================================= */
+
+const menuToggle = document.querySelector("[data-menu-toggle]");
+const mobileNavigation = document.querySelector("#mobile-navigation");
+
+if (menuToggle && mobileNavigation) {
+  menuToggle.addEventListener("click", () => {
+
+    const isOpen = mobileNavigation.classList.toggle("open");
+    menuToggle.classList.toggle("active", isOpen);
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Cerrar menú" : "Abrir menú"
+    );
+  });
+
+
+  mobileNavigation.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+
+      mobileNavigation.classList.remove("open");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+      menuToggle.setAttribute(
+        "aria-label",
+        "Abrir menú"
+      );
+
+    });
+  });
+
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 860) {
+
+      mobileNavigation.classList.remove("open");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+      menuToggle.setAttribute(
+        "aria-label",
+        "Abrir menú"
+      );
+    }
+  });
+}
+
 renderFeaturedCourses();
