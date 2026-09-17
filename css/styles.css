@@ -299,13 +299,22 @@ textarea {
   border-right: 0;
 }
 
+
 .stat-icon {
-  width: 64px;
-  height: 64px;
-  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex: 0 0 72px;
   color: #67c8c7;
   background: transparent;
-  border-radius: 0;
+}
+
+.student_icon {
+  transform: scale(1.16);
+}
+
+.document_icon {
+  transform: scale(0.82);
 }
 
 .stat strong {
@@ -394,9 +403,11 @@ textarea {
   color: var(--turquoise);
 }
 
-.modality-icon svg {
-  width: 78px;
-  height: 78px;
+.modality-icon img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
 }
 
 .modality-card h3 {
@@ -715,6 +726,7 @@ textarea {
   justify-content: flex-start;
   width: 210px;
   text-align: center;
+  align-self: flex-start;
 }
 
 .step-icon {
@@ -725,12 +737,13 @@ textarea {
   justify-content: center;
   border-radius: 50%;
   background: #1455a5;
-  color: #fff;
 }
 
-.step-icon svg {
+.step-icon img {
+  display: block;
   width: 72px;
   height: 72px;
+  object-fit: contain;
 }
 
 .step h3 {
@@ -751,6 +764,8 @@ textarea {
   font-size: 48px;
   line-height: 1;
   font-weight: 400;
+  align-self: flex-start;
+  height: 126px;
 }
 
 /* ===== TESTIMONIOS ===== */
@@ -1376,43 +1391,10 @@ textarea {
   }
 
   /* STATS */
-  .stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    padding: 12px 0;
+  .container {
+    width: min(100% - 28px, 1180px);
   }
 
-  .stat {
-    min-height: 90px;
-    padding: 12px 8px;
-    gap: 10px;
-  }
-
-  .stat:nth-child(2) {
-    border-right: 0;
-  }
-
-  .stat:nth-child(3) {
-    border-top: 1px solid var(--line);
-  }
-
-  .stat:nth-child(4) {
-    border-top: 1px solid var(--line);
-    border-right: 0;
-  }
-
-  .stat-icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .stat strong {
-    font-size: 22px;
-  }
-
-  .stat span {
-    font-size: 11px;
-  }
 
   /* RESTO DEL SITIO */
   .courses-grid,
@@ -1573,10 +1555,10 @@ textarea {
     height: 92px;
   }
 
-  .modality-icon svg {
-    width: 68px;
-    height: 68px;
-  }
+  .modality-icon img {
+  width: 62px;
+  height: 62px;
+}
 
   .modality-card h3 {
     font-size: 21px;
