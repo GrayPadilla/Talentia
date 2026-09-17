@@ -1,0 +1,12 @@
+# Dependencias de Node.js
+node_modules/
+
+# Archivos ZIP
+*.zip
+
+# Variables de entorno
+.env
+.env.*
+
+# Logs
+*.log

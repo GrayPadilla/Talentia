@@ -37,7 +37,7 @@ const courses = [
     hours: 24,
     modality: "Online",
     level: "Básico",
-    image: "assets/images/course-seguridad.png"
+    image: "assets/images/seguridad.png"
   },
   {
     id: "finanzas-no-financieros",
@@ -47,7 +47,7 @@ const courses = [
     hours: 24,
     modality: "Online",
     level: "Básico",
-    image: "../assets/images/course-finanzas.png"
+    image: "/assets/images/finanzas.png"
   },
   {
     id: "gestion-proyectos-agiles",
@@ -57,7 +57,7 @@ const courses = [
     hours: 30,
     modality: "Online",
     level: "Intermedio",
-    image: "../assets/images/course-proyectos.png"
+    image: "/assets/images/gestion-proyectos.png"
   },
   {
     id: "innovacion-design-thinking",
@@ -67,7 +67,7 @@ const courses = [
     hours: 20,
     modality: "Online",
     level: "Básico",
-    image: "../assets/images/course-innovacion.png"
+    image: "/assets/images/innovacion.png"
   },
   {
     id: "tecnicas-ventas-negociacion",
@@ -77,7 +77,7 @@ const courses = [
     hours: 24,
     modality: "Online",
     level: "Intermedio",
-    image: "../assets/images/course-ventas.png"
+    image: "/assets/images/tecnicas-ventas.png"
   },
   {
     id: "seleccion-personal-competencias",
@@ -87,21 +87,72 @@ const courses = [
     hours: 20,
     modality: "Online",
     level: "Intermedio",
-    image: "../assets/images/course-seleccion.png"
+    image: "/assets/images/seleccion-personal.png"
+  },
+  {
+    id: "liderazgo-comunicacion",
+    category: "Habilidades Blandas",
+    title: "Liderazgo y Comunicación",
+    description: "Inspira, comunica y genera equipos de alto desempeño.",
+    hours: 24,
+    modality: "Online",
+    level: "Intermedio",
+    image: "/assets/images/liderazgo.png"
+  },
+
+  {
+    id: "excel-empresarial",
+    category: "Productividad",
+    title: "Excel Empresarial",
+    description: "Domina Excel y lleva tu productividad al siguiente nivel.",
+    hours: 18,
+    modality: "Online",
+    level: "Intermedio",
+    image: "/assets/images/excel.png"
+  },
+
+  {
+    id: "gestion-calidad",
+    category: "Calidad",
+    title: "Gestión de la Calidad",
+    description: "Implementa sistemas de calidad para mejorar procesos y resultados.",
+    hours: 24,
+    modality: "Online",
+    level: "Intermedio",
+    image: "/assets/images/gestion-calidad.png"
+  },
+
+  {
+    id: "transformacion-digital",
+    category: "Transformación Digital",
+    title: "Transformación Digital en las Organizaciones",
+    description: "Impulsa el cambio y adapta tu empresa a la era digital.",
+    hours: 20,
+    modality: "Online",
+    level: "Intermedio",
+    image: "/assets/images/transformacion-digital.png"
   }
 ];
 
+/* =========================================================
+   TARJETAS DE CURSOS
+   ========================================================= */
+
 function courseCard(course, compact = false) {
+
   return `
     <article class="course-card ${compact ? "catalog-card" : "featured-card"}">
 
       <div class="course-visual">
         <img src="${course.image}" alt="${course.title}" loading="lazy">
       </div>
+
       <div class="course-body">
-        ${compact ? `<span class="course-tag">${course.category}</span> ` : ""}
-        
+
+        ${compact ? `<span class="course-tag">${course.category}</span>` : ""}
+
         <h3>${course.title}</h3>
+
         ${compact ? `<p class="body">${course.description}</p>` : ""}
 
         <p class="course-meta">
@@ -110,101 +161,527 @@ function courseCard(course, compact = false) {
 
         <a
           class="btn btn-primary course-action"
-          href="curso.html?id=${course.id}"
+          href="/curso/${course.id}"
         >
           Ver curso
         </a>
 
       </div>
+
     </article>
   `;
 }
 
-function renderFeaturedCourses() {
-  const container = document.querySelector("[data-featured-courses]");
+
+/* =========================================================
+   CURSOS DESTACADOS
+   ========================================================= */
+
+export function renderFeaturedCourses() {
+
+  const container =
+    document.querySelector("[data-featured-courses]");
+
   if (!container) return;
-  container.innerHTML = courses.slice(0, 4).map((course) => courseCard(course)).join("");
+
+  container.innerHTML = courses
+    .slice(0, 4)
+    .map((course) => courseCard(course))
+    .join("");
 }
 
-function renderCatalog() {
-  const container = document.querySelector("[data-catalog]");
-  const search = document.querySelector("[data-search]");
-  const category = document.querySelector("[data-category]");
-  const duration = document.querySelector("[data-duration]");
+
+/* =========================================================
+   CATÁLOGO + FILTROS + PAGINACIÓN
+   ========================================================= */
+
+export function renderCatalog() {
+
+  const container =
+    document.querySelector("[data-catalog]");
+
+  const search =
+    document.querySelector("[data-search]");
+
+  const category =
+    document.querySelector("[data-category]");
+
+  const duration =
+    document.querySelector("[data-duration]");
+
+  const pagination =
+    document.querySelector("[data-pagination]");
+
   if (!container) return;
+
+
+  /* =======================================================
+     CONFIGURACIÓN DE PAGINACIÓN
+     ======================================================= */
+
+  const coursesPerPage = 9;
+
+  let currentPage = 1;
+
+
+  /* =======================================================
+     DIBUJAR CURSOS
+     ======================================================= */
 
   function draw() {
-    const query = (search?.value || "").toLowerCase().trim();
-    const categoryValue = category?.value || "all";
-    const durationValue = duration?.value || "all";
+
+    const query =
+      (search?.value || "")
+        .toLowerCase()
+        .trim();
+
+    const categoryValue =
+      category?.value || "all";
+
+    const durationValue =
+      duration?.value || "all";
+
+
+    /* =====================================================
+       FILTRAR CURSOS
+       ===================================================== */
 
     const filtered = courses.filter((course) => {
-      const matchesQuery = [course.title, course.description, course.category].join(" ").toLowerCase().includes(query);
-      const matchesCategory = categoryValue === "all" || course.category === categoryValue;
+
+      const matchesQuery = [
+        course.title,
+        course.description,
+        course.category
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(query);
+
+
+      const matchesCategory =
+        categoryValue === "all" ||
+        course.category === categoryValue;
+
+
       const matchesDuration =
+
         durationValue === "all" ||
-        (durationValue === "short" && course.hours <= 20) ||
-        (durationValue === "medium" && course.hours > 20 && course.hours <= 28) ||
-        (durationValue === "long" && course.hours > 28);
-      return matchesQuery && matchesCategory && matchesDuration;
+
+        (
+          durationValue === "short" &&
+          course.hours <= 20
+        ) ||
+
+        (
+          durationValue === "medium" &&
+          course.hours > 20 &&
+          course.hours <= 28
+        ) ||
+
+        (
+          durationValue === "long" &&
+          course.hours > 28
+        );
+
+
+      return (
+        matchesQuery &&
+        matchesCategory &&
+        matchesDuration
+      );
+
     });
 
-    container.innerHTML = filtered.map((course) => courseCard(course, true)).join("");
-    document.querySelector("[data-result-count]").textContent = `${filtered.length} cursos encontrados`;
+
+    /* =====================================================
+       TOTAL DE PÁGINAS
+       ===================================================== */
+
+    const totalPages =
+      Math.ceil(filtered.length / coursesPerPage);
+
+
+    /* =====================================================
+       CONTROL DE PÁGINA ACTUAL
+       ===================================================== */
+
+    if (currentPage > totalPages) {
+
+      currentPage =
+        Math.max(totalPages, 1);
+
+    }
+
+
+    /* =====================================================
+       OBTENER LOS CURSOS DE LA PÁGINA ACTUAL
+       ===================================================== */
+
+    const start =
+      (currentPage - 1) * coursesPerPage;
+
+    const end =
+      start + coursesPerPage;
+
+
+    const coursesToShow =
+      filtered.slice(start, end);
+
+
+    /* =====================================================
+       MOSTRAR LAS TARJETAS
+       ===================================================== */
+
+    container.innerHTML =
+      coursesToShow
+        .map((course) =>
+          courseCard(course, true)
+        )
+        .join("");
+
+
+    /* =====================================================
+       ACTUALIZAR CONTADOR
+       ===================================================== */
+
+    const resultCount =
+      document.querySelector("[data-result-count]");
+
+
+    if (resultCount) {
+
+      resultCount.textContent =
+        `${filtered.length} cursos encontrados`;
+
+    }
+
+
+    /* =====================================================
+       CREAR PAGINACIÓN
+       ===================================================== */
+
+    if (pagination) {
+
+      pagination.innerHTML = "";
+
+
+      /* BOTONES 1, 2, 3... */
+
+      for (
+        let page = 1;
+        page <= totalPages;
+        page++
+      ) {
+
+        const button =
+          document.createElement("button");
+
+
+        button.type = "button";
+
+        button.textContent = page;
+
+
+        /* Página seleccionada */
+
+        if (page === currentPage) {
+
+          button.classList.add("active");
+
+        }
+
+
+        /* Al hacer clic */
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            currentPage = page;
+
+            draw();
+
+            container.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }
+        );
+
+
+        pagination.appendChild(button);
+
+      }
+
+
+      /* ===================================================
+         BOTÓN SIGUIENTE ›
+         =================================================== */
+
+      if (currentPage < totalPages) {
+
+        const nextButton =
+          document.createElement("button");
+
+
+        nextButton.type = "button";
+
+        nextButton.textContent = "›";
+
+
+        nextButton.addEventListener(
+          "click",
+          () => {
+
+            currentPage++;
+
+            draw();
+
+            container.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }
+        );
+
+
+        pagination.appendChild(nextButton);
+
+      }
+
+    }
+
   }
 
-  [search, category, duration].forEach((item) => item?.addEventListener("input", draw));
+
+  /* =======================================================
+     EVENTOS DE LOS FILTROS
+     ======================================================= */
+
+  [search, category, duration]
+    .forEach((item) => {
+
+      item?.addEventListener(
+        "input",
+        () => {
+
+          /*
+            Cuando se utiliza un filtro,
+            regresamos automáticamente
+            a la página 1.
+          */
+
+          currentPage = 1;
+
+          draw();
+
+        }
+      );
+
+    });
+
+
+  /* Primera carga */
+
   draw();
+
 }
 
-function renderCourseDetail() {
-  const title = document.querySelector("[data-course-title]");
+
+/* =========================================================
+   DETALLE DEL CURSO
+   ========================================================= */
+
+export function renderCourseDetail() {
+
+  const title =
+    document.querySelector("[data-course-title]");
+
   if (!title) return;
 
-  const params = new URLSearchParams(window.location.search);
-  const selected = courses.find((course) => course.id === params.get("id")) || courses[0];
 
-  document.querySelectorAll("[data-course-title]").forEach((node) => {
-    node.textContent = selected.title;
-  });
-  document.querySelector("[data-course-category]").textContent = selected.category.toUpperCase();
-  document.querySelector("[data-course-description]").textContent =
-    "Aprende a gestionar el talento y desarrollar estrategias efectivas para atraer, retener y potenciar el capital humano en las organizaciones.";
-  document.querySelector("[data-course-hours]").textContent = `${selected.hours} horas`;
-  document.querySelector("[data-course-modality]").textContent = selected.modality;
-  document.querySelector("[data-course-level]").textContent = selected.level;
+  const pathParts =
+    window.location.pathname
+      .split("/")
+      .filter(Boolean);
+
+  const courseId =
+    pathParts[pathParts.length - 1];
+
+  const selected =
+    courses.find(
+      (course) => course.id === courseId
+    ) || courses[0];
+
+
+  document
+    .querySelectorAll("[data-course-title]")
+    .forEach((node) => {
+      node.textContent = selected.title;
+    });
+
+
+  document.querySelector(
+    "[data-course-category]"
+  ).textContent =
+    selected.category.toUpperCase();
+
+
+  document.querySelector(
+    "[data-course-description]"
+  ).textContent =
+    selected.description;
+
+
+  document.querySelector(
+    "[data-course-hours]"
+  ).textContent =
+    `${selected.hours} horas`;
+
+
+  document.querySelector(
+    "[data-course-modality]"
+  ).textContent =
+    selected.modality;
+
+
+  document.querySelector(
+    "[data-course-level]"
+  ).textContent =
+    selected.level;
+
+  const categoryInfo =
+    document.querySelector(
+      "[data-course-category-info]"
+    );
+
+  if (categoryInfo) {
+    categoryInfo.textContent =
+      selected.category;
+  }
+
+  const image =
+    document.querySelector(
+      "[data-course-image]"
+    );
+
+  if (image) {
+    image.src = selected.image;
+    image.alt =
+      `Presentación del curso ${selected.title}`;
+  }
+
 }
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
 
 async function submitLead(form) {
-  const data = Object.fromEntries(new FormData(form).entries());
-  const message = form.querySelector("[data-message]");
+
+  const data =
+    Object.fromEntries(
+      new FormData(form).entries()
+    );
+
+
+  const message =
+    form.querySelector("[data-message]");
+
 
   try {
-    const response = await fetch("/api/leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+
+    const response =
+      await fetch("/api/leads", {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body:
+          JSON.stringify(data)
+
+      });
+
+
+    if (!response.ok)
+      throw new Error(
+        "No se pudo registrar"
+      );
+
+
+    form.reset();
+
+    message.textContent =
+      "Listo. Te contactaremos pronto.";
+
+
+  } catch {
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem(
+          "talentiaLeads"
+        ) || "[]"
+      );
+
+
+    saved.push({
+
+      ...data,
+
+      createdAt:
+        new Date().toISOString()
+
     });
 
-    if (!response.ok) throw new Error("No se pudo registrar");
+
+    localStorage.setItem(
+      "talentiaLeads",
+      JSON.stringify(saved)
+    );
+
+
     form.reset();
-    message.textContent = "Listo. Te contactaremos pronto.";
-  } catch {
-    const saved = JSON.parse(localStorage.getItem("talentiaLeads") || "[]");
-    saved.push({ ...data, createdAt: new Date().toISOString() });
-    localStorage.setItem("talentiaLeads", JSON.stringify(saved));
-    form.reset();
-    message.textContent = "Listo. Guardamos tu solicitud localmente para la demo.";
+
+
+    message.textContent =
+      "Listo. Guardamos tu solicitud localmente para la demo.";
+
   }
+
 }
 
-function bindForms() {
-  document.querySelectorAll("[data-lead-form]").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      submitLead(form);
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+
+export function bindForms() {
+
+  document
+    .querySelectorAll("[data-lead-form]")
+    .forEach((form) => {
+
+      form.addEventListener(
+        "submit",
+        (event) => {
+
+          event.preventDefault();
+
+          submitLead(form);
+
+        }
+      );
+
     });
-  });
+
 }
 
 
@@ -212,62 +689,109 @@ function bindForms() {
    MENÚ RESPONSIVE
    ========================================================= */
 
-const menuToggle = document.querySelector("[data-menu-toggle]");
-const mobileNavigation = document.querySelector("#mobile-navigation");
+const menuToggle =
+  document.querySelector("[data-menu-toggle]");
+
+const mobileNavigation =
+  document.querySelector("#mobile-navigation");
+
 
 if (menuToggle && mobileNavigation) {
-  menuToggle.addEventListener("click", () => {
 
-    const isOpen = mobileNavigation.classList.toggle("open");
-    menuToggle.classList.toggle("active", isOpen);
-    menuToggle.setAttribute(
-      "aria-expanded",
-      String(isOpen)
-    );
+  menuToggle.addEventListener(
+    "click",
+    () => {
 
-    menuToggle.setAttribute(
-      "aria-label",
-      isOpen ? "Cerrar menú" : "Abrir menú"
-    );
-  });
+      const isOpen =
+        mobileNavigation.classList.toggle(
+          "open"
+        );
 
 
-  mobileNavigation.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
+      menuToggle.classList.toggle(
+        "active",
+        isOpen
+      );
 
-      mobileNavigation.classList.remove("open");
-      menuToggle.classList.remove("active");
+
       menuToggle.setAttribute(
         "aria-expanded",
-        "false"
+        String(isOpen)
       );
+
+
       menuToggle.setAttribute(
         "aria-label",
-        "Abrir menú"
+        isOpen
+          ? "Cerrar menú"
+          : "Abrir menú"
+      );
+
+    }
+  );
+
+
+  mobileNavigation
+    .querySelectorAll("a")
+    .forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        () => {
+
+          mobileNavigation
+            .classList.remove("open");
+
+
+          menuToggle
+            .classList.remove("active");
+
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Abrir menú"
+          );
+
+        }
       );
 
     });
-  });
 
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 860) {
+  window.addEventListener(
+    "resize",
+    () => {
 
-      mobileNavigation.classList.remove("open");
-      menuToggle.classList.remove("active");
-      menuToggle.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-      menuToggle.setAttribute(
-        "aria-label",
-        "Abrir menú"
-      );
+      if (window.innerWidth > 860) {
+
+        mobileNavigation
+          .classList.remove("open");
+
+
+        menuToggle
+          .classList.remove("active");
+
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Abrir menú"
+        );
+
+      }
+
     }
-  });
-}
+  );
 
-renderFeaturedCourses();
-renderCatalog();
-renderCourseDetail();
-bindForms();
+}
