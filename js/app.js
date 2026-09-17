@@ -126,6 +126,88 @@ function renderFeaturedCourses() {
   container.innerHTML = courses.slice(0, 4).map((course) => courseCard(course)).join("");
 }
 
+function renderCatalog() {
+  const container = document.querySelector("[data-catalog]");
+  const search = document.querySelector("[data-search]");
+  const category = document.querySelector("[data-category]");
+  const duration = document.querySelector("[data-duration]");
+  if (!container) return;
+
+  function draw() {
+    const query = (search?.value || "").toLowerCase().trim();
+    const categoryValue = category?.value || "all";
+    const durationValue = duration?.value || "all";
+
+    const filtered = courses.filter((course) => {
+      const matchesQuery = [course.title, course.description, course.category].join(" ").toLowerCase().includes(query);
+      const matchesCategory = categoryValue === "all" || course.category === categoryValue;
+      const matchesDuration =
+        durationValue === "all" ||
+        (durationValue === "short" && course.hours <= 20) ||
+        (durationValue === "medium" && course.hours > 20 && course.hours <= 28) ||
+        (durationValue === "long" && course.hours > 28);
+      return matchesQuery && matchesCategory && matchesDuration;
+    });
+
+    container.innerHTML = filtered.map((course) => courseCard(course, true)).join("");
+    document.querySelector("[data-result-count]").textContent = `${filtered.length} cursos encontrados`;
+  }
+
+  [search, category, duration].forEach((item) => item?.addEventListener("input", draw));
+  draw();
+}
+
+function renderCourseDetail() {
+  const title = document.querySelector("[data-course-title]");
+  if (!title) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const selected = courses.find((course) => course.id === params.get("id")) || courses[0];
+
+  document.querySelectorAll("[data-course-title]").forEach((node) => {
+    node.textContent = selected.title;
+  });
+  document.querySelector("[data-course-category]").textContent = selected.category.toUpperCase();
+  document.querySelector("[data-course-description]").textContent =
+    "Aprende a gestionar el talento y desarrollar estrategias efectivas para atraer, retener y potenciar el capital humano en las organizaciones.";
+  document.querySelector("[data-course-hours]").textContent = `${selected.hours} horas`;
+  document.querySelector("[data-course-modality]").textContent = selected.modality;
+  document.querySelector("[data-course-level]").textContent = selected.level;
+}
+
+async function submitLead(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const message = form.querySelector("[data-message]");
+
+  try {
+    const response = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) throw new Error("No se pudo registrar");
+    form.reset();
+    message.textContent = "Listo. Te contactaremos pronto.";
+  } catch {
+    const saved = JSON.parse(localStorage.getItem("talentiaLeads") || "[]");
+    saved.push({ ...data, createdAt: new Date().toISOString() });
+    localStorage.setItem("talentiaLeads", JSON.stringify(saved));
+    form.reset();
+    message.textContent = "Listo. Guardamos tu solicitud localmente para la demo.";
+  }
+}
+
+function bindForms() {
+  document.querySelectorAll("[data-lead-form]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      submitLead(form);
+    });
+  });
+}
+
+
 /* =========================================================
    MENÚ RESPONSIVE
    ========================================================= */
@@ -186,3 +268,6 @@ if (menuToggle && mobileNavigation) {
 }
 
 renderFeaturedCourses();
+renderCatalog();
+renderCourseDetail();
+bindForms();
