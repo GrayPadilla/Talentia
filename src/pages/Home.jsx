@@ -1,13 +1,27 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { renderFeaturedCourses, bindForms } from "../../js/app.js";
 
 function Home() {
+    const { hash } = useLocation();
+
     useEffect(() => {
         renderFeaturedCourses();
         bindForms();
     }, []);
+
+    useEffect(() => {
+        if (hash) {
+            const element = document.querySelector(hash);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        } else {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    }, [hash]);
 
     return (
         <>

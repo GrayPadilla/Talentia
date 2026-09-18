@@ -38,7 +38,7 @@ function Header() {
             Nosotros
           </Link>
 
-          <Link to="/cursos" onClick={closeMenu}>
+          <Link to="/#cursos" onClick={closeMenu}>
             Cursos
           </Link>
 

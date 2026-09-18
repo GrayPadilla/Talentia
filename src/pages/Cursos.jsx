@@ -11,117 +11,65 @@ function Cursos() {
   return (
     <>
       <Header />
-
       <main> 
- 
       <section class="page-hero"> 
- 
         <div class="container catalog-hero">
           <div class="catalog-hero-content">
             <p class="eyebrow"> 
-              Aprendizaje para un mejor mañana 
+              APRENDIZAJE PARA UN MEJOR <br /> MAÑANA 
             </p> 
- 
-            <h1>Todos los cursos</h1> 
- 
-            <p class="section-subtitle"> 
+            <p class="hero-subtitle">Todos los cursos</p> 
+            <p class="hero-subtitle"> 
               Explora programas diseñados para potenciar tu desarrollo profesional. 
             </p>
           </div> 
 
+          <div className="hero-center-badge">
+            <span>Tu próximo paso</span>
+            <span>empieza aquí</span>
+          </div>
+
           <div class="image-panel"> 
- 
-            <img 
+            <div className="image-wrapper">
+              <img 
               src="../assets/images/chica-cursos.png" 
               alt="Talentia" 
-              class="image-panel-img" 
-            /> 
- 
+              class="image-panel-img"
+              /> 
+            </div>
+            <div className="panel-text">
+              <p>Más conocimiento.</p>
+              <p>Más posibilidades.</p>
+            </div>
           </div> 
         </div> 
-
         <div class="container filters"> 
- 
           <input 
             data-search 
             type="text" 
             placeholder="Busca un curso, habilidad o tema..." 
           /> 
- 
           <select data-category> 
- 
-            <option value="all"> 
-              Categoría 
-            </option> 
- 
-            <option> 
-              Gestión de Personas 
-            </option> 
- 
-            <option> 
-              Marketing y Ventas 
-            </option> 
- 
-            <option> 
-              Datos y Tecnología 
-            </option> 
- 
-            <option> 
-              Salud y Seguridad 
-            </option> 
- 
-            <option> 
-              Finanzas 
-            </option> 
- 
-            <option> 
-              Gestión de Proyectos 
-            </option> 
- 
-            <option> 
-              Innovación 
-            </option> 
- 
-            <option> 
-              Ventas 
-            </option> 
- 
-            <option> 
-              Recursos Humanos 
-            </option>
-
-            <option>
-              Habilidades Blandas
-            </option>
-
-            <option>
-              Productividad
-            </option>
-
-            <option>
-              Calidad
-            </option>
-
-            <option>
-              Transformación Digital
-            </option>
- 
+            <option value="all"> Categoría </option> 
+            <option> Gestión de Personas </option>
+            <option> Marketing y Ventas </option> 
+            <option> Datos y Tecnología </option> 
+            <option> Salud y Seguridad </option> 
+            <option> Finanzas</option> 
+            <option> Gestión de Proyectos </option> 
+            <option> Innovación </option> 
+            <option> Ventas </option> 
+            <option> Recursos Humanos </option>
+            <option> Habilidades Blandas</option>
+            <option> Productividad </option>
+            <option> Calidad </option>
+            <option> Transformación Digital </option>
           </select> 
   
           <select> 
- 
-            <option> 
-              Modalidad 
-            </option> 
- 
-            <option> 
-              Online 
-            </option> 
- 
-            <option> 
-              Presencial 
-            </option> 
- 
+            <option> Modalidad </option> 
+            <option> Online </option> 
+            <option> Presencial </option> 
           </select> 
 
           <select data-duration> 
