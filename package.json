@@ -15,17 +15,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/GrayPadilla/Talentia/issues"
   },
   "homepage": "https://github.com/GrayPadilla/Talentia#readme",
   "dependencies": {
+    "firebase": "^12.19.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
+    "@rolldown/binding-darwin-x64": "^1.2.9",
     "@vitejs/plugin-react": "^6.1.1",
     "vite": "^8.3.0"
   }
