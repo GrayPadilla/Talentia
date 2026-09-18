@@ -1,267 +1,1090 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { renderCourseDetail } from "../../js/app.js";
+import { db } from "../firebase";
+
 
 function DetalleCurso() {
+
+  const { id } = useParams();
+
+  const [curso, setCurso] = useState(null);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState("");
+
+
+  /* =========================================================
+     OBTENER CURSO DESDE FIREBASE
+     ========================================================= */
+
   useEffect(() => {
-        renderCourseDetail();
-  }, []);
+
+    async function obtenerCurso() {
+
+      try {
+
+        setCargando(true);
+        setError("");
+
+        const referenciaCurso =
+          doc(db, "Cursos", id);
+
+        const documentoCurso =
+          await getDoc(referenciaCurso);
+
+        if (!documentoCurso.exists()) {
+
+          setError("El curso no fue encontrado.");
+          setCurso(null);
+
+          return;
+        }
+
+        const datosCurso = {
+          id: documentoCurso.id,
+          ...documentoCurso.data()
+        };
+
+        setCurso(datosCurso);
+
+        console.log(
+          "Curso obtenido desde Firebase:",
+          datosCurso
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Error al obtener el curso:",
+          error
+        );
+
+        setError(
+          "No se pudo cargar la información del curso."
+        );
+
+      } finally {
+
+        setCargando(false);
+
+      }
+
+    }
+
+
+    if (id) {
+      obtenerCurso();
+    } else {
+      setError("No se encontró el identificador del curso.");
+      setCargando(false);
+    }
+
+  }, [id]);
+
+
+  /* =========================================================
+     CARGANDO
+     ========================================================= */
+
+  if (cargando) {
+
+    return (
+      <>
+        <Header />
+
+        <main>
+          <section className="section">
+            <div className="container">
+              <p>Cargando curso...</p>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </>
+    );
+
+  }
+
+
+  /* =========================================================
+     ERROR
+     ========================================================= */
+
+  if (error || !curso) {
+
+    return (
+      <>
+        <Header />
+
+        <main>
+          <section className="section">
+            <div className="container">
+              <h1>Curso no encontrado</h1>
+
+              <p>
+                {error || "No se pudo encontrar este curso."}
+              </p>
+
+              <a
+                className="btn btn-primary"
+                href="/Cursos"
+              >
+                Volver a cursos
+              </a>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </>
+    );
+
+  }
+
+
+  /* =========================================================
+     FECHA DE ACTUALIZACIÓN
+     ========================================================= */
+
+  const fechaActualizacion = curso.fecha_actualizacion
+    ? new Date(
+        `${curso.fecha_actualizacion}T00:00:00`
+      ).toLocaleDateString(
+        "es-PE",
+        {
+          month: "long",
+          year: "numeric"
+        }
+      )
+    : "No especificada";
+
+
+  /* =========================================================
+     INTERFAZ DEL CURSO
+     ========================================================= */
 
   return (
+
     <>
+
       <Header />
 
+
       <main>
-      <div class="course-breadcrumb">
-        <div class="container">Inicio › Cursos › <span data-course-title>Gestión de Talento Humano</span></div>
-      </div>
 
-      <section class="detail-hero">
-        <div class="container detail-grid">
-          <div class="course-cover">
-            <img src="/assets/images/course-talento.png" alt="Presentación del curso Gestión de Talento Humano" />
+        {/* =====================================================
+            BREADCRUMB
+            ===================================================== */}
+
+        <div className="course-breadcrumb">
+
+          <div className="container">
+
+            Inicio › Cursos ›{" "}
+
+            <span>
+              {curso.title}
+            </span>
+
           </div>
-          <div class="course-intro">
-            <p class="eyebrow" data-course-category>Gestión de Personas</p>
-            <h1 data-course-title>Gestión de Talento Humano</h1>
-            <p data-course-description>Aprende a gestionar el talento y desarrollar estrategias efectivas para atraer, retener y potenciar el capital humano en las organizaciones.</p>
-            <div class="course-rating" aria-label="Calificación 4.8 de 5">
-              <span class="rating-stars">★★★★★</span>
-              <span>4.8 (320 valoraciones)</span>
-            </div>
-            <div class="course-badges">
-              <span>
-                <iconify-icon class="course-badge-icon" icon="mdi:clock-outline"></iconify-icon>
-                <strong data-course-hours>24 horas</strong>
-              </span>
 
-              <span><iconify-icon class="course-badge-icon" icon="mdi:laptop"></iconify-icon>
-                <strong data-course-modality>Online</strong>
-              </span>
-
-              <span>
-                <iconify-icon class="course-badge-icon" icon="mdi:signal-cellular-3"> </iconify-icon>
-                <strong>Nivel <span data-course-level>Intermedio</span>
-                </strong>
-              </span>
-
-              <span>
-                <iconify-icon class="course-badge-icon" icon="mdi:certificate-outline"> </iconify-icon>
-                <strong>Certificado</strong>
-              </span>
-            </div>
-
-            <a class="btn btn-primary" href="#contacto">Solicitar más información</a>
-          </div>
         </div>
-      </section>
 
-      <section class="course-detail-section">
-        <div class="container detail-layout">
-          <div class="detail-main">
-            <article class="course-description">
-              <h2>Descripción del curso</h2>
-              <p>Este curso brinda una visión integral de la gestión del talento humano, abarcando estrategias, herramientas y buenas prácticas para el reclutamiento, desarrollo, evaluación y retención del talento en las organizaciones. A través de un enfoque práctico, aprenderás a aplicar metodologías actuales que te permitirán impulsar el bienestar y productividad de los equipos.</p>
-              <div class="audience-card">
-              <img src="/assets/images/icon/meta-icon.svg" alt="" />
-                <div>
-                  <h3>Dirigido a</h3>
-                  <p>Profesionales, estudiantes y personas interesadas en desarrollarse en el área de gestión del talento humano, recursos humanos y liderazgo organizacional.</p>
+
+        {/* =====================================================
+            HERO
+            ===================================================== */}
+
+        <section className="detail-hero">
+
+          <div className="container detail-grid">
+
+
+            <div className="course-cover">
+
+              <img
+                src={curso.image}
+                alt={`Presentación del curso ${curso.title}`}
+              />
+
+            </div>
+
+
+            <div className="course-intro">
+
+              <p className="eyebrow">
+                {curso.category}
+              </p>
+
+
+              <h1>
+                {curso.title}
+              </h1>
+
+
+              <p>
+                {curso.description}
+              </p>
+
+
+              <div
+                className="course-rating"
+                aria-label="Calificación del curso"
+              >
+
+                <span className="rating-stars">
+                  ★★★★★
+                </span>
+
+                <span>
+                  4.8 (320 valoraciones)
+                </span>
+
+              </div>
+
+
+              <div className="course-badges">
+
+
+                <span>
+
+                  <iconify-icon
+                    class="course-badge-icon"
+                    icon="mdi:clock-outline"
+                  ></iconify-icon>
+
+                  <strong>
+                    {curso.hours} horas
+                  </strong>
+
+                </span>
+
+
+                <span>
+
+                  <iconify-icon
+                    class="course-badge-icon"
+                    icon="mdi:laptop"
+                  ></iconify-icon>
+
+                  <strong>
+                    {curso.modality}
+                  </strong>
+
+                </span>
+
+
+                <span>
+
+                  <iconify-icon
+                    class="course-badge-icon"
+                    icon="mdi:signal-cellular-3"
+                  ></iconify-icon>
+
+                  <strong>
+                    Nivel {curso.level}
+                  </strong>
+
+                </span>
+
+
+                {curso.certificado && (
+
+                  <span>
+
+                    <iconify-icon
+                      class="course-badge-icon"
+                      icon="mdi:certificate-outline"
+                    ></iconify-icon>
+
+                    <strong>
+                      Certificado
+                    </strong>
+
+                  </span>
+
+                )}
+
+
+              </div>
+
+
+              <a
+                className="btn btn-primary"
+                href="#contacto"
+              >
+                Solicitar más información
+              </a>
+
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        {/* =====================================================
+            INFORMACIÓN PRINCIPAL
+            ===================================================== */}
+
+        <section className="course-detail-section">
+
+
+          <div className="container detail-layout">
+
+
+            <div className="detail-main">
+
+
+              {/* =================================================
+                  DESCRIPCIÓN
+                  ================================================= */}
+
+              <article className="course-description">
+
+                <h2>
+                  Descripción del curso
+                </h2>
+
+
+                <p>
+                  {curso.descripcion_larga || curso.description}
+                </p>
+
+
+                <div className="audience-card">
+
+                  <img
+                    src="/assets/images/icon/meta-icon.svg"
+                    alt=""
+                  />
+
+
+                  <div>
+
+                    <h3>
+                      Dirigido a
+                    </h3>
+
+                    <p>
+                      {curso.dirigido_a}
+                    </p>
+
+                  </div>
+
                 </div>
-              </div>
-            </article>
 
-            <article class="learning-section">
-              <h2>¿Qué aprenderás?</h2>
-              <ul class="learning-grid">
-                <li>Aplicar estrategias de atracción y selección del talento.</li>
-                <li>Implementar buenas prácticas de clima y cultura organizacional.</li>
-                <li>Diseñar planes de desarrollo y evaluación del desempeño.</li>
-                <li>Utilizar herramientas digitales de gestión de talento.</li>
-                <li>Gestionar equipos de alto rendimiento.</li>
-                <li>Desarrollar habilidades de liderazgo y comunicación.</li>
-              </ul>
-            </article>
+              </article>
 
-            <article class="modules-section">
-              <h2>Contenido del curso</h2>
-              <div class="module-list">
-                <div class="module-row"><span><strong>01</strong>Módulo 1: Introducción a la gestión del talento humano</span><span><b aria-hidden="true">◷</b> 3 horas <i></i> 4 clases</span></div>
-                <div class="module-row"><span><strong>02</strong>Módulo 2: Reclutamiento y selección de personal</span><span><b aria-hidden="true">◷</b> 5 horas <i></i> 6 clases</span></div>
-                <div class="module-row"><span><strong>03</strong>Módulo 3: Evaluación del desempeño</span><span><b aria-hidden="true">◷</b> 4 horas <i></i> 5 clases</span></div>
-                <div class="module-row"><span><strong>04</strong>Módulo 4: Desarrollo y retención del talento</span><span><b aria-hidden="true">◷</b> 6 horas <i></i> 6 clases</span></div>
-                <div class="module-row"><span><strong>05</strong>Módulo 5: Liderazgo y gestión de equipos</span><span><b aria-hidden="true">◷</b> 5 horas <i></i> 6 clases</span></div>
-                <div class="module-row"><span><strong>06</strong>Módulo 6: Proyecto final</span><span><b aria-hidden="true">◷</b> 2 horas <i></i> 1 clase</span></div>
-              </div>
-            </article>
-          </div>
 
-          <aside class="sidebar">
-            <article class="info-card">
-              <h2>Información del curso</h2>
-              <div class="info-list">
-                <div class="info-item"><span><iconify-icon class="course-info-icon" icon="mdi:clock-outline"></iconify-icon>Duración</span><strong data-course-hours>24 horas</strong></div>
-                <div class="info-item"><span><iconify-icon class="course-info-icon" icon="mdi:laptop"></iconify-icon>Modalidad</span><strong data-course-modality>Online</strong></div>
-                <div class="info-item"><span><iconify-icon class="course-info-icon" icon="mdi:signal-cellular-3"></iconify-icon>Nivel</span><strong data-course-level>Intermedio</strong></div>
-                <div class="info-item"><span><iconify-icon class="course-info-icon" icon="mdi:certificate-outline"></iconify-icon>Certificación</span><strong>Sí</strong></div>
-                <div class="info-item"><span><iconify-icon class="course-info-icon" icon="mdi:translate"></iconify-icon>Idioma</span><strong>Español</strong></div>
-                <div class="info-item"><span><iconify-icon class="course-info-icon" icon="mdi:view-grid-outline"></iconify-icon>Categoría</span><strong data-course-category-info>Gestión Empresarial</strong></div>
-                <div class="info-item"><span><iconify-icon class="course-info-icon" icon="mdi:history"></iconify-icon>Última actualización</span><strong>Enero 2026</strong></div>
-              </div>
-            </article>
-            <article class="certificate-card">
-              <img src="../assets/images/icon/certificado-icon.svg" alt="" />
-              <div>
-                <h2>Certificado digital</h2>
-                <p>Al finalizar el curso recibirás un certificado emitido por Talentia.</p>
-              </div>
-            </article>
-          </aside>
-        </div>
+              {/* =================================================
+                  QUÉ APRENDERÁS
+                  ================================================= */}
 
-        <div class="container instructor-section">
-          <h2>Docente del curso</h2>
-          <article class="instructor-card">
-            <img src="../assets/images/instructor-carlos-mendoza.png" alt="Mg. Carlos Mendoza" />
-            <div class="instructor-profile">
-              <h3>Mg. Carlos Mendoza</h3>
-              <span>Especialista en Gestión del Talento Humano</span>
-              <p>Magíster en Recursos Humanos con más de 10 años de experiencia en gestión del talento y desarrollo organizacional.</p>
-            </div>
-            <div class="instructor-experience">
-              <h3>Experiencia destacada</h3>
-              <ul>
-                <li>Consultor en desarrollo organizacional</li>
-                <li>Ex Gerente de RRHH en empresas líderes</li>
-                <li>Docente en programas de posgrado</li>
-                <li>Speaker en conferencias de talento humano</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </section>
+              <article className="learning-section">
 
-      <section class="contact-section" id="contacto">
-        <div class="container">
-          <div class="contact-header">
-            <h2>Conecta con Talentia</h2>
-            <div class="contact-underline"></div>
-          </div>
+                <h2>
+                  ¿Qué aprenderás?
+                </h2>
 
-          <div class="forms-grid">
-            <article class="form-card company-card">
-              <div class="form-card-header">
-                <div class="form-icon">
-                  <iconify-icon icon="lucide:building-2"></iconify-icon>
+
+                <ul className="learning-grid">
+
+                  {curso.que_aprenderas?.map(
+                    (aprendizaje, index) => (
+
+                      <li key={index}>
+                        {aprendizaje}
+                      </li>
+
+                    )
+                  )}
+
+                </ul>
+
+              </article>
+
+
+              {/* =================================================
+                  MÓDULOS
+                  ================================================= */}
+
+              <article className="modules-section">
+
+                <h2>
+                  Contenido del curso
+                </h2>
+
+
+                <div className="module-list">
+
+                  {curso.modulos?.map(
+                    (modulo, index) => (
+
+                      <div
+                        className="module-row"
+                        key={index}
+                      >
+
+                        <span>
+
+                          <strong>
+                            {String(
+                              modulo.numero || index + 1
+                            ).padStart(2, "0")}
+                          </strong>
+
+                          Módulo{" "}
+                          {modulo.numero || index + 1}:{" "}
+                          {modulo.titulo}
+
+                        </span>
+
+
+                        <span>
+
+                          <b aria-hidden="true">
+                            ◷
+                          </b>
+
+                          {" "}
+                          {modulo.horas} horas
+
+                          {" "}
+
+                          <i></i>
+
+                          {" "}
+
+                          {modulo.clases}{" "}
+                          {modulo.clases === 1
+                            ? "clase"
+                            : "clases"}
+
+                        </span>
+
+                      </div>
+
+                    )
+                  )}
+
                 </div>
 
-                <div>
-                  <h3>¿Tu empresa necesita<br />capacitar a su equipo?</h3>
+              </article>
+
+
+            </div>
+
+
+            {/* ===================================================
+                INFORMACIÓN DEL CURSO
+                =================================================== */}
+
+            <aside className="sidebar">
+
+
+              <article className="info-card">
+
+                <h2>
+                  Información del curso
+                </h2>
+
+
+                <div className="info-list">
+
+
+                  <div className="info-item">
+
+                    <span>
+
+                      <iconify-icon
+                        class="course-info-icon"
+                        icon="mdi:clock-outline"
+                      ></iconify-icon>
+
+                      Duración
+
+                    </span>
+
+                    <strong>
+                      {curso.hours} horas
+                    </strong>
+
+                  </div>
+
+
+                  <div className="info-item">
+
+                    <span>
+
+                      <iconify-icon
+                        class="course-info-icon"
+                        icon="mdi:laptop"
+                      ></iconify-icon>
+
+                      Modalidad
+
+                    </span>
+
+                    <strong>
+                      {curso.modality}
+                    </strong>
+
+                  </div>
+
+
+                  <div className="info-item">
+
+                    <span>
+
+                      <iconify-icon
+                        class="course-info-icon"
+                        icon="mdi:signal-cellular-3"
+                      ></iconify-icon>
+
+                      Nivel
+
+                    </span>
+
+                    <strong>
+                      {curso.level}
+                    </strong>
+
+                  </div>
+
+
+                  <div className="info-item">
+
+                    <span>
+
+                      <iconify-icon
+                        class="course-info-icon"
+                        icon="mdi:certificate-outline"
+                      ></iconify-icon>
+
+                      Certificación
+
+                    </span>
+
+                    <strong>
+                      {curso.certificado ? "Sí" : "No"}
+                    </strong>
+
+                  </div>
+
+
+                  <div className="info-item">
+
+                    <span>
+
+                      <iconify-icon
+                        class="course-info-icon"
+                        icon="mdi:translate"
+                      ></iconify-icon>
+
+                      Idioma
+
+                    </span>
+
+                    <strong>
+                      {curso.idioma || "Español"}
+                    </strong>
+
+                  </div>
+
+
+                  <div className="info-item">
+
+                    <span>
+
+                      <iconify-icon
+                        class="course-info-icon"
+                        icon="mdi:view-grid-outline"
+                      ></iconify-icon>
+
+                      Categoría
+
+                    </span>
+
+                    <strong>
+                      {curso.category}
+                    </strong>
+
+                  </div>
+
+
+                  <div className="info-item">
+
+                    <span>
+
+                      <iconify-icon
+                        class="course-info-icon"
+                        icon="mdi:history"
+                      ></iconify-icon>
+
+                      Última actualización
+
+                    </span>
+
+                    <strong>
+                      {fechaActualizacion}
+                    </strong>
+
+                  </div>
+
+
+                </div>
+
+              </article>
+
+
+              {/* =================================================
+                  CERTIFICADO
+                  ================================================= */}
+
+              {curso.certificado && (
+
+                <article className="certificate-card">
+
+                  <img
+                    src="/assets/images/icon/certificado-icon.svg"
+                    alt=""
+                  />
+
+                  <div>
+
+                    <h2>
+                      Certificado digital
+                    </h2>
+
+                    <p>
+                      Al finalizar el curso recibirás un
+                      certificado emitido por Talentia.
+                    </p>
+
+                  </div>
+
+                </article>
+
+              )}
+
+
+            </aside>
+
+          </div>
+
+
+          {/* =====================================================
+              DOCENTE
+              ===================================================== */}
+
+          {curso.docente && (
+
+            <div className="container instructor-section">
+
+              <h2>
+                Docente del curso
+              </h2>
+
+
+              <article className="instructor-card">
+
+
+                <img
+                  src={curso.docente.foto}
+                  alt={curso.docente.nombre}
+                />
+
+
+                <div className="instructor-profile">
+
+                  <h3>
+                    {curso.docente.nombre}
+                  </h3>
+
+                  <span>
+                    {curso.docente.especialidad}
+                  </span>
+
                   <p>
-                    Programas de formación a medida para potenciar
-                    el talento de tu organización.
+                    {curso.docente.descripcion}
                   </p>
-                </div>
-              </div>
 
-              <div class="form-content">
-                <form data-lead-form>
-                  <input name="ruc" type="text" placeholder="RUC de la empresa"/>
-                  <input name="empresa" type="text" placeholder="Nombre de la empresa"/>
-                  <input name="contacto" type="text" placeholder="Nombre de contacto"/>
-                  <input name="email" type="email" placeholder="Correo corporativo"/>
-                  <input name="telefono" type="text" placeholder="Teléfono"/>
-
-                  <select name="interes">
-                    <option>¿En qué está interesado?</option>
-                    <option>Capacitación corporativa</option>
-                    <option>Programa personalizado</option>
-                  </select>
-
-                  <button class="btn btn-primary" type="submit">Solicitar información</button>
-
-                  <span class="small" data-message></span>
-                </form>
-
-                <div class="form-benefits">
-                  <div>
-                    <strong>✓</strong>
-                    <span>Programas<br />personalizados</span>
-                  </div>
-                  <div>
-                    <strong>✓</strong>
-                    <span>Capacitaciones<br />en empresa</span>
-                  </div>
-                  <div>
-                    <strong>✓</strong>
-                    <span>Acompañamiento<br />especializado</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="form-card professional-card">
-              <div class="form-card-header">
-                <div class="form-icon">
-                  <iconify-icon icon="lucide:graduation-cap"></iconify-icon>
                 </div>
 
-                <div>
-                  <h3>¿Quieres seguir<br />aprendiendo?</h3>
-                  <p>
-                    Regístrate y forma parte de nuestra comunidad.
-                    Accede a cursos, programas y novedades.
-                  </p>
+
+                <div className="instructor-experience">
+
+                  <h3>
+                    Experiencia destacada
+                  </h3>
+
+
+                  <ul>
+
+                    {curso.docente.experiencia?.map(
+                      (experiencia, index) => (
+
+                        <li key={index}>
+                          {experiencia}
+                        </li>
+
+                      )
+                    )}
+
+                  </ul>
+
                 </div>
-              </div>
 
-              <div class="form-content">
-                <form data-lead-form>
-                  <input name="nombre" type="text" placeholder="Nombre completo"/>
-                  <input name="dni" type="text" placeholder="DNI"/>
-                  <input name="email" type="email" placeholder="Correo electrónico"/>
-                  <input name="telefono" type="text" placeholder="Teléfono"/>
 
-                  <select name="interes">
-                    <option>¿Qué te interesa?</option>
-                    <option>Cursos</option>
-                    <option>Certificados</option>
-                    <option>Capacitaciones</option>
-                  </select>
+              </article>
 
-                  <button class="btn btn-dark" type="submit">Solicitar Cuenta</button>
-                  <span class="small" data-message></span>
-                </form>
+            </div>
 
-                <div class="form-benefits">
-                  <div>
-                    <strong>✓</strong>
-                    <span>Acceso a cursos y<br />talleres</span>
+          )}
+
+
+        </section>
+
+
+        {/* =====================================================
+            CONTACTO
+            ===================================================== */}
+
+        <section
+          className="contact-section"
+          id="contacto"
+        >
+
+          <div className="container">
+
+
+            <div className="contact-header">
+
+              <h2>
+                Conecta con Talentia
+              </h2>
+
+              <div className="contact-underline"></div>
+
+            </div>
+
+
+            <div className="forms-grid">
+
+
+              {/* EMPRESA */}
+
+              <article className="form-card company-card">
+
+
+                <div className="form-card-header">
+
+
+                  <div className="form-icon">
+
+                    <iconify-icon
+                      icon="lucide:building-2"
+                    ></iconify-icon>
+
                   </div>
+
+
                   <div>
-                    <strong>✓</strong>
-                    <span>Certificación digital</span>
+
+                    <h3>
+                      ¿Tu empresa necesita
+                      <br />
+                      capacitar a su equipo?
+                    </h3>
+
+                    <p>
+                      Programas de formación a medida para
+                      potenciar el talento de tu organización.
+                    </p>
+
                   </div>
-                  <div>
-                    <strong>✓</strong>
-                    <span>Contenido<br />actualizado</span>
-                  </div>
-                  <div>
-                    <strong>✓</strong>
-                    <span>Acompañamiento<br />docente</span>
-                  </div>
+
+
                 </div>
-              </div>
-            </article>
+
+
+                <div className="form-content">
+
+
+                  <form data-lead-form>
+
+                    <input
+                      name="ruc"
+                      type="text"
+                      placeholder="RUC de la empresa"
+                    />
+
+                    <input
+                      name="empresa"
+                      type="text"
+                      placeholder="Nombre de la empresa"
+                    />
+
+                    <input
+                      name="contacto"
+                      type="text"
+                      placeholder="Nombre de contacto"
+                    />
+
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="Correo corporativo"
+                    />
+
+                    <input
+                      name="telefono"
+                      type="text"
+                      placeholder="Teléfono"
+                    />
+
+
+                    <select name="interes">
+
+                      <option>
+                        ¿En qué está interesado?
+                      </option>
+
+                      <option>
+                        Capacitación corporativa
+                      </option>
+
+                      <option>
+                        Programa personalizado
+                      </option>
+
+                    </select>
+
+
+                    <button
+                      className="btn btn-primary"
+                      type="submit"
+                    >
+                      Solicitar información
+                    </button>
+
+
+                    <span
+                      className="small"
+                      data-message
+                    ></span>
+
+                  </form>
+
+
+                  <div className="form-benefits">
+
+                    <div>
+                      <strong>✓</strong>
+                      <span>
+                        Programas
+                        <br />
+                        personalizados
+                      </span>
+                    </div>
+
+                    <div>
+                      <strong>✓</strong>
+                      <span>
+                        Capacitaciones
+                        <br />
+                        en empresa
+                      </span>
+                    </div>
+
+                    <div>
+                      <strong>✓</strong>
+                      <span>
+                        Acompañamiento
+                        <br />
+                        especializado
+                      </span>
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+              </article>
+
+
+              {/* PROFESIONAL */}
+
+              <article className="form-card professional-card">
+
+
+                <div className="form-card-header">
+
+
+                  <div className="form-icon">
+
+                    <iconify-icon
+                      icon="lucide:graduation-cap"
+                    ></iconify-icon>
+
+                  </div>
+
+
+                  <div>
+
+                    <h3>
+                      ¿Quieres seguir
+                      <br />
+                      aprendiendo?
+                    </h3>
+
+                    <p>
+                      Regístrate y forma parte de nuestra
+                      comunidad. Accede a cursos, programas
+                      y novedades.
+                    </p>
+
+                  </div>
+
+
+                </div>
+
+
+                <div className="form-content">
+
+
+                  <form data-lead-form>
+
+                    <input
+                      name="nombre"
+                      type="text"
+                      placeholder="Nombre completo"
+                    />
+
+                    <input
+                      name="dni"
+                      type="text"
+                      placeholder="DNI"
+                    />
+
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="Correo electrónico"
+                    />
+
+                    <input
+                      name="telefono"
+                      type="text"
+                      placeholder="Teléfono"
+                    />
+
+
+                    <select name="interes">
+
+                      <option>
+                        ¿Qué te interesa?
+                      </option>
+
+                      <option>
+                        Cursos
+                      </option>
+
+                      <option>
+                        Certificados
+                      </option>
+
+                      <option>
+                        Capacitaciones
+                      </option>
+
+                    </select>
+
+
+                    <button
+                      className="btn btn-dark"
+                      type="submit"
+                    >
+                      Solicitar Cuenta
+                    </button>
+
+
+                    <span
+                      className="small"
+                      data-message
+                    ></span>
+
+                  </form>
+
+
+                  <div className="form-benefits">
+
+                    <div>
+                      <strong>✓</strong>
+                      <span>
+                        Acceso a cursos y
+                        <br />
+                        talleres
+                      </span>
+                    </div>
+
+                    <div>
+                      <strong>✓</strong>
+                      <span>
+                        Certificación digital
+                      </span>
+                    </div>
+
+                    <div>
+                      <strong>✓</strong>
+                      <span>
+                        Contenido
+                        <br />
+                        actualizado
+                      </span>
+                    </div>
+
+                    <div>
+                      <strong>✓</strong>
+                      <span>
+                        Acompañamiento
+                        <br />
+                        docente
+                      </span>
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+              </article>
+
+
+            </div>
+
           </div>
-        </div>
-      </section>
-    </main>
 
-    <Footer />
+        </section>
+
+
+      </main>
+
+
+      <Footer />
+
     </>
+
   );
+
 }
+
 
 export default DetalleCurso;

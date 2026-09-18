@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
 import Home from "./pages/Home";
 import Cursos from "./pages/Cursos";
 import DetalleCurso from "./pages/DetalleCurso";
 
 function App() {
+
+
   return (
     <BrowserRouter>
       <Routes>

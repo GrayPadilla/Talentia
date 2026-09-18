@@ -1,138 +1,7 @@
-const courses = [
-  {
-    id: "gestion-talento-humano",
-    category: "Gestión de Personas",
-    title: "Gestión de Talento Humano",
-    description: "Atrae, desarrolla y retiene el mejor talento en las organizaciones.",
-    hours: 24,
-    modality: "Online",
-    level: "Intermedio",
-    image: "assets/images/course-talento.png"
-  },
-  {
-    id: "marketing-digital-empresas",
-    category: "Marketing y Ventas",
-    title: "Marketing Digital para Empresas",
-    description: "Estrategias y herramientas para hacer crecer tu negocio digital.",
-    hours: 30,
-    modality: "Online",
-    level: "Básico",
-    image: "assets/images/course-marketing.png"
-  },
-  {
-    id: "business-intelligence",
-    category: "Datos y Tecnología",
-    title: "Business Intelligence",
-    description: "Convierte datos en decisiones estratégicas para tu organización.",
-    hours: 20,
-    modality: "Online",
-    level: "Intermedio",
-    image: "assets/images/course-bi.png"
-  },
-  {
-    id: "seguridad-salud-trabajo",
-    category: "Salud y Seguridad",
-    title: "Seguridad y Salud en el Trabajo",
-    description: "Genera entornos laborales más seguros, saludables y productivos.",
-    hours: 24,
-    modality: "Online",
-    level: "Básico",
-    image: "assets/images/seguridad.png"
-  },
-  {
-    id: "finanzas-no-financieros",
-    category: "Finanzas",
-    title: "Finanzas para No Financieros",
-    description: "Comprende y aplica conceptos financieros clave en tu empresa.",
-    hours: 24,
-    modality: "Online",
-    level: "Básico",
-    image: "/assets/images/finanzas.png"
-  },
-  {
-    id: "gestion-proyectos-agiles",
-    category: "Gestión de Proyectos",
-    title: "Gestión de Proyectos con Metodologías Ágiles",
-    description: "Planifica, ejecuta y lidera proyectos con enfoque práctico.",
-    hours: 30,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/gestion-proyectos.png"
-  },
-  {
-    id: "innovacion-design-thinking",
-    category: "Innovación",
-    title: "Innovación y Design Thinking",
-    description: "Desarrolla soluciones creativas para los desafíos de tu negocio.",
-    hours: 20,
-    modality: "Online",
-    level: "Básico",
-    image: "/assets/images/innovacion.png"
-  },
-  {
-    id: "tecnicas-ventas-negociacion",
-    category: "Ventas",
-    title: "Técnicas de Ventas y Negociación",
-    description: "Potencia tus habilidades comerciales y alcanza mejores resultados.",
-    hours: 24,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/tecnicas-ventas.png"
-  },
-  {
-    id: "seleccion-personal-competencias",
-    category: "Recursos Humanos",
-    title: "Selección de Personal por Competencias",
-    description: "Aprende a identificar y seleccionar el talento ideal.",
-    hours: 20,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/seleccion-personal.png"
-  },
-  {
-    id: "liderazgo-comunicacion",
-    category: "Habilidades Blandas",
-    title: "Liderazgo y Comunicación",
-    description: "Inspira, comunica y genera equipos de alto desempeño.",
-    hours: 24,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/liderazgo.png"
-  },
 
-  {
-    id: "excel-empresarial",
-    category: "Productividad",
-    title: "Excel Empresarial",
-    description: "Domina Excel y lleva tu productividad al siguiente nivel.",
-    hours: 18,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/excel.png"
-  },
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../src/firebase.js";
 
-  {
-    id: "gestion-calidad",
-    category: "Calidad",
-    title: "Gestión de la Calidad",
-    description: "Implementa sistemas de calidad para mejorar procesos y resultados.",
-    hours: 24,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/gestion-calidad.png"
-  },
-
-  {
-    id: "transformacion-digital",
-    category: "Transformación Digital",
-    title: "Transformación Digital en las Organizaciones",
-    description: "Impulsa el cambio y adapta tu empresa a la era digital.",
-    hours: 20,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/transformacion-digital.png"
-  }
-];
 
 /* =========================================================
    TARJETAS DE CURSOS
@@ -177,25 +46,61 @@ function courseCard(course, compact = false) {
    CURSOS DESTACADOS
    ========================================================= */
 
-export function renderFeaturedCourses() {
+export async function renderFeaturedCourses() {
 
   const container =
     document.querySelector("[data-featured-courses]");
 
   if (!container) return;
 
-  container.innerHTML = courses
-    .slice(0, 4)
-    .map((course) => courseCard(course))
-    .join("");
-}
+  try {
 
+    const snapshot =
+      await getDocs(collection(db, "Cursos"));
+
+    const firebaseCourses =
+      snapshot.docs.map((documento) => ({
+        id: documento.id,
+        ...documento.data()
+      }));
+
+
+    /* MOSTRAR SOLO 4 CURSOS */
+
+    const cursosDestacados =
+      firebaseCourses.slice(0, 4);
+
+
+    container.innerHTML =
+      cursosDestacados
+        .map((course) =>
+          courseCard(course)
+        )
+        .join("");
+
+
+    console.log(
+      "Cursos destacados obtenidos desde Firebase:",
+      cursosDestacados
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Error al obtener cursos destacados:",
+      error
+    );
+
+  }
+
+}
 
 /* =========================================================
    CATÁLOGO + FILTROS + PAGINACIÓN
    ========================================================= */
 
-export function renderCatalog() {
+export async function renderCatalog() {
 
   const container =
     document.querySelector("[data-catalog]");
@@ -213,6 +118,41 @@ export function renderCatalog() {
     document.querySelector("[data-pagination]");
 
   if (!container) return;
+
+
+  /* =======================================================
+     OBTENER CURSOS DESDE FIREBASE
+     ======================================================= */
+
+  let firebaseCourses = [];
+
+  try {
+
+    const snapshot =
+      await getDocs(collection(db, "Cursos"));
+
+    firebaseCourses = snapshot.docs.map((documento) => ({
+      id: documento.id,
+      ...documento.data()
+    }));
+
+    console.log(
+      "Cursos obtenidos desde Firebase:",
+      firebaseCourses
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Error al obtener cursos desde Firebase:",
+      error
+    );
+
+    container.innerHTML =
+      "<p>No se pudieron cargar los cursos.</p>";
+
+    return;
+  }
 
 
   /* =======================================================
@@ -246,51 +186,52 @@ export function renderCatalog() {
        FILTRAR CURSOS
        ===================================================== */
 
-    const filtered = courses.filter((course) => {
+    const filtered =
+      firebaseCourses.filter((course) => {
 
-      const matchesQuery = [
-        course.title,
-        course.description,
-        course.category
-      ]
-        .join(" ")
-        .toLowerCase()
-        .includes(query);
-
-
-      const matchesCategory =
-        categoryValue === "all" ||
-        course.category === categoryValue;
+        const matchesQuery = [
+          course.title,
+          course.description,
+          course.category
+        ]
+          .join(" ")
+          .toLowerCase()
+          .includes(query);
 
 
-      const matchesDuration =
+        const matchesCategory =
+          categoryValue === "all" ||
+          course.category === categoryValue;
 
-        durationValue === "all" ||
 
-        (
-          durationValue === "short" &&
-          course.hours <= 20
-        ) ||
+        const matchesDuration =
 
-        (
-          durationValue === "medium" &&
-          course.hours > 20 &&
-          course.hours <= 28
-        ) ||
+          durationValue === "all" ||
 
-        (
-          durationValue === "long" &&
-          course.hours > 28
+          (
+            durationValue === "short" &&
+            course.hours <= 20
+          ) ||
+
+          (
+            durationValue === "medium" &&
+            course.hours > 20 &&
+            course.hours <= 28
+          ) ||
+
+          (
+            durationValue === "long" &&
+            course.hours > 28
+          );
+
+
+        return (
+          matchesQuery &&
+          matchesCategory &&
+          matchesDuration
         );
 
-
-      return (
-        matchesQuery &&
-        matchesCategory &&
-        matchesDuration
-      );
-
-    });
+      });
 
 
     /* =====================================================
@@ -314,7 +255,7 @@ export function renderCatalog() {
 
 
     /* =====================================================
-       OBTENER LOS CURSOS DE LA PÁGINA ACTUAL
+       OBTENER CURSOS DE LA PÁGINA ACTUAL
        ===================================================== */
 
     const start =
@@ -322,7 +263,6 @@ export function renderCatalog() {
 
     const end =
       start + coursesPerPage;
-
 
     const coursesToShow =
       filtered.slice(start, end);
@@ -346,7 +286,6 @@ export function renderCatalog() {
 
     const resultCount =
       document.querySelector("[data-result-count]");
-
 
     if (resultCount) {
 
@@ -375,7 +314,6 @@ export function renderCatalog() {
 
         const button =
           document.createElement("button");
-
 
         button.type = "button";
 
@@ -424,11 +362,9 @@ export function renderCatalog() {
         const nextButton =
           document.createElement("button");
 
-
         nextButton.type = "button";
 
         nextButton.textContent = "›";
-
 
         nextButton.addEventListener(
           "click",
@@ -488,93 +424,6 @@ export function renderCatalog() {
   draw();
 
 }
-
-
-/* =========================================================
-   DETALLE DEL CURSO
-   ========================================================= */
-
-export function renderCourseDetail() {
-
-  const title =
-    document.querySelector("[data-course-title]");
-
-  if (!title) return;
-
-
-  const pathParts =
-    window.location.pathname
-      .split("/")
-      .filter(Boolean);
-
-  const courseId =
-    pathParts[pathParts.length - 1];
-
-  const selected =
-    courses.find(
-      (course) => course.id === courseId
-    ) || courses[0];
-
-
-  document
-    .querySelectorAll("[data-course-title]")
-    .forEach((node) => {
-      node.textContent = selected.title;
-    });
-
-
-  document.querySelector(
-    "[data-course-category]"
-  ).textContent =
-    selected.category.toUpperCase();
-
-
-  document.querySelector(
-    "[data-course-description]"
-  ).textContent =
-    selected.description;
-
-
-  document.querySelector(
-    "[data-course-hours]"
-  ).textContent =
-    `${selected.hours} horas`;
-
-
-  document.querySelector(
-    "[data-course-modality]"
-  ).textContent =
-    selected.modality;
-
-
-  document.querySelector(
-    "[data-course-level]"
-  ).textContent =
-    selected.level;
-
-  const categoryInfo =
-    document.querySelector(
-      "[data-course-category-info]"
-    );
-
-  if (categoryInfo) {
-    categoryInfo.textContent =
-      selected.category;
-  }
-
-  const image =
-    document.querySelector(
-      "[data-course-image]"
-    );
-
-  if (image) {
-    image.src = selected.image;
-    image.alt =
-      `Presentación del curso ${selected.title}`;
-  }
-
-}
-
 
 /* =========================================================
    FORMULARIO
