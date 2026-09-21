@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "./firebase";
-import courses from "./courses";
+import { db } from "./firebase.js";
+import courses from "./courses.js";
 
 export async function subirCursosFirebase() {
   try {

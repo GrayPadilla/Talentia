@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import RegistroForm from "../components/RegistroForm";
 import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { renderFeaturedCourses, bindForms } from "../../js/app.js";
@@ -373,113 +374,8 @@ function Home() {
                     </div>
 
                     <div class="forms-grid">
-                        {/*-- EMPRESAS */}
-                        <article class="form-card company-card">
-                        <div class="form-card-header">
-                            <div class="form-icon">
-                            <iconify-icon icon="lucide:building-2"></iconify-icon>
-                            </div>
-
-                            <div>
-                            <h3>¿Tu empresa necesita<br />capacitar a su equipo?</h3>
-                            <p>
-                                Programas de formación a medida para potenciar
-                                el talento de tu organización.
-                            </p>
-                            </div>
-                        </div>
-
-                        <div class="form-content">
-                            <form data-lead-form>
-                            <input name="ruc" type="text" placeholder="RUC de la empresa"/>
-                            <input name="empresa" type="text" placeholder="Nombre de la empresa"/>
-                            <input name="contacto" type="text" placeholder="Nombre de contacto"/>
-                            <input name="email" type="email" placeholder="Correo corporativo"/>
-                            <input name="telefono" type="text" placeholder="Teléfono"/>
-
-                            <select name="interes">
-                                <option>¿En qué está interesado?</option>
-                                <option>Capacitación corporativa</option>
-                                <option>Programa personalizado</option>
-                            </select>
-
-                            <button class="btn btn-primary" type="submit">Solicitar información</button>
-
-                            <span class="small" data-message></span>
-                            </form>
-
-                            <div class="form-benefits">
-                            <div>
-                                <strong>✓</strong>
-                                <span>Programas<br />personalizados</span>
-                            </div>
-                            <div>
-                                <strong>✓</strong>
-                                <span>Capacitaciones<br />en empresa</span>
-                            </div>
-                            <div>
-                                <strong>✓</strong>
-                                <span>Acompañamiento<br />especializado</span>
-                            </div>
-                            </div>
-                        </div>
-                        </article>
-
-                        {/*-- PROFESIONALES -->*/}
-                        <article class="form-card professional-card">
-                        <div class="form-card-header">
-                            <div class="form-icon">
-                            <iconify-icon icon="lucide:graduation-cap"></iconify-icon>
-                            </div>
-
-                            <div>
-                            <h3>¿Quieres seguir<br />aprendiendo?</h3>
-                            <p>
-                                Regístrate y forma parte de nuestra comunidad.
-                                Accede a cursos, programas y novedades.
-                            </p>
-                            </div>
-                        </div>
-
-                        <div class="form-content">
-                            <form data-lead-form>
-                            <input name="nombre" type="text" placeholder="Nombre completo"/>
-                            <input name="dni" type="text" placeholder="DNI"/>
-                            <input name="email" type="email" placeholder="Correo electrónico"/>
-                            <input name="telefono" type="text" placeholder="Teléfono"/>
-
-                            <select name="interes">
-                                <option>¿Qué te interesa?</option>
-                                <option>Cursos</option>
-                                <option>Certificados</option>
-                                <option>Capacitaciones</option>
-                            </select>
-
-                            <button class="btn btn-dark" type="submit">Solicitar Cuenta</button>
-                            <span class="small" data-message></span>
-                            </form>
-
-                            <div class="form-benefits">
-                            <div>
-                                <strong>✓</strong>
-                                <span>Acceso a cursos y<br />talleres</span>
-                            </div>
-                            <div>
-                                <strong>✓</strong>
-                                <span>Certificación digital</span>
-                            </div>
-                            <div>
-                                <strong>✓</strong>
-                                <span>Contenido<br />actualizado</span>
-                            </div>
-                            <div>
-                                <strong>✓</strong>
-                                <span>Acompañamiento<br />docente</span>
-                            </div>
-                            </div>
-                        </div>
-                        </article>
-
+                        <RegistroForm tipo="empresa" />
+                        <RegistroForm tipo="alumno" />
                     </div>
                     </div>
                 </section>
