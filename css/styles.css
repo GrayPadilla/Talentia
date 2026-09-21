@@ -681,6 +681,149 @@ textarea {
   display: none;
 }
 
+.featured-carousel {
+  position: relative;
+}
+
+.featured-carousel-viewport {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+  padding: 10px 4px 22px;
+}
+
+.featured-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.courses-grid.featured-carousel-track {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 48px) / 4);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.featured-carousel-track .course-card {
+  position: relative;
+  scroll-snap-align: start;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+@media (hover: hover) {
+  .featured-carousel-track .course-card:hover {
+    z-index: 1;
+    transform: translateY(-2px) scale(1.018);
+    box-shadow: 0 12px 28px rgba(11, 42, 91, 0.16);
+  }
+}
+
+.featured-carousel-control {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(11, 42, 91, 0.14);
+  border-radius: 50%;
+  color: #fff;
+  background: #145bab;
+  box-shadow: 0 8px 20px rgba(11, 42, 91, 0.2);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.featured-carousel-control:hover:not(:disabled) {
+  background: #104888;
+  transform: translateY(-50%) scale(1.04);
+}
+
+.featured-carousel-control:focus-visible {
+  outline: 3px solid rgba(0, 179, 179, 0.38);
+  outline-offset: 3px;
+}
+
+.featured-carousel-control:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: default;
+}
+
+.featured-carousel-control iconify-icon {
+  font-size: 24px;
+}
+
+.featured-carousel-control-prev {
+  left: -22px;
+}
+
+.featured-carousel-control-next {
+  right: -22px;
+}
+
+@media (max-width: 1200px) {
+  .courses-grid.featured-carousel-track {
+    grid-auto-columns: calc((100% - 42px) / 4);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .courses-grid.featured-carousel-track {
+    grid-auto-columns: calc((100% - 28px) / 3);
+  }
+
+  .featured-carousel-control-prev {
+    left: -14px;
+  }
+
+  .featured-carousel-control-next {
+    right: -14px;
+  }
+}
+
+@media (max-width: 680px) {
+  .courses-grid.featured-carousel-track {
+    grid-auto-columns: calc((100% - 12px) / 2);
+    gap: 12px;
+  }
+
+  .featured-carousel-control {
+    width: 40px;
+    height: 40px;
+  }
+
+  .featured-carousel-control-prev {
+    left: 6px;
+  }
+
+  .featured-carousel-control-next {
+    right: 6px;
+  }
+}
+
+@media (max-width: 420px) {
+  .courses-grid.featured-carousel-track {
+    grid-auto-columns: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-carousel-track .course-card {
+    transition: none;
+  }
+
+  .featured-carousel-track .course-card:hover {
+    transform: none;
+  }
+}
+
 /* ===== EXPERIENCIA EN TALENTIA ===== */
 
 .process {

@@ -1,5 +1,6 @@
 # Dependencias de Node.js
 node_modules/
+dist/
 
 # Archivos ZIP
 *.zip
@@ -15,5 +16,3 @@ node_modules/
 .DS_Store
 public/.DS_Store
 public/assets/.DS_Store
-
-src/firebase.js

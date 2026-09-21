@@ -43,13 +43,17 @@ function Cursos() {
             </div>
           </div> 
         </div> 
-        <div class="container filters"> 
-          <input 
-            data-search 
-            type="text" 
-            placeholder="Busca un curso, habilidad o tema..." 
-          /> 
-          <select data-category> 
+        <div className="container filters"> 
+          <div className="filter-search">
+            <iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon>
+            <input 
+              data-search 
+              type="search"
+              aria-label="Buscar cursos"
+              placeholder="Busca un curso, habilidad o tema..." 
+            />
+          </div>
+          <select data-category aria-label="Filtrar por categoría"> 
             <option value="all"> Categoría </option> 
             <option> Gestión de Personas </option>
             <option> Marketing y Ventas </option> 
@@ -66,13 +70,13 @@ function Cursos() {
             <option> Transformación Digital </option>
           </select> 
   
-          <select> 
+          <select aria-label="Filtrar por modalidad"> 
             <option> Modalidad </option> 
             <option> Online </option> 
             <option> Presencial </option> 
           </select> 
 
-          <select data-duration> 
+          <select data-duration aria-label="Filtrar por duración"> 
  
             <option value="all"> 
               Duración 
@@ -92,7 +96,7 @@ function Cursos() {
  
           </select> 
 
-          <select> 
+          <select aria-label="Filtrar por nivel"> 
  
             <option> 
               Nivel 

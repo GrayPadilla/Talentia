@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 
 import {
   registrarAlumno,
@@ -174,8 +175,10 @@ function RegistroForm({ tipo }) {
 
   return (
 
-    <article
+    <motion.article
       className={`form-card ${formulario.cardClass}`}
+      whileHover={{ scale: 1.01 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
     >
 
       <div className="form-card-header">
@@ -284,7 +287,7 @@ function RegistroForm({ tipo }) {
 
       </div>
 
-    </article>
+    </motion.article>
 
   );
 

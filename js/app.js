@@ -53,6 +53,18 @@ export async function renderFeaturedCourses() {
 
   if (!container) return;
 
+  const carousel =
+    container.closest("[data-featured-carousel]");
+
+  const viewport =
+    carousel?.querySelector("[data-carousel-viewport]");
+
+  const previousButton =
+    carousel?.querySelector("[data-carousel-prev]");
+
+  const nextButton =
+    carousel?.querySelector("[data-carousel-next]");
+
   try {
 
     const snapshot =
@@ -65,23 +77,77 @@ export async function renderFeaturedCourses() {
       }));
 
 
-    /* MOSTRAR SOLO 4 CURSOS */
-
-    const cursosDestacados =
-      firebaseCourses.slice(0, 4);
-
-
     container.innerHTML =
-      cursosDestacados
+      firebaseCourses
         .map((course) =>
           courseCard(course)
         )
         .join("");
 
+    if (viewport && previousButton && nextButton) {
+      viewport.style.scrollBehavior = "auto";
+      viewport.scrollLeft = 0;
+      viewport.style.removeProperty("scroll-behavior");
+
+      const getCourseStep = () => {
+        const firstCourse =
+          container.querySelector(".course-card");
+
+        if (!firstCourse) return 0;
+
+        const styles =
+          window.getComputedStyle(container);
+
+        const gap =
+          Number.parseFloat(styles.columnGap) || 0;
+
+        return firstCourse.getBoundingClientRect().width + gap;
+      };
+
+      const updateControls = () => {
+        const maximumScroll =
+          viewport.scrollWidth - viewport.clientWidth;
+
+        const isAtStart =
+          viewport.scrollLeft <= 1;
+
+        const isAtEnd =
+          maximumScroll <= 1 ||
+          viewport.scrollLeft >= maximumScroll - 1;
+
+        previousButton.toggleAttribute(
+          "disabled",
+          isAtStart
+        );
+
+        nextButton.toggleAttribute(
+          "disabled",
+          isAtEnd
+        );
+      };
+
+      previousButton.onclick = () => {
+        viewport.scrollBy({
+          left: -getCourseStep(),
+          behavior: "smooth"
+        });
+      };
+
+      nextButton.onclick = () => {
+        viewport.scrollBy({
+          left: getCourseStep(),
+          behavior: "smooth"
+        });
+      };
+
+      viewport.onscroll = updateControls;
+      updateControls();
+    }
+
 
     console.log(
       "Cursos destacados obtenidos desde Firebase:",
-      cursosDestacados
+      firebaseCourses
     );
 
 

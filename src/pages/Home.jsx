@@ -3,7 +3,10 @@ import Footer from "../components/Footer";
 import RegistroForm from "../components/RegistroForm";
 import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
+import { motion } from "motion/react";
+import { fadeUp, staggerContainer, fadeUpItem, cardHover } from "../animations/variants.js";
 import { renderFeaturedCourses } from "../../js/app.js";
+
 
 function Home() {
     const { hash } = useLocation();
@@ -104,7 +107,13 @@ function Home() {
                     </div>
                 </section>
 
-                <section class="section" id="nosotros">
+                <motion.section 
+                className="section"
+                id="nosotros"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}>
                     <div class="container split">
                     <div>
                         <h2 class="section-title">¿Por qué elegir Talentia?</h2>
@@ -118,13 +127,24 @@ function Home() {
                     </div>
                     <div class="image-panel" aria-label="Representación visual de aprendizaje profesional"></div>
                     </div>
-                </section>
+                </motion.section>
 
-                <section class="section" id="nosotros-parte-dos">
+                <motion.section
+                className="section"
+                id="nosotros-parte-dos"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}>
                     <div class="container">
                     <h2 class="section-title">¿Qué ofrecemos en Talentia?</h2>
-                    <div class="offer-grid">
-                        <article class="offer-card">
+                    <motion.div 
+                    className="offer-grid"
+                    variants={staggerContainer}>
+                        <motion.article
+                        className="offer-card"
+                        variants={fadeUpItem}
+                        whileHover={cardHover}>
                         <div class="offer-text">
                             <div class="offer-icon">
                             <iconify-icon icon="lucide:building-2"></iconify-icon>
@@ -141,8 +161,11 @@ function Home() {
                             </ul>
                         </div>
                         <div class="offer-img empresas"></div>
-                        </article>
-                        <article class="offer-card">
+                        </motion.article>
+                        <motion.article
+                        className="offer-card"
+                        variants={fadeUpItem}
+                        whileHover={cardHover}>
                         <div class="offer-text">
                             <div class="offer-icon">
                             <div class="offer-icon">
@@ -161,12 +184,18 @@ function Home() {
                             </ul>
                         </div>
                         <div class="offer-img profesionales"></div>
-                        </article>
+                        </motion.article>
+                    </motion.div>
                     </div>
-                    </div>
-                </section>
+                </motion.section>
 
-                <section class="section featured-courses-section" id="cursos">
+                <motion.section
+                className="section featured-courses-section"
+                id="cursos"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}>
                     <div class="container">
 
                     <div class="section-header featured-courses-header">
@@ -177,10 +206,31 @@ function Home() {
 
                         <a class="btn btn-dark featured-courses-btn" href="Cursos">Ver todos los cursos</a>
                     </div>
-                    <div class="courses-grid" data-featured-courses></div>
+                    <div className="featured-carousel" data-featured-carousel>
+                        <button
+                        className="featured-carousel-control featured-carousel-control-prev"
+                        type="button"
+                        aria-label="Ver cursos anteriores"
+                        data-carousel-prev
+                        disabled>
+                            <iconify-icon icon="lucide:chevron-left"></iconify-icon>
+                        </button>
+
+                        <div className="featured-carousel-viewport" data-carousel-viewport>
+                            <div className="courses-grid featured-carousel-track" data-featured-courses></div>
+                        </div>
+
+                        <button
+                        className="featured-carousel-control featured-carousel-control-next"
+                        type="button"
+                        aria-label="Ver cursos siguientes"
+                        data-carousel-next>
+                            <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+                        </button>
+                    </div>
 
                     </div>
-                </section>
+                </motion.section>
 
                 <section class="section process" id="experiencia">
                     <div class="container">
@@ -189,9 +239,14 @@ function Home() {
                         <p>Un proceso simple para enfocarte en tu aprendizaje.</p>
                     </div>
 
-                    <div class="steps">
+                    <motion.div
+                    className="steps"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.25 }}>
 
-                        <article class="step">
+                        <article className="step">
                         <div class="step-icon">
                             <img
                             src="assets/images/icon/explorar-cursos-icon.svg"
@@ -202,10 +257,10 @@ function Home() {
                         <h3>Explora los cursos</h3>
                         </article>
 
-                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div className="step-arrow" aria-hidden="true">→</div>
 
 
-                        <article class="step">
+                        <article className="step">
                         <div class="step-icon">
                             <img
                             src="assets/images/icon/inscribete-icon.svg"
@@ -217,9 +272,9 @@ function Home() {
                         </article>
 
 
-                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div className="step-arrow" aria-hidden="true">→</div>
 
-                        <article class="step">
+                        <article className="step">
                         <div class="step-icon">
                             <img
                             src="assets/images/icon/aprende-icon.svg"
@@ -230,9 +285,9 @@ function Home() {
                         <h3>Aprende</h3>
                         </article>
 
-                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div className="step-arrow" aria-hidden="true">→</div>
 
-                        <article class="step">
+                        <article className="step">
                         <div class="step-icon">
                             <img
                             src="assets/images/icon/gorra-certificado-icon.svg"
@@ -243,7 +298,7 @@ function Home() {
                         <h3>Recibe tu certificado</h3>
                         </article>
 
-                    </div>
+                    </motion.div>
                     </div>
                 </section>
 
@@ -255,9 +310,16 @@ function Home() {
                         <p>Nos adaptamos a tus necesidades de aprendizaje.</p>
                     </div>
 
-                    <div class="modalities-grid">
+                    <motion.div
+                    className="modalities-grid"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.25 }}>
 
-                        <article class="modality-card">
+                        <motion.article
+                        className="modality-card"
+                        whileHover={cardHover}>
 
                         <div class="modality-icon">
                             <img
@@ -268,10 +330,12 @@ function Home() {
                         <h3>Cursos Online</h3>
                         <p>Estudia desde cualquier lugar</p>
 
-                        </article>
+                        </motion.article>
 
 
-                        <article class="modality-card">
+                        <motion.article
+                        className="modality-card"
+                        whileHover={cardHover}>
 
                         <div class="modality-icon">
                             <img
@@ -283,10 +347,12 @@ function Home() {
                         <h3>Cursos Presenciales</h3>
                         <p>Aprendizaje con nuestros expertos</p>
 
-                        </article>
+                        </motion.article>
 
 
-                        <article class="modality-card">
+                        <motion.article
+                        className="modality-card"
+                        whileHover={cardHover}>
 
                         <div class="modality-icon">
                             <img
@@ -298,9 +364,9 @@ function Home() {
                         <h3>Capacitaciones Corporativas</h3>
                         <p>Programas a medida para empresas</p>
 
-                        </article>
+                        </motion.article>
 
-                    </div>
+                    </motion.div>
                     </div>
                 </section>
 
@@ -311,8 +377,16 @@ function Home() {
                         <div class="testimonials-underline"></div>
                     </div>
 
-                    <div class="testimonials">
-                        <article class="testimonial">
+                    <motion.div
+                    className="testimonials"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.25 }}>
+                        <motion.article
+                        className="testimonial"
+                        variants={fadeUpItem}
+                        whileHover={cardHover}>
                         <div class="testimonial-content">
                             <img class="testimonial-avatar" src="assets/images/estudiante_testimonio_1.png" alt="Valeria Sánchez" />
                             <p class="testimonial-quote">
@@ -326,9 +400,12 @@ function Home() {
                             <span>Estudiante de Marketing Digital</span>
                         </div>
                         <div class="testimonial-mark">❞</div>
-                        </article>
+                        </motion.article>
 
-                        <article class="testimonial">
+                        <motion.article
+                        className="testimonial"
+                        variants={fadeUpItem}
+                        whileHover={cardHover}>
                         <div class="testimonial-content">
                             <img class="testimonial-avatar" src="assets/images/estudiante_testimonio_2.png" alt="Diego Ramírez" />
                             <p class="testimonial-quote">
@@ -342,9 +419,12 @@ function Home() {
                             <span>Estudiante de Desarrollo Web</span>
                         </div>
                         <div class="testimonial-mark">❞</div>
-                        </article>
+                        </motion.article>
 
-                        <article class="testimonial">
+                        <motion.article
+                        className="testimonial"
+                        variants={fadeUpItem}
+                        whileHover={cardHover}>
                         <div class="testimonial-content">
                             <img class="testimonial-avatar" src="assets/images/estudiante_testimonio_3.png" alt="Camila Rojas" />
                             <p class="testimonial-quote">
@@ -358,9 +438,9 @@ function Home() {
                             <span>Estudiante de Gestión Empresarial</span>
                         </div>
                         <div class="testimonial-mark">❞</div>
-                        </article>
+                        </motion.article>
 
-                    </div>
+                    </motion.div>
                     </div>
                 </section>
 
@@ -372,10 +452,15 @@ function Home() {
                         <div class="contact-underline"></div>
                     </div>
 
-                    <div class="forms-grid">
+                    <motion.div
+                    className="forms-grid"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}>
                         <RegistroForm tipo="empresa" />
                         <RegistroForm tipo="alumno" />
-                    </div>
+                    </motion.div>
                     </div>
                 </section>
             </main>
