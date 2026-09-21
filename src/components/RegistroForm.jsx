@@ -1,3 +1,11 @@
+import { useState } from "react";
+
+import {
+  registrarAlumno,
+  registrarEmpresa
+} from "../formularioService";
+
+
 const formularios = {
   empresa: {
     cardClass: "company-card",
@@ -9,16 +17,40 @@ const formularios = {
         capacitar a su equipo?
       </>
     ),
-    description: "Programas de formación a medida para potenciar el talento de tu organización.",
+    description:
+      "Programas de formación a medida para potenciar el talento de tu organización.",
     fields: [
-      { name: "ruc", type: "text", placeholder: "RUC de la empresa" },
-      { name: "empresa", type: "text", placeholder: "Nombre de la empresa" },
-      { name: "contacto", type: "text", placeholder: "Nombre de contacto" },
-      { name: "email", type: "email", placeholder: "Correo corporativo" },
-      { name: "telefono", type: "text", placeholder: "Teléfono" }
+      {
+        name: "ruc",
+        type: "text",
+        placeholder: "RUC de la empresa"
+      },
+      {
+        name: "empresa",
+        type: "text",
+        placeholder: "Nombre de la empresa"
+      },
+      {
+        name: "contacto",
+        type: "text",
+        placeholder: "Nombre de contacto"
+      },
+      {
+        name: "email",
+        type: "email",
+        placeholder: "Correo corporativo"
+      },
+      {
+        name: "telefono",
+        type: "text",
+        placeholder: "Teléfono"
+      }
     ],
     selectPlaceholder: "¿En qué está interesado?",
-    options: ["Capacitación corporativa", "Programa personalizado"],
+    options: [
+      "Capacitación corporativa",
+      "Programa personalizado"
+    ],
     buttonClass: "btn btn-primary",
     buttonLabel: "Solicitar información",
     benefits: [
@@ -27,6 +59,7 @@ const formularios = {
       <>Acompañamiento<br />especializado</>
     ]
   },
+
   alumno: {
     cardClass: "professional-card",
     icon: "lucide:graduation-cap",
@@ -37,15 +70,36 @@ const formularios = {
         aprendiendo?
       </>
     ),
-    description: "Regístrate y forma parte de nuestra comunidad. Accede a cursos, programas y novedades.",
+    description:
+      "Regístrate y forma parte de nuestra comunidad. Accede a cursos, programas y novedades.",
     fields: [
-      { name: "nombre", type: "text", placeholder: "Nombre completo" },
-      { name: "dni", type: "text", placeholder: "DNI" },
-      { name: "email", type: "email", placeholder: "Correo electrónico" },
-      { name: "telefono", type: "text", placeholder: "Teléfono" }
+      {
+        name: "nombre",
+        type: "text",
+        placeholder: "Nombre completo"
+      },
+      {
+        name: "dni",
+        type: "text",
+        placeholder: "DNI"
+      },
+      {
+        name: "email",
+        type: "email",
+        placeholder: "Correo electrónico"
+      },
+      {
+        name: "telefono",
+        type: "text",
+        placeholder: "Teléfono"
+      }
     ],
     selectPlaceholder: "¿Qué te interesa?",
-    options: ["Cursos", "Certificados", "Capacitaciones"],
+    options: [
+      "Cursos",
+      "Certificados",
+      "Capacitaciones"
+    ],
     buttonClass: "btn btn-dark",
     buttonLabel: "Solicitar Cuenta",
     benefits: [
@@ -57,62 +111,184 @@ const formularios = {
   }
 };
 
+
 function RegistroForm({ tipo }) {
+
   const formulario = formularios[tipo];
+
+  const [enviando, setEnviando] = useState(false);
+  const [mensaje, setMensaje] = useState("");
+  const [error, setError] = useState("");
 
   if (!formulario) return null;
 
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    setMensaje("");
+    setError("");
+    setEnviando(true);
+
+    try {
+
+      const formData =  new FormData(form);
+      const datos = Object.fromEntries(formData.entries());
+
+      if (tipo === "alumno") {
+        await registrarAlumno(datos);
+        form.reset();
+
+        setMensaje(
+          "Registro realizado correctamente."
+        );
+
+      } else if (tipo === "empresa") {
+        await registrarEmpresa(datos);
+        form.reset();
+        setMensaje(
+          "Solicitud enviada correctamente."
+        );
+
+      }
+
+    } catch (error) {
+
+      console.error(
+        "Error al registrar formulario:",
+        error
+      );
+
+      setError(
+        "No se pudo registrar la información. Inténtalo nuevamente."
+      );
+
+    } finally {
+
+      setEnviando(false);
+
+    }
+
+  }
+
   return (
-    <article className={`form-card ${formulario.cardClass}`}>
+
+    <article
+      className={`form-card ${formulario.cardClass}`}
+    >
+
       <div className="form-card-header">
+
         <div className="form-icon">
-          <iconify-icon icon={formulario.icon}></iconify-icon>
+          <iconify-icon
+            icon={formulario.icon}
+          ></iconify-icon>
         </div>
 
         <div>
           <h3>{formulario.title}</h3>
           <p>{formulario.description}</p>
         </div>
+
       </div>
 
+
       <div className="form-content">
-        <form data-lead-form>
+
+        <form onSubmit={handleSubmit}>
+
           {formulario.fields.map((field) => (
+
             <input
               key={field.name}
               name={field.name}
               type={field.type}
               placeholder={field.placeholder}
+              required
             />
+
           ))}
 
-          <select name="interes">
-            <option>{formulario.selectPlaceholder}</option>
+
+          <select
+            name="interes"
+            defaultValue=""
+            required
+          >
+
+            <option value="" disabled>
+              {formulario.selectPlaceholder}
+            </option>
+
             {formulario.options.map((option) => (
-              <option key={option} value={option}>
+
+              <option
+                key={option}
+                value={option}
+              >
                 {option}
               </option>
+
             ))}
+
           </select>
 
-          <button className={formulario.buttonClass} type="submit">
-            {formulario.buttonLabel}
+
+          <button
+            className={formulario.buttonClass}
+            type="submit"
+            disabled={enviando}
+          >
+            {enviando
+              ? "Enviando..."
+              : formulario.buttonLabel}
           </button>
 
-          <span className="small" data-message></span>
+
+          {mensaje && (
+            <span className="small" role="status">
+              {mensaje}
+            </span>
+          )}
+
+
+          {error && (
+            <span className="small" role="alert">
+              {error}
+            </span>
+          )}
+
         </form>
 
+
         <div className="form-benefits">
-          {formulario.benefits.map((benefit, index) => (
-            <div key={index}>
-              <strong>✓</strong>
-              <span>{benefit}</span>
-            </div>
-          ))}
+
+          {formulario.benefits.map(
+            (benefit, index) => (
+
+              <div key={index}>
+
+                <strong>✓</strong>
+
+                <span>
+                  {benefit}
+                </span>
+
+              </div>
+
+            )
+          )}
+
         </div>
+
       </div>
+
     </article>
+
   );
+
 }
+
 
 export default RegistroForm;

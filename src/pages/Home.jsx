@@ -3,14 +3,13 @@ import Footer from "../components/Footer";
 import RegistroForm from "../components/RegistroForm";
 import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { renderFeaturedCourses, bindForms } from "../../js/app.js";
+import { renderFeaturedCourses } from "../../js/app.js";
 
 function Home() {
     const { hash } = useLocation();
 
     useEffect(() => {
         renderFeaturedCourses();
-        bindForms();
     }, []);
 
     useEffect(() => {
