@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
+import { motion } from "motion/react";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import RegistroForm from "../components/RegistroForm";
 import { db } from "../firebase.js";
+import { fadeUp } from "../animations/variants.js";
+
+
+const revealOnScroll = {
+  variants: fadeUp,
+  initial: "hidden",
+  whileInView: "visible",
+  viewport: { once: true, amount: 0.16 }
+};
 
 
 function DetalleCurso() {
@@ -202,17 +212,26 @@ function DetalleCurso() {
 
         <section className="detail-hero">
 
-          <div className="container detail-grid">
+          <motion.div
+            className="container detail-grid"
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+          >
 
 
-            <div className="course-cover">
+            <motion.div
+              className="course-cover"
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
 
               <img
                 src={curso.image}
                 alt={`Presentación del curso ${curso.title}`}
               />
 
-            </div>
+            </motion.div>
 
 
             <div className="course-intro">
@@ -314,17 +333,20 @@ function DetalleCurso() {
               </div>
 
 
-              <a
+              <motion.a
                 className="btn btn-primary"
                 href="#contacto"
+                whileHover={{ y: -2, scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 Solicitar más información
-              </a>
+              </motion.a>
 
 
             </div>
 
-          </div>
+          </motion.div>
 
         </section>
 
@@ -346,7 +368,10 @@ function DetalleCurso() {
                   DESCRIPCIÓN
                   ================================================= */}
 
-              <article className="course-description">
+              <motion.article
+                className="course-description"
+                {...revealOnScroll}
+              >
 
                 <h2>
                   Descripción del curso
@@ -380,14 +405,17 @@ function DetalleCurso() {
 
                 </div>
 
-              </article>
+              </motion.article>
 
 
               {/* =================================================
                   QUÉ APRENDERÁS
                   ================================================= */}
 
-              <article className="learning-section">
+              <motion.article
+                className="learning-section"
+                {...revealOnScroll}
+              >
 
                 <h2>
                   ¿Qué aprenderás?
@@ -408,14 +436,17 @@ function DetalleCurso() {
 
                 </ul>
 
-              </article>
+              </motion.article>
 
 
               {/* =================================================
                   MÓDULOS
                   ================================================= */}
 
-              <article className="modules-section">
+              <motion.article
+                className="modules-section"
+                {...revealOnScroll}
+              >
 
                 <h2>
                   Contenido del curso
@@ -476,7 +507,7 @@ function DetalleCurso() {
 
                 </div>
 
-              </article>
+              </motion.article>
 
 
             </div>
@@ -486,7 +517,10 @@ function DetalleCurso() {
                 INFORMACIÓN DEL CURSO
                 =================================================== */}
 
-            <aside className="sidebar">
+            <motion.aside
+              className="sidebar"
+              {...revealOnScroll}
+            >
 
 
               <article className="info-card">
@@ -675,7 +709,7 @@ function DetalleCurso() {
               )}
 
 
-            </aside>
+            </motion.aside>
 
           </div>
 
@@ -686,7 +720,10 @@ function DetalleCurso() {
 
           {curso.docente && (
 
-            <div className="container instructor-section">
+            <motion.div
+              className="container instructor-section"
+              {...revealOnScroll}
+            >
 
               <h2>
                 Docente del curso
@@ -745,7 +782,7 @@ function DetalleCurso() {
 
               </article>
 
-            </div>
+            </motion.div>
 
           )}
 
@@ -757,9 +794,10 @@ function DetalleCurso() {
             CONTACTO
             ===================================================== */}
 
-        <section
+        <motion.section
           className="contact-section"
           id="contacto"
+          {...revealOnScroll}
         >
 
           <div className="container">
@@ -783,7 +821,7 @@ function DetalleCurso() {
 
           </div>
 
-        </section>
+        </motion.section>
 
 
       </main>

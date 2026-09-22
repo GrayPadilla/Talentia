@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer, fadeUpItem, cardHover } from "../animations/variants.js";
+import AnimatedCounter from "../animations/AnimatedCounter";
 import { renderFeaturedCourses } from "../../js/app.js";
 
 
@@ -57,7 +58,7 @@ function Home() {
                         aria-hidden="true" />
 
                         <div>
-                        <strong>+5,000</strong>
+                        <AnimatedCounter value={1200} prefix="+" />
                         <span>Estudiantes formados</span>
                         </div>
                     </div>
@@ -71,7 +72,7 @@ function Home() {
                         aria-hidden="true" />
                         
                         <div>
-                        <strong>+120</strong>
+                        <AnimatedCounter value={25} prefix="+" />
                         <span>Cursos y programas</span>
                         </div>
                     </div>
@@ -85,7 +86,7 @@ function Home() {
                         aria-hidden="true" />
 
                         <div>
-                        <strong>95%</strong>
+                        <AnimatedCounter value={95} suffix="%" />
                         <span>Satisfacción</span>
                         </div>
                     </div>
@@ -99,8 +100,8 @@ function Home() {
                         aria-hidden="true" />
 
                         <div>
-                        <strong>+200</strong>
-                        <span>Empresas capacitadas</span>
+                        <AnimatedCounter value={20} prefix="+" />
+                        <span>Empresas asociadas</span>
                         </div>
                     </div>
 
@@ -131,7 +132,7 @@ function Home() {
 
                 <motion.section
                 className="section"
-                id="nosotros-parte-dos"
+                id="servicios"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"

@@ -53,12 +53,7 @@ const formularios = {
       "Programa personalizado"
     ],
     buttonClass: "btn btn-primary",
-    buttonLabel: "Solicitar información",
-    benefits: [
-      <>Programas<br />personalizados</>,
-      <>Capacitaciones<br />en empresa</>,
-      <>Acompañamiento<br />especializado</>
-    ]
+    buttonLabel: "Solicitar información"
   },
 
   alumno: {
@@ -102,13 +97,7 @@ const formularios = {
       "Capacitaciones"
     ],
     buttonClass: "btn btn-dark",
-    buttonLabel: "Solicitar Cuenta",
-    benefits: [
-      <>Acceso a cursos y<br />talleres</>,
-      <>Certificación digital</>,
-      <>Contenido<br />actualizado</>,
-      <>Acompañamiento<br />docente</>
-    ]
+    buttonLabel: "Solicitar Cuenta"
   }
 };
 
@@ -264,26 +253,6 @@ function RegistroForm({ tipo }) {
 
         </form>
 
-
-        <div className="form-benefits">
-
-          {formulario.benefits.map(
-            (benefit, index) => (
-
-              <div key={index}>
-
-                <strong>✓</strong>
-
-                <span>
-                  {benefit}
-                </span>
-
-              </div>
-
-            )
-          )}
-
-        </div>
 
       </div>
 

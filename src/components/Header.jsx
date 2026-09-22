@@ -38,6 +38,10 @@ function Header() {
             Nosotros
           </Link>
 
+          <Link to="/#servicios" onClick={closeMenu}>
+            Servicios
+          </Link>
+
           <Link to="/#cursos" onClick={closeMenu}>
             Cursos
           </Link>
