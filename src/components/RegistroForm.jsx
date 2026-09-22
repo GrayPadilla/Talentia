@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
 
 import {
   registrarAlumno,
@@ -92,7 +95,6 @@ const formularios = {
     ],
     selectPlaceholder: "¿Qué te interesa?",
     options: [
-      "Cursos",
       "Certificados",
       "Capacitaciones"
     ],
@@ -102,72 +104,137 @@ const formularios = {
 };
 
 
-function RegistroForm({ tipo }) {
+function RegistroForm({tipo, cursoSeleccionado = null}) {
 
   const formulario = formularios[tipo];
-
+  const [interesSeleccionado, setInteresSeleccionado] = useState("");
+  const [cursos, setCursos] = useState([]);
   const [enviando, setEnviando] = useState(false);
-  const [mensaje, setMensaje] = useState("");
-  const [error, setError] = useState("");
+  const [modal, setModal] = useState({
+    abierto: false,
+    tipo: "",
+    titulo: "",
+    mensaje: ""
+  });
 
   if (!formulario) return null;
+
+  useEffect(() => {
+    if (tipo !== "alumno") return;
+    async function cargarCursos() {
+      try {
+        const snapshot = await getDocs(collection(db, "Cursos"));
+        const datosCursos =
+          snapshot.docs.map((documento) => ({
+            id: documento.id,
+            ...documento.data()
+          }));
+
+        setCursos(datosCursos);
+      } catch (error) {
+        console.error(
+          "Error al obtener cursos para el formulario:",
+          error
+        );
+      }
+    }
+    cargarCursos();
+  }, [tipo]);
+
+  useEffect(() => {
+    if (tipo === "alumno" && cursoSeleccionado) {
+      setInteresSeleccionado(
+        cursoSeleccionado.title
+      );
+    } else {
+      setInteresSeleccionado("");
+    }
+  }, [
+    tipo,
+    cursoSeleccionado?.id,
+    cursoSeleccionado?.title
+  ]);
+
+  function cerrarModal() {
+    setModal({
+      abierto: false,
+      tipo: "",
+      titulo: "",
+      mensaje: ""
+    });
+  }
 
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     const form = event.currentTarget;
 
-    setMensaje("");
-    setError("");
     setEnviando(true);
 
     try {
-
-      const formData =  new FormData(form);
-      const datos = Object.fromEntries(formData.entries());
+      const formData = new FormData(form);
+      const datos = Object.fromEntries(
+        formData.entries()
+      );
 
       if (tipo === "alumno") {
         await registrarAlumno(datos);
         form.reset();
-
-        setMensaje(
-          "Registro realizado correctamente."
+        setInteresSeleccionado(
+          cursoSeleccionado
+            ? cursoSeleccionado.title
+            : ""
         );
+        setModal({
+          abierto: true,
+          tipo: "success",
+          titulo: "¡Registro realizado!",
+          mensaje:
+            "Tu registro se realizó correctamente. Gracias por confiar en Talentia."
+        });
 
       } else if (tipo === "empresa") {
         await registrarEmpresa(datos);
         form.reset();
-        setMensaje(
-          "Solicitud enviada correctamente."
-        );
-
+        setInteresSeleccionado("");
+        setModal({
+          abierto: true,
+          tipo: "success",
+          titulo: "¡Solicitud enviada!",
+          mensaje:
+            "Tu solicitud fue registrada correctamente. Pronto nos pondremos en contacto contigo."
+        });
       }
 
     } catch (error) {
-
       console.error(
         "Error al registrar formulario:",
         error
       );
 
-      setError(
-        "No se pudo registrar la información. Inténtalo nuevamente."
-      );
+      setModal({
+        abierto: true,
+        tipo: "error",
+        titulo: "No se pudo completar el registro",
+        mensaje:
+          "Ocurrió un problema al enviar la información. Inténtalo nuevamente."
+      });
 
     } finally {
-
       setEnviando(false);
-
     }
-
   }
 
   return (
-
+  <>
     <motion.article
       className={`form-card ${formulario.cardClass}`}
       whileHover={{ scale: 1.01 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
+      transition={{
+        duration: 0.2,
+        ease: "easeOut"
+      }}
     >
 
       <div className="form-card-header">
@@ -205,7 +272,12 @@ function RegistroForm({ tipo }) {
 
           <select
             name="interes"
-            defaultValue=""
+            value={interesSeleccionado}
+            onChange={(event) =>
+              setInteresSeleccionado(
+                event.target.value
+              )
+            }
             required
           >
 
@@ -224,6 +296,19 @@ function RegistroForm({ tipo }) {
 
             ))}
 
+            {tipo === "alumno" &&
+              cursos.map((curso) => (
+
+                <option
+                  key={curso.id}
+                  value={curso.title}
+                >
+                  {curso.title}
+                </option>
+
+              ))
+            }
+
           </select>
 
 
@@ -237,30 +322,78 @@ function RegistroForm({ tipo }) {
               : formulario.buttonLabel}
           </button>
 
-
-          {mensaje && (
-            <span className="small" role="status">
-              {mensaje}
-            </span>
-          )}
-
-
-          {error && (
-            <span className="small" role="alert">
-              {error}
-            </span>
-          )}
-
         </form>
-
 
       </div>
 
+      {modal.abierto && (
+        <motion.div
+          className="form-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="form-modal-title"
+
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              cerrarModal();
+            }
+          }}
+        >
+          <motion.div
+            className={`form-modal ${
+              modal.tipo === "error"
+                ? "form-modal-error"
+                : "form-modal-success"
+            }`}
+            initial={{
+              opacity: 0,
+              scale: 0.9,
+              y: 20
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: 0
+            }}
+            transition={{
+              duration: 0.25,
+              ease: "easeOut"
+            }}
+          >
+            <div className="form-modal-icon">
+              <iconify-icon
+                icon={
+                  modal.tipo === "error"
+                    ? "lucide:x-circle"
+                    : "lucide:circle-check"
+                }
+              ></iconify-icon>
+            </div>
+
+            <h3 id="form-modal-title">
+              {modal.titulo}
+            </h3>
+
+            <p>{modal.mensaje}</p>
+
+            <button
+              type="button"
+              className="btn btn-primary form-modal-button"
+              onClick={cerrarModal}
+            >
+              Aceptar
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
     </motion.article>
 
-  );
-
+  </>
+);
 }
-
 
 export default RegistroForm;

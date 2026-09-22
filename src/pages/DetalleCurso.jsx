@@ -757,7 +757,7 @@ function DetalleCurso() {
 
             <div className="forms-grid">
               <RegistroForm tipo="empresa" />
-              <RegistroForm tipo="alumno" />
+              <RegistroForm tipo="alumno" cursoSeleccionado={curso} />
             </div>
 
           </div>
