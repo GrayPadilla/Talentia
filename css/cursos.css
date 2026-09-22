@@ -126,7 +126,10 @@
 
 .filters {
   display: grid;
-  grid-template-columns: minmax(320px, 2.45fr) repeat(4, minmax(120px, 1fr)) auto;
+  grid-template-columns:
+    minmax(340px, 2.5fr)
+    repeat(5, minmax(130px, 1fr))
+    auto;
   gap: 14px;
   align-items: center;
 }

@@ -11,16 +11,19 @@ function Cursos() {
   const clearFilters = () => {
     const search = document.querySelector("[data-search]");
     const category = document.querySelector("[data-category]");
+    const service = document.querySelector("[data-service]");
     const modality = document.querySelector("[data-modality]");
     const duration = document.querySelector("[data-duration]");
     const level = document.querySelector("[data-level]");
 
     if (search) search.value = "";
+    if (service) service.value = "all";
     if (category) category.value = "all";
-    if (modality) modality.selectedIndex = 0;
+    if (modality) modality.value = "all";
     if (duration) duration.value = "all";
-    if (level) level.selectedIndex = 0;
+    if (level) level.value = "all";
 
+    service?.dispatchEvent(new Event("change", { bubbles: true }));
     search?.dispatchEvent(new Event("input", { bubbles: true }));
   };
 
@@ -60,7 +63,11 @@ function Cursos() {
         <div className="container catalog-controls">
           <div className="filters">
             <div className="filter-search">
-              <iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon>
+              <iconify-icon
+                icon="lucide:search"
+                aria-hidden="true"
+              ></iconify-icon>
+
               <input
                 data-search
                 type="search"
@@ -69,49 +76,46 @@ function Cursos() {
               />
             </div>
 
+            <select data-service aria-label="Filtrar por servicio">
+              <option value="all">Servicio</option>
+
+              <option value="Formación Corporativa">
+                Formación Corporativa
+              </option>
+
+              <option value="Especializaciones Profesionales">
+                Especializaciones Profesionales
+              </option>
+            </select>
+
             <select data-category aria-label="Filtrar por categoría">
               <option value="all">Categoría</option>
-              <option>Gestión de Personas</option>
-              <option>Marketing y Ventas</option>
-              <option>Datos y Tecnología</option>
-              <option>Salud y Seguridad</option>
-              <option>Finanzas</option>
-              <option>Gestión de Proyectos</option>
-              <option>Innovación</option>
-              <option>Ventas</option>
-              <option>Recursos Humanos</option>
-              <option>Habilidades Blandas</option>
-              <option>Productividad</option>
-              <option>Calidad</option>
-              <option>Transformación Digital</option>
             </select>
 
             <select data-modality aria-label="Filtrar por modalidad">
-              <option>Modalidad</option>
-              <option>Online</option>
-              <option>Presencial</option>
+              <option value="all">Modalidad</option>
             </select>
 
             <select data-duration aria-label="Filtrar por duración">
               <option value="all">Duración</option>
-              <option value="short">Hasta 20 horas</option>
-              <option value="medium">21 a 28 horas</option>
-              <option value="long">Más de 28 horas</option>
             </select>
 
             <select data-level aria-label="Filtrar por nivel">
-              <option>Nivel</option>
-              <option>Básico</option>
-              <option>Intermedio</option>
+              <option value="all">Nivel</option>
             </select>
 
-            <button className="filters-clear" type="button" onClick={clearFilters}>
+            <button
+              className="filters-clear"
+              type="button"
+              onClick={clearFilters}
+            >
               Limpiar filtros
             </button>
+
           </div>
 
           <div className="catalog-controls-meta">
-            <p data-result-count>13 cursos encontrados</p>
+            <p data-result-count>0 cursos encontrados</p>
 
             <label className="catalog-sort">
               <span>Ordenar por:</span>

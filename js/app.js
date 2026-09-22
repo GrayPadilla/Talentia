@@ -11,23 +11,17 @@ function courseCard(course, compact = false) {
 
   return `
     <article class="course-card ${compact ? "catalog-card" : "featured-card"}">
-
       <div class="course-visual">
         <img src="${course.image}" alt="${course.title}" loading="lazy">
       </div>
-
       <div class="course-body">
 
         ${compact ? `<span class="course-tag">${course.category}</span>` : ""}
-
         <h3>${course.title}</h3>
-
         ${compact ? `<p class="body">${course.description}</p>` : ""}
-
         <p class="course-meta">
           ${course.hours} horas · ${course.modality}
         </p>
-
         <a
           class="btn btn-primary course-action"
           href="/curso/${course.id}"
@@ -36,7 +30,6 @@ function courseCard(course, compact = false) {
         </a>
 
       </div>
-
     </article>
   `;
 }
@@ -47,28 +40,18 @@ function courseCard(course, compact = false) {
    ========================================================= */
 
 export async function renderFeaturedCourses() {
-
-  const container =
-    document.querySelector("[data-featured-courses]");
+  const container = document.querySelector("[data-featured-courses]");
 
   if (!container) return;
 
-  const carousel =
-    container.closest("[data-featured-carousel]");
-
-  const viewport =
-    carousel?.querySelector("[data-carousel-viewport]");
-
-  const previousButton =
-    carousel?.querySelector("[data-carousel-prev]");
-
-  const nextButton =
-    carousel?.querySelector("[data-carousel-next]");
+  const carousel = container.closest("[data-featured-carousel]");
+  const viewport = carousel?.querySelector("[data-carousel-viewport]");
+  const previousButton = carousel?.querySelector("[data-carousel-prev]");
+  const nextButton = carousel?.querySelector("[data-carousel-next]");
 
   try {
 
-    const snapshot =
-      await getDocs(collection(db, "Cursos"));
+    const snapshot = await getDocs(collection(db, "Cursos"));
 
     const firebaseCourses =
       snapshot.docs.map((documento) => ({
@@ -168,20 +151,14 @@ export async function renderFeaturedCourses() {
 
 export async function renderCatalog() {
 
-  const container =
-    document.querySelector("[data-catalog]");
-
-  const search =
-    document.querySelector("[data-search]");
-
-  const category =
-    document.querySelector("[data-category]");
-
-  const duration =
-    document.querySelector("[data-duration]");
-
-  const pagination =
-    document.querySelector("[data-pagination]");
+  const container = document.querySelector("[data-catalog]");
+  const search = document.querySelector("[data-search]");
+  const category = document.querySelector("[data-category]");
+  const service = document.querySelector("[data-service]");
+  const modality = document.querySelector("[data-modality]");
+  const duration = document.querySelector("[data-duration]");
+  const level = document.querySelector("[data-level]");
+  const pagination = document.querySelector("[data-pagination]");
 
   if (!container) return;
 
@@ -197,15 +174,11 @@ export async function renderCatalog() {
     const snapshot =
       await getDocs(collection(db, "Cursos"));
 
-    firebaseCourses = snapshot.docs.map((documento) => ({
-      id: documento.id,
-      ...documento.data()
-    }));
-
-    console.log(
-      "Cursos obtenidos desde Firebase:",
-      firebaseCourses
-    );
+    firebaseCourses =
+      snapshot.docs.map((documento) => ({
+        id: documento.id,
+        ...documento.data()
+      }));
 
   } catch (error) {
 
@@ -220,6 +193,73 @@ export async function renderCatalog() {
     return;
   }
 
+  function getUniqueValues(field) {
+    return [
+      ...new Set(
+        firebaseCourses
+          .map((course) => course[field])
+          .filter(
+            (value) =>
+              value !== undefined &&
+              value !== null &&
+              value !== ""
+          )
+      )
+    ];
+  }
+
+  function populateSelect(select, defaultLabel, values, formatValue = (value) => value) {
+
+    if (!select) return;
+
+    select.innerHTML = "";
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "all";
+    defaultOption.textContent = defaultLabel;
+    select.appendChild(defaultOption);
+
+    values.forEach((value) => {
+      const option = document.createElement("option");
+      option.value = String(value);
+      option.textContent = formatValue(value);
+      select.appendChild(option);
+    });
+
+  }
+
+  populateSelect(modality, "Modalidad", getUniqueValues("modality"));
+  populateSelect(duration, "Duración", getUniqueValues("hours").sort((a, b) => Number(a) - Number(b)), (hours) => `${hours} horas`);
+  populateSelect(level, "Nivel", getUniqueValues("level"));
+
+  function updateCategoryOptions() {
+    const serviceValue = service?.value || "all";
+
+    const coursesForCategory = serviceValue === "all"
+        ? firebaseCourses
+        : firebaseCourses.filter(
+            (course) =>
+              course.servicio === serviceValue
+          );
+
+    const categories = [
+      ...new Set(
+        coursesForCategory
+          .map((course) => course.category)
+          .filter(
+            (value) =>
+              value !== undefined &&
+              value !== null &&
+              value !== ""
+          )
+      )
+    ].sort((a, b) =>
+      a.localeCompare(b)
+    );
+
+    populateSelect(category, "Categoría", categories);
+  }
+
+  updateCategoryOptions();
 
   /* =======================================================
      CONFIGURACIÓN DE PAGINACIÓN
@@ -241,12 +281,11 @@ export async function renderCatalog() {
         .toLowerCase()
         .trim();
 
-    const categoryValue =
-      category?.value || "all";
-
-    const durationValue =
-      duration?.value || "all";
-
+    const categoryValue = category?.value || "all";
+    const serviceValue = service?.value || "all";
+    const modalityValue = modality?.value || "all";
+    const durationValue = duration?.value || "all";
+    const levelValue = level?.value || "all";
 
     /* =====================================================
        FILTRAR CURSOS
@@ -270,33 +309,12 @@ export async function renderCatalog() {
           course.category === categoryValue;
 
 
-        const matchesDuration =
+        const matchesDuration = durationValue === "all" || String(course.hours) === String(durationValue);
+        const matchesService = serviceValue === "all" || course.servicio === serviceValue;
+        const matchesModality = modalityValue === "all" || course.modality === modalityValue;
+        const matchesLevel = levelValue === "all" || course.level === levelValue;
 
-          durationValue === "all" ||
-
-          (
-            durationValue === "short" &&
-            course.hours <= 20
-          ) ||
-
-          (
-            durationValue === "medium" &&
-            course.hours > 20 &&
-            course.hours <= 28
-          ) ||
-
-          (
-            durationValue === "long" &&
-            course.hours > 28
-          );
-
-
-        return (
-          matchesQuery &&
-          matchesCategory &&
-          matchesDuration
-        );
-
+        return (matchesQuery && matchesCategory && matchesService && matchesModality && matchesDuration && matchesLevel);
       });
 
 
@@ -304,19 +322,14 @@ export async function renderCatalog() {
        TOTAL DE PÁGINAS
        ===================================================== */
 
-    const totalPages =
-      Math.ceil(filtered.length / coursesPerPage);
-
+    const totalPages = Math.ceil(filtered.length / coursesPerPage);
 
     /* =====================================================
        CONTROL DE PÁGINA ACTUAL
        ===================================================== */
 
     if (currentPage > totalPages) {
-
-      currentPage =
-        Math.max(totalPages, 1);
-
+      currentPage = Math.max(totalPages, 1);
     }
 
 
@@ -324,15 +337,9 @@ export async function renderCatalog() {
        OBTENER CURSOS DE LA PÁGINA ACTUAL
        ===================================================== */
 
-    const start =
-      (currentPage - 1) * coursesPerPage;
-
-    const end =
-      start + coursesPerPage;
-
-    const coursesToShow =
-      filtered.slice(start, end);
-
+    const start = (currentPage - 1) * coursesPerPage;
+    const end = start + coursesPerPage;
+    const coursesToShow = filtered.slice(start, end);
 
     /* =====================================================
        MOSTRAR LAS TARJETAS
@@ -345,7 +352,6 @@ export async function renderCatalog() {
         )
         .join("");
 
-
     /* =====================================================
        ACTUALIZAR CONTADOR
        ===================================================== */
@@ -354,10 +360,7 @@ export async function renderCatalog() {
       document.querySelector("[data-result-count]");
 
     if (resultCount) {
-
-      resultCount.textContent =
-        `${filtered.length} cursos encontrados`;
-
+      resultCount.textContent = `${filtered.length} cursos encontrados`;
     }
 
 
@@ -366,7 +369,6 @@ export async function renderCatalog() {
        ===================================================== */
 
     if (pagination) {
-
       pagination.innerHTML = "";
 
 
@@ -462,29 +464,38 @@ export async function renderCatalog() {
      EVENTOS DE LOS FILTROS
      ======================================================= */
 
-  [search, category, duration]
-    .forEach((item) => {
+  search?.addEventListener("input",() => {
+      currentPage = 1;
+      draw();
+    }
+  );
 
-      item?.addEventListener(
-        "input",
-        () => {
+  [category, modality, duration, level].forEach((item) => {
 
-          /*
-            Cuando se utiliza un filtro,
-            regresamos automáticamente
-            a la página 1.
-          */
-
-          currentPage = 1;
-
-          draw();
-
-        }
-      );
-
-    });
+    item?.addEventListener(
+      "change",
+      () => {
+        currentPage = 1;
+        draw();
+      }
+    );
+  });
 
 
+  service?.addEventListener(
+    "change",
+    () => {
+
+      updateCategoryOptions();
+
+      category.value = "all";
+
+      currentPage = 1;
+
+      draw();
+
+    }
+  );
   /* Primera carga */
 
   draw();
