@@ -41,7 +41,7 @@ function Home() {
                     </p>
 
                     <div class="header-actions">
-                        <a class="btn btn-primary" href="cursos.html">Comenzar ahora →</a>
+                        <a class="btn btn-primary">Comenzar ahora →</a>
                         <a class="btn btn-secondary" href="#contacto">Solicitar Cotización →</a>
                     </div>
                     </div>

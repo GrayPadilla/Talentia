@@ -158,7 +158,7 @@ function DetalleCurso() {
 
               <a
                 className="btn btn-primary"
-                href="/Cursos"
+                href="/cursos"
               >
                 Volver a cursos
               </a>
