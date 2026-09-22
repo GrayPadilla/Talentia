@@ -312,6 +312,31 @@
   transition: transform 0.4s ease;
 }
 
+@media (min-width: 641px) {
+  .catalog-card .course-visual img {
+    object-position: 45% center;
+  }
+
+  .catalog-card .course-visual img[src*="/excel-profesional-"] {
+    object-position: 35% center;
+  }
+
+  .catalog-card .course-visual img[src*="/atraccion-seleccion-"],
+  .catalog-card .course-visual img[src*="/liderazgo-en-accion-"],
+  .catalog-card .course-visual img[src*="/team-building-"] {
+    object-position: 48% center;
+  }
+
+  .catalog-card .course-visual img[src*="/gestion-planillas-"],
+  .catalog-card .course-visual img[src*="/inteligencia-artificial-"] {
+    object-position: 35% center;
+  }
+
+  .catalog-card .course-visual img[src*="/seguridad-salud-"] {
+    object-position: 45% center;
+  }
+}
+
 .catalog-card:hover .course-visual img {
   transform: scale(1.06);
 }
