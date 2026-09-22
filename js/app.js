@@ -371,8 +371,29 @@ export async function renderCatalog() {
     if (pagination) {
       pagination.innerHTML = "";
 
+      if (currentPage > 1) {
+        const prevButton = document.createElement("button");
+        prevButton.type = "button";
+        prevButton.textContent = "‹";
+        prevButton.setAttribute(
+          "aria-label",
+          "Página anterior"
+        );
 
-      /* BOTONES 1, 2, 3... */
+        prevButton.addEventListener(
+          "click",
+          () => {
+            currentPage--;
+            draw();
+            container.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        );
+
+        pagination.appendChild(prevButton);
+      }
 
       for (
         let page = 1;
@@ -380,83 +401,56 @@ export async function renderCatalog() {
         page++
       ) {
 
-        const button =
-          document.createElement("button");
-
+        const button = document.createElement("button");
         button.type = "button";
-
         button.textContent = page;
 
-
         /* Página seleccionada */
-
         if (page === currentPage) {
-
           button.classList.add("active");
-
         }
 
 
         /* Al hacer clic */
-
         button.addEventListener(
           "click",
           () => {
-
             currentPage = page;
-
             draw();
-
             container.scrollIntoView({
               behavior: "smooth",
               block: "start"
             });
-
           }
         );
 
-
         pagination.appendChild(button);
-
       }
 
-
-      /* ===================================================
-         BOTÓN SIGUIENTE ›
-         =================================================== */
-
       if (currentPage < totalPages) {
-
-        const nextButton =
-          document.createElement("button");
-
+        const nextButton = document.createElement("button");
         nextButton.type = "button";
-
         nextButton.textContent = "›";
-
+        nextButton.setAttribute(
+          "aria-label",
+          "Página siguiente"
+        );
         nextButton.addEventListener(
           "click",
           () => {
-
             currentPage++;
-
             draw();
-
             container.scrollIntoView({
               behavior: "smooth",
               block: "start"
             });
-
           }
         );
-
 
         pagination.appendChild(nextButton);
 
       }
-
     }
-
   }
 
 
