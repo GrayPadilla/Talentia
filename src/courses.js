@@ -1,74 +1,62 @@
 const courses = [
   {
-    id: "gestion-talento-humano",
-    category: "Gestión de Personas",
-    title: "Gestión de Talento Humano",
-    description:
-      "Atrae, desarrolla y retiene el mejor talento en las organizaciones.",
-    hours: 24,
-    modality: "Online",
+    id: "gestion-planillas-remuneraciones-beneficios-laborales",
+    category: "Recursos Humanos y Gestión Laboral",
+    title: "Especialización en Gestión de Planillas, Remuneraciones y Beneficios Laborales",
+    description: "Aprende a calcular, revisar y gestionar planillas y beneficios laborales con casos prácticos.",
+    hours: 8,
+    modality: "Online sincrónico",
     level: "Intermedio",
     image: "/assets/images/course-talento.png",
-
     descripcion_larga:
-      "Este curso brinda una visión integral de la gestión del talento humano, abordando estrategias, herramientas y buenas prácticas para el reclutamiento, desarrollo, evaluación y retención del talento en las organizaciones. A través de un enfoque práctico, aprenderás a aplicar metodologías actuales para impulsar el bienestar y productividad de los equipos.",
-
+    "Programa práctico orientado a desarrollar las habilidades necesarias para gestionar remuneraciones, beneficios sociales y liquidaciones. Combina fundamentos técnicos con ejercicios aplicados, casos laborales y herramientas de trabajo. El participante culmina resolviendo un caso integral de planilla y liquidación.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales, estudiantes y personas interesadas en desarrollarse en el área de gestión del talento humano, recursos humanos y liderazgo organizacional.",
-
-    que_aprenderas: [
-      "Aplicar estrategias de atracción y selección del talento.",
-      "Diseñar planes de desarrollo y evaluación del desempeño.",
-      "Gestionar equipos de alto rendimiento.",
-      "Implementar buenas prácticas de clima y cultura organizacional.",
-      "Utilizar herramientas digitales de gestión de talento.",
-      "Desarrollar habilidades de liderazgo y comunicación."
+    dirigido_a: [
+      "Profesionales y estudiantes de Recursos Humanos, Administración, Contabilidad y carreras afines.",
+      "Asistentes y analistas de RR. HH., planillas, administración de personal y compensaciones.",
+      "Personas que desean incorporarse al área de administración de personal o fortalecer su perfil profesional.",
+      "Emprendedores y responsables administrativos que necesitan comprender la gestión de remuneraciones."
     ],
 
-    cantidad_modulos: 6,
+    que_aprenderas: [
+      "Identificar y clasificar los principales conceptos remunerativos y no remunerativos.",
+      "Elaborar y revisar una planilla considerando remuneraciones, descuentos y aportes.",
+      "Calcular beneficios sociales como CTS, gratificaciones y vacaciones.",
+      "Determinar los conceptos que corresponden en una liquidación de beneficios sociales.",
+      "Detectar errores frecuentes en cálculos de planilla, beneficios y liquidaciones.",
+      "Resolver un caso integral de gestión de planillas y sustentar los resultados obtenidos."
+    ],
+
+    cantidad_modulos: 4,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Introducción a la gestión del talento humano",
-        horas: 3,
-        clases: 4
+        titulo: "Gestión de remuneraciones y estructura de planillas",
+        horas: 2,
+        clases: 5
       },
       {
         numero: 2,
-        titulo: "Reclutamiento y selección de personal",
-        horas: 5,
-        clases: 6
+        titulo: "Cálculo de CTS, gratificaciones y vacaciones",
+        horas: 2,
+        clases: 5
       },
       {
         numero: 3,
-        titulo: "Evaluación del desempeño",
-        horas: 4,
+        titulo: "Liquidación de beneficios sociales",
+        horas: 2,
         clases: 5
       },
       {
         numero: 4,
-        titulo: "Desarrollo y retención del talento",
-        horas: 5,
-        clases: 6
-      },
-      {
-        numero: 5,
-        titulo: "Liderazgo y gestión de equipos",
-        horas: 5,
-        clases: 6
-      },
-      {
-        numero: 6,
-        titulo: "Proyecto final",
+        titulo: "Taller integrador de planillas y liquidaciones",
         horas: 2,
-        clases: 1
+        clases: 4
       }
     ],
 
@@ -88,75 +76,63 @@ const courses = [
   },
 
   {
-    id: "marketing-digital-empresas",
-    category: "Marketing y Ventas",
-    title: "Marketing Digital para Empresas",
-    description:
-      "Estrategias y herramientas para hacer crecer tu negocio digital.",
-    hours: 30,
-    modality: "Online",
-    level: "Básico",
+    id: "contabilidad-practica-gestion-mypes",
+    category: "Contabilidad, Tributación y Gestión Empresarial",
+    title: "Especialización en Contabilidad Práctica para la Gestión de MYPES",
+    description: "Aprende a gestionar las operaciones contables y tributarias de una MYPE desde la práctica.",
+    hours: 8,
+    modality: "Online sincrónico",
+    level: "Intermedio",
     image: "/assets/images/course-marketing.png",
 
-    descripcion_larga:
-      "Este curso introduce las principales estrategias de marketing digital aplicadas al entorno empresarial. Aprenderás a comprender el comportamiento del consumidor, definir objetivos digitales, desarrollar contenidos y utilizar diferentes canales para fortalecer la presencia de una organización en Internet.",
-
+    descripcion_larga: "Este curso introduce las principales estrategias de marketing digital aplicadas al entorno empresarial. Aprenderás a comprender el comportamiento del consumidor, definir objetivos digitales, desarrollar contenidos y utilizar diferentes canales para fortalecer la presencia de una organización en Internet.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Emprendedores, profesionales, estudiantes y personas interesadas en desarrollar estrategias de marketing digital para empresas y negocios.",
-
-    que_aprenderas: [
-      "Comprender los fundamentos del marketing digital.",
-      "Definir públicos objetivos y perfiles de clientes.",
-      "Diseñar estrategias de contenidos para medios digitales.",
-      "Utilizar redes sociales como canal de comunicación empresarial.",
-      "Analizar indicadores básicos de marketing digital.",
-      "Diseñar una estrategia digital orientada a resultados."
+    dirigido_a: [
+      "Emprendedores y propietarios de MYPES.",
+      "Asistentes administrativos, contables y financieros.",
+      "Profesionales y estudiantes de Contabilidad, Administración y carreras afines.",
+      "Personas que necesitan gestionar operaciones básicas de un negocio y comprender sus obligaciones."
     ],
 
-    cantidad_modulos: 6,
+    que_aprenderas: [
+      "Diferenciar los principales comprobantes de pago y determinar cuándo corresponde utilizar cada uno.",
+      "Registrar correctamente operaciones de compras, ventas y gastos de una MYPE.",
+      "Comprender el crédito fiscal, débito fiscal y la determinación del IGV.",
+      "Identificar las principales obligaciones tributarias según el régimen aplicable.",
+      "Detectar errores frecuentes en comprobantes y registros que pueden generar contingencias.",
+      "Resolver un caso mensual integrando comprobantes, registros y determinación tributaria."
+    ],
+
+    cantidad_modulos: 4,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos del marketing digital",
-        horas: 5,
+        titulo: "Emisión y gestión de comprobantes electrónicos",
+        horas: 2,
         clases: 5
       },
       {
         numero: 2,
-        titulo: "Cliente y público objetivo",
-        horas: 5,
+        titulo: "Registro de compras, ventas y gastos",
+        horas: 2,
         clases: 5
       },
       {
         numero: 3,
-        titulo: "Estrategia de contenidos",
-        horas: 5,
-        clases: 6
-      },
-      {
-        numero: 4,
-        titulo: "Redes sociales para empresas",
-        horas: 6,
-        clases: 6
-      },
-      {
-        numero: 5,
-        titulo: "Métricas y analítica digital",
-        horas: 5,
+        titulo: "IGV y obligaciones tributarias de la MYPE",
+        horas: 2,
         clases: 5
       },
       {
-        numero: 6,
-        titulo: "Proyecto de estrategia digital",
-        horas: 4,
-        clases: 3
+        numero: 4,
+        titulo: "Taller integral de gestión contable de una MYPE",
+        horas: 2,
+        clases: 5
       }
     ],
 
@@ -176,69 +152,62 @@ const courses = [
   },
 
   {
-    id: "business-intelligence",
-    category: "Datos y Tecnología",
-    title: "Business Intelligence",
-    description:
-      "Convierte datos en decisiones estratégicas para tu organización.",
-    hours: 20,
-    modality: "Online",
+    id: "gestion-subsidios-licencias-laborales",
+    category: "Recursos Humanos y Legislación Laboral",
+    title: "Especialización en Gestión de Subsidios y Licencias Laborales",
+    description: "Aprende a identificar, calcular, gestionar y hacer seguimiento a subsidios y licencias laborales.",
+    hours: 8,
+    modality: "Online sincrónico",
     level: "Intermedio",
     image: "/assets/images/course-bi.png",
-
-    descripcion_larga:
-      "Este curso presenta los fundamentos de Business Intelligence y su aplicación en la toma de decisiones empresariales. Los participantes conocerán técnicas para organizar, analizar y visualizar información para obtener indicadores útiles para la gestión.",
-
+    descripcion_larga: "Programa práctico para profesionales que gestionan incidencias laborales, licencias y subsidios. Se trabaja desde la identificación del derecho y el cálculo hasta la preparación documental, seguimiento y recuperación de prestaciones. Incluye casos de incapacidad temporal y maternidad.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales, analistas, estudiantes y personas interesadas en utilizar datos e información para apoyar la toma de decisiones empresariales.",
-
-    que_aprenderas: [
-      "Comprender los conceptos fundamentales de Business Intelligence.",
-      "Identificar fuentes de datos empresariales.",
-      "Organizar información para su análisis.",
-      "Crear indicadores para apoyar la toma de decisiones.",
-      "Interpretar visualizaciones y reportes.",
-      "Aplicar un enfoque basado en datos para resolver problemas empresariales."
+    dirigido_a: [
+      "Analistas y asistentes de Recursos Humanos.",
+      "Responsables de administración de personal, bienestar y compensaciones.",
+      "Profesionales y estudiantes de RR. HH., Administración, Psicología Organizacional y carreras afines.",
+      "Personas que gestionan descansos médicos, licencias y trámites laborales ante entidades correspondientes."
     ],
 
-    cantidad_modulos: 5,
+    que_aprenderas: [
+      "Identificar las principales licencias y situaciones que generan gestión administrativa para RR. HH.",
+      "Determinar qué información y documentación debe revisarse en cada caso.",
+      "Comprender la lógica de cálculo de los principales subsidios laborales.",
+      "Calcular un subsidio a partir de la información remunerativa y los periodos correspondientes.",
+      "Organizar un expediente y establecer una ruta de gestión, seguimiento y subsanación.",
+      "Resolver casos integrales de subsidios y licencias desde la recepción del caso hasta su seguimiento."
+    ],
+
+    cantidad_modulos: 4,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos de Business Intelligence",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 2,
-        titulo: "Fuentes y preparación de datos",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 3,
-        titulo: "Análisis de información",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 4,
-        titulo: "Indicadores y visualización",
-        horas: 4,
+        titulo: "Gestión de licencias, descansos médicos y ausencias",
+        horas: 2,
         clases: 5
       },
       {
-        numero: 5,
-        titulo: "Proyecto aplicado",
-        horas: 4,
-        clases: 3
+        numero: 2,
+        titulo: "Cálculo de subsidios por incapacidad temporal",
+        horas: 2,
+        clases: 5
+      },
+      {
+        numero: 3,
+        titulo: "Gestión y recuperación de subsidios",
+        horas: 2,
+        clases: 6
+      },
+      {
+        numero: 4,
+        titulo: "Taller integral de subsidios y licencias",
+        horas: 2,
+        clases: 5
       }
     ],
 
@@ -258,68 +227,62 @@ const courses = [
   },
 
   {
-    id: "seguridad-salud-trabajo",
-    category: "Salud y Seguridad",
-    title: "Seguridad y Salud en el Trabajo",
-    description:
-      "Genera entornos laborales más seguros, saludables y productivos.",
-    hours: 24,
-    modality: "Online",
-    level: "Básico",
+    id: "atraccion-seleccion-talento-ia-ats-evaluacion-competencias",
+    category: "Gestión del Talento y Atracción de Personas",
+    title: "Especialización en Atracción y Selección de Talento con IA, ATS y Evaluación por Competencias",
+    description: "Aprende a reclutar, filtrar y evaluar talento utilizando ATS, IA y herramientas de selección por competencias.",
+    hours: 8,
+    modality: "Online sincrónico",
+    level: "Intermedio",
     image: "/assets/images/seguridad.png",
-
-    descripcion_larga:
-      "Este curso desarrolla los fundamentos de la seguridad y salud en el trabajo, proporcionando herramientas para identificar riesgos, prevenir incidentes y promover una cultura de prevención dentro de las organizaciones.",
-
+    descripcion_larga: "Programa actualizado y práctico para fortalecer la gestión de atracción y selección de talento. Integra perfilamiento, sourcing, ATS, inteligencia artificial, entrevistas y evaluación por competencias. El participante culmina con un proceso completo de selección y una recomendación sustentada.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales, estudiantes, supervisores y personas interesadas en desarrollar conocimientos sobre seguridad y salud en el trabajo.",
-
-    que_aprenderas: [
-      "Identificar peligros y riesgos laborales.",
-      "Comprender los principios de prevención de accidentes.",
-      "Reconocer medidas de control de riesgos.",
-      "Promover una cultura de seguridad en las organizaciones.",
-      "Comprender responsabilidades básicas en seguridad laboral."
+    dirigido_a: [
+      "Recruiters, analistas y asistentes de selección.",
+      "Profesionales y estudiantes de Psicología, Recursos Humanos, Administración y carreras afines.",
+      "Consultores y profesionales que participan en procesos de atracción y evaluación.",
+      "Personas que desean actualizarse en ATS, IA y herramientas modernas de selección."
     ],
 
-    cantidad_modulos: 5,
+    que_aprenderas: [
+      "Construir perfiles de puesto con funciones, requisitos y competencias claramente definidos.",
+      "Diseñar estrategias de atracción y sourcing según el tipo de vacante.",
+      "Comprender cómo funcionan los ATS y aplicar criterios de screening y matching.",
+      "Utilizar IA como herramienta de apoyo en reclutamiento y evaluación, manteniendo criterio profesional.",
+      "Diseñar y aplicar entrevistas estructuradas y por competencias con matrices de evaluación.",
+      "Integrar evidencias de selección para comparar candidatos y sustentar una recomendación final."
+    ],
+
+    cantidad_modulos: 4,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos de seguridad y salud en el trabajo",
-        horas: 5,
+        titulo: "Perfilamiento y estrategia de atracción de talento",
+        horas: 2,
         clases: 5
       },
       {
         numero: 2,
-        titulo: "Identificación de peligros y evaluación de riesgos",
-        horas: 5,
-        clases: 5
+        titulo: "ATS, sourcing y screening de candidatos",
+        horas: 2,
+        clases: 6
       },
       {
         numero: 3,
-        titulo: "Medidas de prevención y control",
-        horas: 5,
-        clases: 5
+        titulo: "Entrevista y evaluación por competencias",
+        horas: 2,
+        clases: 6
       },
       {
         numero: 4,
-        titulo: "Cultura preventiva",
-        horas: 5,
-        clases: 5
-      },
-      {
-        numero: 5,
-        titulo: "Proyecto de prevención",
-        horas: 4,
-        clases: 3
+        titulo: "Assessment y decisión de selección",
+        horas: 2,
+        clases: 6
       }
     ],
 
@@ -339,68 +302,98 @@ const courses = [
   },
 
   {
-    id: "finanzas-no-financieros",
-    category: "Finanzas",
-    title: "Finanzas para No Financieros",
-    description:
-      "Comprende y aplica conceptos financieros clave en tu empresa.",
-    hours: 24,
-    modality: "Online",
-    level: "Básico",
+    id: "excel-desde-cero-principiante-profesional",
+    category: "Excel, Productividad y Gestión de Datos",
+    title: "Especialización en Excel desde Cero: de Principiante a Profesional",
+    description: "Aprende Excel desde cero y conviértelo en una herramienta para trabajar mejor, analizar información y resolver problemas reales.",
+    hours: 40,
+    modality: "Online sincrónico",
+    level: "Inicial / Intermedio",
     image: "/assets/images/finanzas.png",
-
-    descripcion_larga:
-      "Este curso está orientado a profesionales y emprendedores que necesitan comprender conceptos financieros para interpretar información económica y participar en decisiones relacionadas con la gestión de una empresa.",
-
+    descripcion_larga: "Programa práctico para personas que necesitan aprender Excel desde las bases y avanzar progresivamente hacia un uso profesional. Combina fundamentos, fórmulas, análisis, reportes, tablas dinámicas y aplicaciones laborales.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales, emprendedores, estudiantes y personas que desean comprender las principales herramientas financieras aplicadas a la gestión empresarial.",
-
-    que_aprenderas: [
-      "Comprender conceptos financieros básicos.",
-      "Interpretar estados financieros.",
-      "Analizar ingresos, costos y gastos.",
-      "Comprender indicadores financieros.",
-      "Participar en decisiones financieras empresariales."
+    dirigido_a: [
+      "Personas que tienen conocimientos básicos o nulos de Excel.",
+      "Estudiantes y egresados que desean fortalecer su perfil laboral.",
+      "Asistentes y analistas administrativos, RR. HH., ventas y áreas operativas.",
+      "Profesionales que necesitan utilizar Excel con mayor seguridad y autonomía."
     ],
 
-    cantidad_modulos: 5,
+    que_aprenderas: [
+      "Crear y organizar archivos profesionales desde cero.",
+      "Utilizar fórmulas y funciones esenciales para automatizar cálculos.",
+      "Gestionar bases de datos mediante tablas, filtros y validaciones.",
+      "Analizar información con tablas dinámicas e indicadores.",
+      "Crear reportes y dashboards básicos para comunicar resultados.",
+      "Resolver un caso laboral integral utilizando Excel."
+    ],
+
+    cantidad_modulos: 10,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos financieros",
-        horas: 5,
+        titulo: "Fundamentos de Excel: domina la herramienta desde cero",
+        horas: 4,
         clases: 5
       },
       {
         numero: 2,
-        titulo: "Estados financieros",
-        horas: 5,
+        titulo: "Fórmulas esenciales para trabajar con datos",
+        horas: 4,
         clases: 5
       },
       {
         numero: 3,
-        titulo: "Costos y presupuestos",
-        horas: 5,
+        titulo: "Excel para gestión y control",
+        horas: 4,
         clases: 5
       },
       {
         numero: 4,
-        titulo: "Indicadores financieros",
-        horas: 5,
+        titulo: "Funciones que te hacen trabajar más rápido",
+        horas: 4,
         clases: 5
       },
       {
         numero: 5,
-        titulo: "Aplicación empresarial",
+        titulo: "Tablas dinámicas y análisis básico",
         horas: 4,
-        clases: 3
+        clases: 5
+      },
+      {
+        numero: 6,
+        titulo: "Gráficos e informes ejecutivos",
+        horas: 4,
+        clases: 5
+      },
+      {
+        numero: 7,
+        titulo: "Excel aplicado a Recursos Humanos y Administración",
+        horas: 4,
+        clases: 5
+      },
+      {
+        numero: 8,
+        titulo: "Excel aplicado a ventas y gestión comercial",
+        horas: 4,
+        clases: 5
+      },
+      {
+        numero: 9,
+        titulo: "Proyecto integrador: de la base de datos al reporte",
+        horas: 4,
+        clases: 5
+      },
+      {
+        numero: 10,
+        titulo: "Reto final: Excel para resolver problemas reales",
+        horas: 4,
+        clases: 5
       }
     ],
 
@@ -420,75 +413,98 @@ const courses = [
   },
 
   {
-    id: "gestion-proyectos-agiles",
-    category: "Gestión de Proyectos",
-    title: "Gestión de Proyectos con Metodologías Ágiles",
-    description:
-      "Planifica, ejecuta y lidera proyectos con enfoque práctico.",
-    hours: 30,
-    modality: "Online",
-    level: "Intermedio",
+    id: "excel-profesional-analisis-automatizacion-business-intelligence",
+    category: "Excel Avanzado, Análisis de Datos y Business Intelligence",
+    title: "Especialización en Excel Profesional: Análisis, Automatización y Business Intelligence",
+    description: "Domina Excel para analizar datos, automatizar procesos y construir soluciones profesionales para la toma de decisiones.",
+    hours: 40,
+    modality: "Online sincrónico",
+    level: "Inicial / Intermedio",
     image: "/assets/images/gestion-proyectos.png",
-
-    descripcion_larga:
-      "Este curso presenta principios y herramientas de gestión ágil para planificar, organizar y ejecutar proyectos de manera iterativa, colaborativa y orientada a resultados.",
-
+    descripcion_larga: "Programa avanzado orientado a profesionales que ya manejan Excel y quieren llevarlo a un nivel de análisis, modelamiento y automatización. Integra funciones avanzadas, dashboards, Power Query, Power Pivot, DAX, macros y modelos aplicados a gestión.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales, estudiantes y líderes de equipos interesados en aplicar metodologías ágiles para la gestión de proyectos.",
-
-    que_aprenderas: [
-      "Comprender los principios de las metodologías ágiles.",
-      "Aplicar conceptos de Scrum en proyectos.",
-      "Organizar actividades y prioridades.",
-      "Gestionar equipos multidisciplinarios.",
-      "Realizar seguimiento del avance del proyecto.",
-      "Aplicar herramientas ágiles en proyectos empresariales."
+    dirigido_a: [
+      "Analistas, coordinadores y profesionales que utilizan Excel diariamente.",
+      "Profesionales de Finanzas, RR. HH., Administración, Comercial y Operaciones.",
+      "Personas que ya manejan fórmulas y herramientas básicas/intermedias de Excel.",
+      "Profesionales que buscan fortalecer su perfil en análisis de datos y automatización."
     ],
 
-    cantidad_modulos: 6,
+    que_aprenderas: [
+      "Construir modelos avanzados con fórmulas y funciones combinadas.",
+      "Transformar y depurar grandes volúmenes de información.",
+      "Crear dashboards ejecutivos e indicadores de gestión.",
+      "Utilizar Power Query y Power Pivot para modelar datos.",
+      "Automatizar tareas repetitivas mediante macros y VBA.",
+      "Desarrollar una solución integral de análisis y gestión en Excel."
+    ],
+
+    cantidad_modulos: 10,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos de metodologías ágiles",
-        horas: 5,
+        titulo: "Excel Profesional: fórmulas y funciones avanzadas",
+        horas: 4,
         clases: 5
       },
       {
         numero: 2,
-        titulo: "Introducción a Scrum",
-        horas: 5,
+        titulo: "Excel para análisis de datos y toma de decisiones",
+        horas: 4,
         clases: 5
       },
       {
         numero: 3,
-        titulo: "Planificación y priorización",
-        horas: 5,
+        titulo: "Tablas dinámicas avanzadas y dashboards",
+        horas: 4,
         clases: 5
       },
       {
         numero: 4,
-        titulo: "Gestión de equipos ágiles",
-        horas: 5,
+        titulo: "Power Query: transforma y automatiza tus datos",
+        horas: 4,
         clases: 5
       },
       {
         numero: 5,
-        titulo: "Seguimiento y mejora continua",
-        horas: 5,
+        titulo: "Modelamiento de datos y Power Pivot",
+        horas: 4,
         clases: 5
       },
       {
         numero: 6,
-        titulo: "Proyecto aplicado",
-        horas: 5,
-        clases: 4
+        titulo: "Automatización de tareas con macros y VBA",
+        horas: 4,
+        clases: 5
+      },
+      {
+        numero: 7,
+        titulo: "Excel para finanzas y control de gestión",
+        horas: 4,
+        clases: 5
+      },
+      {
+        numero: 8,
+        titulo: "Excel para RR. HH. y People Analytics",
+        horas: 4,
+        clases: 5
+      },
+      {
+        numero: 9,
+        titulo: "Optimización de modelos y resolución de problemas",
+        horas: 4,
+        clases: 5
+      },
+      {
+        numero: 10,
+        titulo: "Proyecto integrador: Excel Professional Challenge",
+        horas: 4,
+        clases: 5
       }
     ],
 
@@ -508,68 +524,62 @@ const courses = [
   },
 
   {
-    id: "innovacion-design-thinking",
-    category: "Innovación",
-    title: "Innovación y Design Thinking",
-    description:
-      "Desarrolla soluciones creativas para los desafíos de tu negocio.",
-    hours: 20,
-    modality: "Online",
-    level: "Básico",
+    id: "team-building-conecta-colabora-logra",
+    category: "Cultura, Integración y Trabajo en Equipo",
+    title: "Team Building: Conecta, Colabora y Logra",
+    description: "Fortalece la confianza, mejora la comunicación y convierte a tu equipo en una verdadera red de colaboración.",
+    hours: 4,
+    modality: "Online sincrónico",
+    level: "Intermedio",
     image: "/assets/images/innovacion.png",
-
-    descripcion_larga:
-      "Este curso introduce herramientas de innovación y Design Thinking para comprender problemas, generar ideas y desarrollar soluciones centradas en las necesidades de los usuarios.",
-
+    descripcion_larga: "Taller experiencial orientado a fortalecer la integración, comunicación y colaboración entre los miembros de un equipo. A través de dinámicas, retos y ejercicios prácticos, los participantes identificarán fortalezas, oportunidades de mejora y acuerdos concretos para trabajar mejor juntos.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales, emprendedores, estudiantes y personas interesadas en desarrollar soluciones innovadoras para problemas empresariales.",
-
-    que_aprenderas: [
-      "Comprender los fundamentos de Design Thinking.",
-      "Identificar necesidades de los usuarios.",
-      "Generar ideas creativas.",
-      "Construir prototipos de solución.",
-      "Validar propuestas de innovación."
+    dirigido_a: [
+      "Equipos de trabajo y áreas comerciales, operativas y administrativas.",
+      "Equipos nuevos o recientemente integrados.",
+      "Organizaciones que atraviesan cambios, crecimiento o reestructuración.",
+      "Líderes que buscan fortalecer la cohesión y colaboración de sus equipos."
     ],
 
-    cantidad_modulos: 5,
+    que_aprenderas: [
+      "Reconocer fortalezas individuales y colectivas del equipo.",
+      "Identificar factores que facilitan o dificultan la colaboración.",
+      "Aplicar herramientas de comunicación y escucha activa.",
+      "Fortalecer confianza, coordinación y corresponsabilidad.",
+      "Gestionar desacuerdos de manera constructiva.",
+      "Construir acuerdos concretos para mejorar la dinámica del equipo."
+    ],
+
+    cantidad_modulos: 4,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Introducción a la innovación",
-        horas: 4,
-        clases: 4
+        titulo: "Conociendo nuestro equipo",
+        horas: 1,
+        clases: 5
       },
       {
         numero: 2,
-        titulo: "Empatía y definición del problema",
-        horas: 4,
-        clases: 4
+        titulo: "Comunicación que conecta",
+        horas: 1,
+        clases: 5
       },
       {
         numero: 3,
-        titulo: "Generación de ideas",
-        horas: 4,
+        titulo: "Retos colaborativos",
+        horas: 1,
         clases: 4
       },
       {
         numero: 4,
-        titulo: "Prototipado y validación",
-        horas: 4,
+        titulo: "Nuestro acuerdo de equipo",
+        horas: 1,
         clases: 4
-      },
-      {
-        numero: 5,
-        titulo: "Proyecto de innovación",
-        horas: 4,
-        clases: 3
       }
     ],
 
@@ -589,75 +599,62 @@ const courses = [
   },
 
   {
-    id: "tecnicas-ventas-negociacion",
-    category: "Ventas",
-    title: "Técnicas de Ventas y Negociación",
-    description:
-      "Potencia tus habilidades comerciales y alcanza mejores resultados.",
-    hours: 24,
-    modality: "Online",
+    id: "liderazgo-en-accion-equipo-resultados",
+    category: "Liderazgo y Gestión de Personas",
+    title: "Liderazgo en Acción: Del Equipo a los Resultados",
+    description: "Lidera conversaciones, moviliza personas y convierte los objetivos del equipo en resultados.",
+    hours: 4,
+    modality: "Online sincrónico",
     level: "Intermedio",
     image: "/assets/images/tecnicas-ventas.png",
-
-    descripcion_larga:
-      "Este curso desarrolla habilidades prácticas para mejorar el proceso comercial, comprender las necesidades del cliente, presentar propuestas de valor y gestionar negociaciones orientadas a resultados.",
-
+    descripcion_larga: "Taller práctico dirigido a líderes y mandos medios que necesitan fortalecer sus habilidades para gestionar personas, comunicar expectativas, entregar feedback y enfrentar situaciones difíciles. Se trabaja mediante casos, role play y simulaciones de situaciones reales.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales de ventas, ejecutivos comerciales, emprendedores, estudiantes y personas interesadas en fortalecer sus habilidades de negociación.",
-
-    que_aprenderas: [
-      "Comprender las etapas del proceso de ventas.",
-      "Identificar las necesidades del cliente.",
-      "Aplicar técnicas de comunicación comercial.",
-      "Manejar objeciones durante una venta.",
-      "Aplicar estrategias de negociación.",
-      "Desarrollar propuestas de valor."
+    dirigido_a: [
+      "Jefes, supervisores y coordinadores.",
+      "Mandos medios y líderes de equipos comerciales u operativos.",
+      "Profesionales que asumirán posiciones de liderazgo.",
+      "Responsables de equipos que necesitan fortalecer gestión y desempeño."
     ],
 
-    cantidad_modulos: 6,
+    que_aprenderas: [
+      "Reconocer el impacto del estilo de liderazgo en el equipo.",
+      "Adaptar la comunicación a diferentes situaciones y colaboradores.",
+      "Delegar responsabilidades con claridad y seguimiento.",
+      "Entregar feedback efectivo y orientado a la mejora.",
+      "Gestionar conversaciones difíciles y situaciones de bajo desempeño.",
+      "Movilizar al equipo hacia compromisos y resultados."
+    ],
+
+    cantidad_modulos: 4,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos de ventas",
-        horas: 4,
-        clases: 4
+        titulo: "El líder como movilizador",
+        horas: 1,
+        clases: 5
       },
       {
         numero: 2,
-        titulo: "Perfil y necesidades del cliente",
-        horas: 4,
-        clases: 4
+        titulo: "Comunicación y feedback",
+        horas: 1,
+        clases: 5
       },
       {
         numero: 3,
-        titulo: "Comunicación comercial",
-        horas: 4,
-        clases: 4
+        titulo: "Delegación y gestión del desempeño",
+        horas: 1,
+        clases: 5
       },
       {
         numero: 4,
-        titulo: "Manejo de objeciones",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 5,
-        titulo: "Técnicas de negociación",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 6,
-        titulo: "Plan comercial aplicado",
-        horas: 4,
-        clases: 3
+        titulo: "Conversaciones difíciles",
+        horas: 1,
+        clases: 5
       }
     ],
 
@@ -677,68 +674,57 @@ const courses = [
   },
 
   {
-    id: "seleccion-personal-competencias",
-    category: "Recursos Humanos",
-    title: "Selección de Personal por Competencias",
-    description:
-      "Aprende a identificar y seleccionar el talento ideal.",
-    hours: 20,
-    modality: "Online",
+    id: "seguridad-salud-trabajo-cultura-preventiva-gestion-riesgos",
+    category: "Seguridad, Salud Ocupacional y Gestión Preventiva",
+    title: "Seguridad y Salud en el Trabajo: Cultura Preventiva y Gestión de Riesgos",
+    description: "De cumplir una obligación a construir una verdadera cultura de prevención.",
+    hours: 6,
+    modality: "Online sincrónico",
     level: "Intermedio",
     image: "/assets/images/seleccion-personal.png",
-
-    descripcion_larga:
-      "Este curso desarrolla conocimientos y herramientas para realizar procesos de selección basados en competencias, desde el levantamiento del perfil hasta la evaluación de candidatos.",
-
+    descripcion_larga: "Curso práctico orientado a fortalecer la cultura preventiva y brindar herramientas para identificar peligros, evaluar riesgos y promover comportamientos seguros en el trabajo. Se desarrollan casos y situaciones aplicables a diferentes entornos laborales.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales y estudiantes de recursos humanos, psicología organizacional y personas interesadas en procesos de selección.",
-
-    que_aprenderas: [
-      "Definir perfiles por competencias.",
-      "Diseñar procesos de selección.",
-      "Aplicar entrevistas por competencias.",
-      "Evaluar evidencias de los candidatos.",
-      "Comparar perfiles según requerimientos del puesto."
+    dirigido_a: [
+      "Líderes y supervisores.",
+      "Profesionales de Recursos Humanos.",
+      "Responsables, comités y supervisores de SST.",
+      "Personal administrativo y operativo.",
+      "Organizaciones que buscan reforzar su cultura preventiva."
     ],
 
-    cantidad_modulos: 5,
+    que_aprenderas: [
+      "Reconocer los fundamentos de una cultura preventiva.",
+      "Identificar peligros presentes en distintos entornos de trabajo.",
+      "Diferenciar peligro, riesgo y medidas de control.",
+      "Aplicar herramientas básicas para evaluar riesgos.",
+      "Analizar actos y condiciones inseguras.",
+      "Proponer acciones preventivas y de mejora."
+    ],
+
+    cantidad_modulos: 3,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos de selección por competencias",
-        horas: 4,
-        clases: 4
+        titulo: "Cultura preventiva y responsabilidades",
+        horas: 2,
+        clases: 5
       },
       {
         numero: 2,
-        titulo: "Perfil y competencias del puesto",
-        horas: 4,
-        clases: 4
+        titulo: "Identificación de peligros y evaluación de riesgos",
+        horas: 2,
+        clases: 6
       },
       {
         numero: 3,
-        titulo: "Entrevista por competencias",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 4,
-        titulo: "Evaluación de candidatos",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 5,
-        titulo: "Caso práctico de selección",
-        horas: 4,
-        clases: 3
+        titulo: "Prevención aplicada al trabajo",
+        horas: 2,
+        clases: 6
       }
     ],
 
@@ -758,68 +744,57 @@ const courses = [
   },
 
   {
-    id: "liderazgo-comunicacion",
-    category: "Habilidades Blandas",
-    title: "Liderazgo y Comunicación",
-    description:
-      "Inspira, comunica y genera equipos de alto desempeño.",
-    hours: 24,
-    modality: "Online",
+    id: "inteligencia-artificial-productividad-laboral",
+    category: "Innovación, Tecnología y Productividad",
+    title: "Inteligencia Artificial para la Productividad Laboral",
+    description: "Aprende a utilizar IA para trabajar mejor, más rápido y con mayor impacto.",
+    hours: 6,
+    modality: "Online sincrónico",
     level: "Intermedio",
     image: "/assets/images/liderazgo.png",
-
-    descripcion_larga:
-      "Este curso desarrolla habilidades de liderazgo y comunicación para fortalecer la coordinación, motivación y colaboración dentro de los equipos de trabajo.",
-
+    descripcion_larga: "Curso práctico orientado a incorporar herramientas de inteligencia artificial en actividades cotidianas de trabajo. Los participantes aprenderán a crear prompts, generar y analizar información, mejorar documentos y diseñar flujos de trabajo que eleven su productividad.",
     certificado: true,
     idioma: "Español",
-
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales, coordinadores, supervisores, líderes de equipo, estudiantes y personas interesadas en fortalecer sus habilidades de liderazgo.",
-
-    que_aprenderas: [
-      "Comprender los fundamentos del liderazgo.",
-      "Mejorar la comunicación interpersonal.",
-      "Desarrollar habilidades de escucha activa.",
-      "Gestionar conflictos dentro de equipos.",
-      "Fortalecer la motivación y colaboración."
+    dirigido_a: [
+      "Profesionales de todas las áreas.",
+      "Líderes y supervisores.",
+      "Equipos administrativos, comerciales y de Recursos Humanos.",
+      "Marketing y comunicaciones.",
+      "Personas que desean incorporar IA a sus tareas laborales."
     ],
 
-    cantidad_modulos: 5,
+    que_aprenderas: [
+      "Comprender las principales aplicaciones de IA generativa en el trabajo.",
+      "Crear prompts claros, específicos y reutilizables.",
+      "Usar IA para redactar, resumir, organizar y analizar información.",
+      "Identificar tareas repetitivas susceptibles de optimización.",
+      "Diseñar flujos de trabajo apoyados por IA.",
+      "Aplicar criterios de validación, privacidad y uso responsable."
+    ],
+
+    cantidad_modulos: 3,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos del liderazgo",
-        horas: 5,
+        titulo: "IA aplicada al trabajo y prompting",
+        horas: 2,
         clases: 5
       },
       {
         numero: 2,
-        titulo: "Comunicación efectiva",
-        horas: 5,
+        titulo: "IA para productividad y generación de contenidos",
+        horas: 2,
         clases: 5
       },
       {
         numero: 3,
-        titulo: "Escucha y retroalimentación",
-        horas: 5,
-        clases: 5
-      },
-      {
-        numero: 4,
-        titulo: "Gestión de conflictos",
-        horas: 5,
-        clases: 5
-      },
-      {
-        numero: 5,
-        titulo: "Liderazgo aplicado",
-        horas: 4,
-        clases: 3
+        titulo: "IA para procesos y toma de decisiones",
+        horas: 2,
+        clases: 6
       }
     ],
 
@@ -839,18 +814,16 @@ const courses = [
   },
 
   {
-    id: "excel-empresarial",
-    category: "Productividad",
-    title: "Excel Empresarial",
-    description:
-      "Domina Excel y lleva tu productividad al siguiente nivel.",
-    hours: 18,
-    modality: "Online",
+    id: "customer-experience-service-excellence",
+    category: "Experiencia del Cliente y Servicio",
+    title: "Customer Experience & Service Excellence: Excelencia en Servicio",
+    description: "No se trata solo de atender: se trata de crear experiencias que el cliente quiera volver a vivir.",
+    hours: 6,
+    modality: "Online sincrónico",
     level: "Intermedio",
     image: "/assets/images/excel.png",
 
-    descripcion_larga:
-      "Este curso desarrolla habilidades prácticas para utilizar Excel en la gestión empresarial, permitiendo organizar información, aplicar fórmulas, analizar datos y generar reportes.",
+    descripcion_larga: "Programa práctico orientado a fortalecer las competencias de atención y servicio, integrando comunicación, empatía, manejo de emociones, resolución de problemas y gestión de clientes difíciles. Los participantes trabajan situaciones reales mediante casos, simulaciones y role play.",
 
     certificado: true,
     idioma: "Español",
@@ -858,49 +831,44 @@ const courses = [
     fecha_registro: "2026-09-18",
     fecha_actualizacion: "2026-09-18",
 
-    dirigido_a:
-      "Profesionales, estudiantes, emprendedores y personas que desean mejorar su productividad utilizando Microsoft Excel.",
-
-    que_aprenderas: [
-      "Organizar información en hojas de cálculo.",
-      "Aplicar funciones y fórmulas.",
-      "Crear tablas y reportes.",
-      "Utilizar herramientas de análisis de datos.",
-      "Optimizar tareas administrativas mediante Excel."
+    dirigido_a: [
+      "Equipos de atención y servicio al cliente.",
+      "Ejecutivos comerciales y equipos de ventas.",
+      "Call center y contact center.",
+      "Personal de recepción, front office y retail.",
+      "Supervisores y líderes de equipos de servicio.",
+      "Empresas que buscan fortalecer su experiencia de cliente."
     ],
 
-    cantidad_modulos: 5,
+    que_aprenderas: [
+      "Identificar los momentos críticos que impactan la experiencia del cliente.",
+      "Aplicar técnicas de comunicación, escucha activa y empatía.",
+      "Adaptar la atención a diferentes perfiles y necesidades.",
+      "Gestionar reclamos y situaciones de tensión.",
+      "Aplicar técnicas de recuperación del servicio.",
+      "Convertir una interacción difícil en una oportunidad de fidelización."
+    ],
+
+    cantidad_modulos: 3,
 
     modulos: [
       {
         numero: 1,
-        titulo: "Fundamentos de Excel",
-        horas: 3,
-        clases: 3
+        titulo: "Customer Experience: el cliente en el centro",
+        horas: 2,
+        clases: 6
       },
       {
         numero: 2,
-        titulo: "Funciones y fórmulas",
-        horas: 4,
-        clases: 4
+        titulo: "Comunicación que conecta",
+        horas: 2,
+        clases: 6
       },
       {
         numero: 3,
-        titulo: "Tablas y organización de datos",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 4,
-        titulo: "Análisis y visualización",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 5,
-        titulo: "Caso práctico empresarial",
-        horas: 3,
-        clases: 3
+        titulo: "Clientes difíciles, reclamos y recuperación del servicio",
+        horas: 2,
+        clases: 6
       }
     ],
 
@@ -915,168 +883,6 @@ const courses = [
         "Especialista en Excel",
         "Consultor de productividad",
         "Instructor empresarial"
-      ]
-    }
-  },
-
-  {
-    id: "gestion-calidad",
-    category: "Calidad",
-    title: "Gestión de la Calidad",
-    description:
-      "Implementa sistemas de calidad para mejorar procesos y resultados.",
-    hours: 24,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/gestion-calidad.png",
-
-    descripcion_larga:
-      "Este curso presenta fundamentos y herramientas de gestión de la calidad para identificar oportunidades de mejora, controlar procesos y orientar las organizaciones hacia resultados consistentes.",
-
-    certificado: true,
-    idioma: "Español",
-
-    fecha_registro: "2026-09-18",
-    fecha_actualizacion: "2026-09-18",
-
-    dirigido_a:
-      "Profesionales, supervisores, estudiantes y personas interesadas en la gestión y mejora de procesos organizacionales.",
-
-    que_aprenderas: [
-      "Comprender los fundamentos de la gestión de la calidad.",
-      "Identificar problemas y oportunidades de mejora.",
-      "Aplicar herramientas básicas de calidad.",
-      "Controlar indicadores de procesos.",
-      "Desarrollar propuestas de mejora continua."
-    ],
-
-    cantidad_modulos: 5,
-
-    modulos: [
-      {
-        numero: 1,
-        titulo: "Fundamentos de gestión de la calidad",
-        horas: 5,
-        clases: 5
-      },
-      {
-        numero: 2,
-        titulo: "Procesos e indicadores",
-        horas: 5,
-        clases: 5
-      },
-      {
-        numero: 3,
-        titulo: "Herramientas de calidad",
-        horas: 5,
-        clases: 5
-      },
-      {
-        numero: 4,
-        titulo: "Mejora continua",
-        horas: 5,
-        clases: 5
-      },
-      {
-        numero: 5,
-        titulo: "Proyecto de mejora",
-        horas: 4,
-        clases: 3
-      }
-    ],
-
-    docente: {
-      nombre: "Ing. Ricardo Medina",
-      especialidad: "Especialista en Gestión de la Calidad",
-      descripcion:
-        "Ingeniero especializado en gestión de procesos, calidad y mejora continua.",
-      foto: "/assets/images/instructor-ricardo-medina.png",
-      experiencia: [
-        "Consultor de calidad",
-        "Auditor de procesos",
-        "Especialista en mejora continua",
-        "Docente de gestión de calidad"
-      ]
-    }
-  },
-
-  {
-    id: "transformacion-digital",
-    category: "Transformación Digital",
-    title: "Transformación Digital en las Organizaciones",
-    description:
-      "Impulsa el cambio y adapta tu empresa a la era digital.",
-    hours: 20,
-    modality: "Online",
-    level: "Intermedio",
-    image: "/assets/images/transformacion-digital.png",
-
-    descripcion_larga:
-      "Este curso presenta conceptos y estrategias para comprender la transformación digital y preparar a las organizaciones para adoptar nuevas tecnologías, procesos y formas de trabajo.",
-
-    certificado: true,
-    idioma: "Español",
-
-    fecha_registro: "2026-09-18",
-    fecha_actualizacion: "2026-09-18",
-
-    dirigido_a:
-      "Profesionales, líderes, emprendedores, estudiantes y personas interesadas en comprender y promover procesos de transformación digital.",
-
-    que_aprenderas: [
-      "Comprender los fundamentos de la transformación digital.",
-      "Identificar oportunidades de digitalización.",
-      "Analizar el impacto de las nuevas tecnologías.",
-      "Diseñar iniciativas de transformación.",
-      "Promover una cultura orientada al cambio."
-    ],
-
-    cantidad_modulos: 5,
-
-    modulos: [
-      {
-        numero: 1,
-        titulo: "Fundamentos de transformación digital",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 2,
-        titulo: "Tecnología y procesos",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 3,
-        titulo: "Experiencia digital",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 4,
-        titulo: "Cultura y gestión del cambio",
-        horas: 4,
-        clases: 4
-      },
-      {
-        numero: 5,
-        titulo: "Proyecto de transformación digital",
-        horas: 4,
-        clases: 3
-      }
-    ],
-
-    docente: {
-      nombre: "Ing. Alejandro Núñez",
-      especialidad: "Especialista en Transformación Digital",
-      descripcion:
-        "Ingeniero especializado en transformación digital, innovación y adopción tecnológica en organizaciones.",
-      foto: "/assets/images/instructor-alejandro-nunez.png",
-      experiencia: [
-        "Consultor de transformación digital",
-        "Especialista en innovación tecnológica",
-        "Líder de proyectos digitales",
-        "Docente de transformación organizacional"
       ]
     }
   }

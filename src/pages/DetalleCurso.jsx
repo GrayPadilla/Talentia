@@ -195,7 +195,7 @@ function DetalleCurso() {
 
           <div className="container">
 
-            Inicio › Cursos ›{" "}
+            Inicio › Todos los Cursos ›{" "}
 
             <span>
               {curso.title}
@@ -712,80 +712,6 @@ function DetalleCurso() {
             </motion.aside>
 
           </div>
-
-
-          {/* =====================================================
-              DOCENTE
-              ===================================================== */}
-
-          {curso.docente && (
-
-            <motion.div
-              className="container instructor-section"
-              {...revealOnScroll}
-            >
-
-              <h2>
-                Docente del curso
-              </h2>
-
-
-              <article className="instructor-card">
-
-
-                <img
-                  src={curso.docente.foto}
-                  alt={curso.docente.nombre}
-                />
-
-
-                <div className="instructor-profile">
-
-                  <h3>
-                    {curso.docente.nombre}
-                  </h3>
-
-                  <span>
-                    {curso.docente.especialidad}
-                  </span>
-
-                  <p>
-                    {curso.docente.descripcion}
-                  </p>
-
-                </div>
-
-
-                <div className="instructor-experience">
-
-                  <h3>
-                    Experiencia destacada
-                  </h3>
-
-
-                  <ul>
-
-                    {curso.docente.experiencia?.map(
-                      (experiencia, index) => (
-
-                        <li key={index}>
-                          {experiencia}
-                        </li>
-
-                      )
-                    )}
-
-                  </ul>
-
-                </div>
-
-
-              </article>
-
-            </motion.div>
-
-          )}
-
 
         </section>
 
