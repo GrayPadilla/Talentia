@@ -686,6 +686,7 @@ textarea {
 }
 
 .featured-carousel-viewport {
+  min-height: 450px;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
@@ -786,6 +787,10 @@ textarea {
   .featured-carousel-control-next {
     right: -14px;
   }
+
+  .featured-carousel-viewport {
+  min-height: 400px;
+  }
 }
 
 @media (max-width: 680px) {
@@ -806,6 +811,10 @@ textarea {
   .featured-carousel-control-next {
     right: 6px;
   }
+
+  .featured-carousel-viewport {
+  min-height: 350px;
+  }
 }
 
 @media (max-width: 420px) {
@@ -821,6 +830,10 @@ textarea {
 
   .featured-carousel-track .course-card:hover {
     transform: none;
+  }
+
+  .featured-carousel-viewport {
+  min-height: 380px;
   }
 }
 

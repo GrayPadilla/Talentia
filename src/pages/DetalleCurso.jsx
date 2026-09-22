@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { motion } from "motion/react";
 
@@ -16,6 +16,22 @@ const revealOnScroll = {
   whileInView: "visible",
   viewport: { once: true, amount: 0.16 }
 };
+
+
+function obtenerPublicosDirigidos(valor) {
+  if (Array.isArray(valor)) {
+    return valor
+      .map((item) => String(item).trim())
+      .filter(Boolean);
+  }
+
+  if (!valor) return [];
+
+  return String(valor)
+    .split(/\r?\n|•|(?<=[.!?])(?=[A-ZÁÉÍÓÚÑ])/u)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
 
 
 function DetalleCurso() {
@@ -173,6 +189,9 @@ function DetalleCurso() {
       )
     : "No especificada";
 
+  const publicosDirigidos =
+    obtenerPublicosDirigidos(curso.dirigido_a);
+
 
   /* =========================================================
      INTERFAZ DEL CURSO
@@ -195,11 +214,13 @@ function DetalleCurso() {
 
           <div className="container">
 
-            Inicio › Todos los Cursos ›{" "}
-
-            <span>
-              {curso.title}
-            </span>
+            <nav className="course-breadcrumb-trail" aria-label="Ruta de navegación">
+              <Link to="/">Inicio</Link>
+              <span aria-hidden="true">›</span>
+              <Link to="/cursos">Todos los Cursos</Link>
+              <span aria-hidden="true">›</span>
+              <span>{curso.title}</span>
+            </nav>
 
           </div>
 
@@ -249,22 +270,6 @@ function DetalleCurso() {
               <p>
                 {curso.description}
               </p>
-
-
-              <div
-                className="course-rating"
-                aria-label="Calificación del curso"
-              >
-
-                <span className="rating-stars">
-                  ★★★★★
-                </span>
-
-                <span>
-                  4.8 (320 valoraciones)
-                </span>
-
-              </div>
 
 
               <div className="course-badges">
@@ -383,7 +388,13 @@ function DetalleCurso() {
                 </p>
 
 
-                <div className="audience-card">
+                <motion.div
+                  className="audience-card"
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                >
 
                   <img
                     src="/assets/images/icon/meta-icon.svg"
@@ -397,13 +408,17 @@ function DetalleCurso() {
                       Dirigido a
                     </h3>
 
-                    <p>
-                      {curso.dirigido_a}
-                    </p>
+                    <ul>
+                      {publicosDirigidos.map((publico, index) => (
+                        <li key={index}>
+                          {publico}
+                        </li>
+                      ))}
+                    </ul>
 
                   </div>
 
-                </div>
+                </motion.div>
 
               </motion.article>
 
